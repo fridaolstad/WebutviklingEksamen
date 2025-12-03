@@ -5,7 +5,7 @@ interface IAthlete
     int Id {get; set; }
     string Name {get; set; }
     string Gender {get; set; }
-    int Price {get; set; }
+    double Price {get; set; }
     string Image {get; set;}
     bool PurchasesStatus {get; set;}
 }
