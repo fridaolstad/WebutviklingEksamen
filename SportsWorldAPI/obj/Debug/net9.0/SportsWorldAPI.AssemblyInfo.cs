@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportsWorldAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e24080e4213d5600b312c2394e22647f2422cc25")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f58c4f7c347c10d7a88822c21de2602f841e487")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportsWorldAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportsWorldAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
