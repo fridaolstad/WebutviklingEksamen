@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj": {}
+    "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj": {}
   },
   "projects": {
-    "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj": {
+    "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+        "projectUniqueName": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
         "projectName": "SportsWorldAPI",
-        "projectPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+        "projectPath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
         "packagesPath": "/Users/theasandersen/.nuget/packages/",
-        "outputPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/obj/",
+        "outputPath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/theasandersen/.nuget/NuGet/NuGet.Config"

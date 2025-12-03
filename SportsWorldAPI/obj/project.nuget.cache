@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gsb/6FeE1cA=",
+  "dgSpecHash": "B1EiTLTy8pQ=",
   "success": true,
-  "projectFilePath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+  "projectFilePath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
   "expectedPackageFiles": [
     "/Users/theasandersen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/theasandersen/.nuget/packages/microsoft.aspnetcore.openapi/9.0.11/microsoft.aspnetcore.openapi.9.0.11.nupkg.sha512",
@@ -59,9 +59,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "SportsWorldAPI depends on Microsoft.EntityFrameworkCore.Design (>= 9.0.0-rc.2.24522.10) but Microsoft.EntityFrameworkCore.Design 9.0.0-rc.2.24522.10 was not found. Microsoft.EntityFrameworkCore.Design 9.0.0 was resolved instead.",
-      "projectPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+      "projectPath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+      "filePath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore.Design",
       "targetGraphs": [
         "net9.0"
@@ -71,9 +71,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "SportsWorldAPI depends on Microsoft.EntityFrameworkCore.Sqlite (>= 9.0.0-rc.2.24522.10) but Microsoft.EntityFrameworkCore.Sqlite 9.0.0-rc.2.24522.10 was not found. Microsoft.EntityFrameworkCore.Sqlite 9.0.0 was resolved instead.",
-      "projectPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+      "projectPath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
       "warningLevel": 1,
-      "filePath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+      "filePath": "/Users/theasandersen/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore.Sqlite",
       "targetGraphs": [
         "net9.0"
