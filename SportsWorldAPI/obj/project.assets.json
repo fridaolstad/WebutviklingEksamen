@@ -3143,19 +3143,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/fridaolstad/.nuget/packages/": {}
+    "/Users/theasandersen/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/SportsWorldAPI.csproj",
+      "projectUniqueName": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
       "projectName": "SportsWorldAPI",
-      "projectPath": "/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/SportsWorldAPI.csproj",
-      "packagesPath": "/Users/fridaolstad/.nuget/packages/",
-      "outputPath": "/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/",
+      "projectPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/SportsWorldAPI.csproj",
+      "packagesPath": "/Users/theasandersen/.nuget/packages/",
+      "outputPath": "/Users/theasandersen/Documents/WebutviklingEksamen/SportsWorldAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/fridaolstad/.nuget/NuGet/NuGet.Config"
+        "/Users/theasandersen/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3219,7 +3219,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
