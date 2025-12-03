@@ -1,0 +1,9 @@
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.csproj.AssemblyReference.cache
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.AssemblyInfoInputs.cache
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.AssemblyInfo.cs
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.csproj.CoreCompileInputs.cache
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.MvcApplicationPartsAssemblyInfo.cs
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.MvcApplicationPartsAssemblyInfo.cache
+/Users/fridaolstad/Documents/SportsWorldProsjekt/SportsWorldAPI/obj/Debug/net9.0/SportsWorldAPI.sourcelink.json
