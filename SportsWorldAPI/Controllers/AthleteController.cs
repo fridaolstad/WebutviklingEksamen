@@ -94,6 +94,7 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
 [HttpPut]
 public async Task<IActionResult> Put(Athlete editedAthlete)
     {
+        // sjekker om brukeren sender inn et gyldig objekt
         if(editedAthlete != null)
         {
             try
@@ -111,40 +112,78 @@ public async Task<IActionResult> Put(Athlete editedAthlete)
                 return StatusCode(500);
             }
         }
-        // ha else her og return inni?
-        return BadRequest();
+        else
+        {
+            return BadRequest();
+        }
+      
     }
-// TODO: 
+
+
+
 // delete -  slette utøver
-
-
-
-
-
-
-
-
-
-// post - registrere ny athlete - side 2
-
-/*
-[HttpPost]
-public async Task<ActionResult<Athlete>> Post(Athlete athlete)
+[HttpDelete("{id}")] // sletter etter id på athlete, /api/Athlete/id
+public async Task<IActionResult> Delete (int id)
     {
         try
         {
+            // søker i databsen om den finner en utøver med matcher den gitte iden, resutatet kan være null (?), ? fordi det er ikke sikkert det er en Athlete vi får tak i 
+            Athlete? athlete = await _sportsWorldContext.Athletes.FindAsync(id);
+            // sjekker om athleten ble funnet i databasen
+            if (athlete != null)
+            {
+                // forteller at dette objektet skal fjernes fra databsen
+                _sportsWorldContext.Athletes.Remove(athlete);
+                // selve slettingen, sender slette forespørsel til databasen
+                await _sportsWorldContext.SaveChangesAsync();
+
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+        catch
+        {
+            return StatusCode(500, "Server error"); 
+        }
+    }
+
+
+// post - registrere ny athlete  - side 2
+
+
+[HttpPost]
+public async Task<ActionResult<Athlete>> Post(Athlete athlete)
+    {
+        if(athlete != null 
+        && !string.IsNullOrWhiteSpace(athlete.Name)
+        && !string.IsNullOrWhiteSpace(athlete.Image))
+        {
+
+        try
+        {
+            athlete.PurchaseStatus = false;
+
+            _sportsWorldContext.Athletes.Add(athlete);
+            await _sportsWorldContext.SaveChangesAsync();
+            return Created();
 
         }
         catch
         {
             return StatusCode(500);
         }
+
+        }
+        else
+        {
+            return BadRequest();
+        }
         
     }
-
-*/
-
-
 
 }
 
@@ -157,8 +196,6 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
 // CREATE er POST
 // UPDATE er PUT
 
-
-//? fordi det er ikke sikkert det er en Athlete vi får tak i 
 // 200 koder er bra 
 // 400 koder er at det er noe galt i frontenden (noe brukeren har gjort)
 // 500 koder er server feil 
