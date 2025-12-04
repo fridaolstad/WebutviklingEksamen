@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SportsWorldAPI.Context;
 using SportsWorldAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace SportsWorldAPI.Controllers;
 
@@ -153,8 +154,6 @@ public async Task<IActionResult> Delete (int id)
 
 
 // post - registrere ny athlete  - side 2
-
-
 [HttpPost]
 public async Task<ActionResult<Athlete>> Post(Athlete athlete)
     {
@@ -185,7 +184,51 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
         
     }
 
+    // til Finance - kjøpe utøver
+    [HttpPost("purchase")]
+    public async Task<ActionResult> PurchaseAthlete(int athleteId)
+    {
+
+        try
+        {
+            // finne utøver
+            Athlete? athlete = await _sportsWorldContext.Athletes.FindAsync(athleteId);
+            if(athlete == null)
+                return NotFound("Finner ikke utøver");
+            
+            //Hvis utøveren er kjøpt fra før
+            if(athlete.PurchaseStatus)
+                return BadRequest("Utøver er allerede kjøpt");
+            
+            // finne finance
+            Finance? finance = await _sportsWorldContext.Finances.FirstOrDefaultAsync();
+            if (finance == null)
+                return NotFound("Ikke funnet");
+
+            if (finance.MoneyLeft < athlete.Price)
+                return BadRequest("Ikke nok penger til å kjøpe denne utøveren");
+
+            athlete.PurchaseStatus = true;
+            finance.MoneyLeft -= athlete.Price;
+            finance.MoneySpent += athlete.Price;
+            finance.NumberOfPurchases++;
+
+            await _sportsWorldContext.SaveChangesAsync();
+
+            return Ok(new {athlete, finance});
+            
+        }
+        catch
+        {
+            return StatusCode(500);
+        }
+        
+
+    }
+
+
 }
+
 
 
 
