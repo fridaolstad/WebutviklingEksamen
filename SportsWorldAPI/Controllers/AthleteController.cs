@@ -161,7 +161,7 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
         if(athlete != null 
         && !string.IsNullOrWhiteSpace(athlete.Name)
         && !string.IsNullOrWhiteSpace(athlete.Image))
-        {
+        { // dette er sånn rolando setter opp, med && og !, men kan også bruke | | |, mener rolando har brukt det også egt
 
         try
         {
