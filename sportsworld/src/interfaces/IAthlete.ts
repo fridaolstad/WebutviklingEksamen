@@ -2,7 +2,7 @@ export interface IAthlete{
     id?: number,
     name: string, 
     gender: string,
-    price: number, // fikse denne til double
+    price: number, 
     image: string,
     purchaseStatus: boolean
 }
