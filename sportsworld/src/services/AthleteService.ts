@@ -4,7 +4,7 @@ import type { IDefaultResponse, IAthletesResponse } from "../interfaces/Response
 
 const endpoint = "http://localhost:5009/api/athlete"; // endre til riktig url
 
-// denne servicen skal jobbe mot backend 
+// denne servicen skal jobbe mot backend
 
 const getAllAthletes = async (): Promise<IAthletesResponse> => {
     try{
@@ -26,7 +26,7 @@ const getAllAthletes = async (): Promise<IAthletesResponse> => {
 
 const getAthleteById = async (id: number): Promise<IAthletesResponse> => {
     try{
-        const result = await axios.get(`${endpoint}/${id}`);
+        const result = await axios.get(`${endpoint}/${id}`); // get-kall til backend
         return {
             success: true,
             data: result.data
@@ -41,13 +41,31 @@ const getAthleteById = async (id: number): Promise<IAthletesResponse> => {
     }
 }
 
-
-
-
-
-const postAthlete = async (athlete: IAthlete) : Promise<IDefaultResponse> => {
+const getAthleteByName = async (name: string): Promise<IAthletesResponse> => {
     try{
-        const response = await axios.post(endpoint, athlete); // poster athlete til backend
+        const result = await axios.get(`${endpoint}/${name}`); // get-kall til backend
+        return{
+            success: true,
+            data: result.data
+        };
+
+    }catch{
+        return{
+            success: false,
+            data: null
+        }
+    }
+}
+
+//oppdaterer eksisterende athlete (side 1)
+
+
+
+
+// registrere ny athlete(?), side 2 - skal det egt 
+const postAthlete = async (newAthlete: IAthlete) : Promise<IDefaultResponse> => {
+    try{
+        const response = await axios.post(endpoint, newAthlete); // poster athlete til backend
         console.log(response);
         return{
             success: true,
@@ -66,6 +84,8 @@ const postAthlete = async (athlete: IAthlete) : Promise<IDefaultResponse> => {
 
 
 
-export default {getAllAthletes, getAthleteById, postAthlete}
+
+
+export default {getAllAthletes, getAthleteById, getAthleteByName, postAthlete}
 
 
