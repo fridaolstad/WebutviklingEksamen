@@ -3,6 +3,7 @@ import { type IAthlete } from "../interfaces/IAthlete";
 import type { IDefaultResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
 
 const endpoint = "http://localhost:5009/api/athlete"; // endre til riktig url
+const endpointImage = ""; // legge til url
 
 // denne servicen skal jobbe mot backend
 
@@ -81,24 +82,43 @@ const updateAthlete = async (editedAthlete : IAthlete) : Promise<IDefaultRespons
 
 
 
-// registrere ny athlete, side 2 - 
-const postAthlete = async (newAthlete: IAthlete) : Promise<IDefaultResponse> => {
+// registrere ny athlete, side 2 - husk ta med bildeopplatning her: !
+const postAthlete = async (newAthlete: IAthlete, image: File) : Promise<IDefaultResponse> => {
     try{
         const response = await axios.post(endpoint, newAthlete); // poster athlete til backend
-        console.log(response);
+        console.log("response fra dataopplastning: ", response);
+
+        // Må pakke inn bildefilen i formData slik at det kan tas imot av Controller som IFormFile
+        const formData = new FormData();
+        formData.append("file", image);
+
+        // Her sendes bildet til ImageUploadController
+        const response2 = await axios ({
+            url: endpointImage,
+            method: "POST",
+            data: formData,
+            headers: {"Content-Type": "multipart/form-data"}
+        });
+
+        console.log("response fra bildeopplastning: ", response2);
+
+        // Tømmer formData før neste bildeopplast
+        formData.delete("file");
+
         return{
             success: true,
             data: response.data
         }
 
     }catch(error){
-        console.error("feil ved registrering av ny athlete (post)", error)
+        console.error("feil ved registrering av ny athlete (post) eller bildeopplastning", error)
         return{
             success: false
         }
 
     }
 }
+
 
 const deleteAthlete = async (id: number) : Promise <IDefaultResponse> => {
     try{
