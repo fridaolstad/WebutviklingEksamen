@@ -1,6 +1,6 @@
 // her skal "malen/oppskriften" for context ligge 
 
-// se rolandos cake kode for oppsett :))
+
 
 import { type IAthlete } from "./IAthlete";
 import type { IAthletesResponse, IDefaultResponse } from "./ResponseInterfaces";
@@ -10,7 +10,7 @@ export interface IAthleteContext {
     getAthleteQuantity: () => number, // denne MÅ ikke brukes, men kan 
 
     //side 1: 
-   // showAllAthletes: () => Promise<IDefaultResponse>, 
+    showAllAthletes: () => Promise<IAthletesResponse>, 
     showAthleteById: (id: number) => Promise<IDefaultResponse>,
     searchAthleteByName: (name: string) => Promise<IAthletesResponse>,
 

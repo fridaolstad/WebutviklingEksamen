@@ -20,7 +20,7 @@ export const AthleteProvider = ({children} : Props) => {
     },[]);
 
     // skal gjøre bruk av getAllAthletes i AthleteService - skal skape/hente utøver med engang = bruke useEffect for dette
-    const setAthletesFromService = async () => {
+    const setAthletesFromService = async () : Promise<IAthletesResponse> => {
         const response = await AthleteService.getAllAthletes();
 
         if(response.success === true && response.data != null){
@@ -28,6 +28,10 @@ export const AthleteProvider = ({children} : Props) => {
         } else{
             console.error("klarte ikke hente alle utøvere");
         }
+        // legger med return for å returere riktig ifh til IAthleteResponse, useEffect ignorerer return, så derfor går dette bra,
+        // hvis ikke måte vi ha laget en ny funksjon, men den ville innhold mye duplisert kode fra denne funksjonen... derfor valgte 
+        // vi å ha en return med og : Promise<IAthletesResponse> 
+        return response;
     };
 
     const getAthleteById = async (id: number) : Promise<IDefaultResponse> => {
@@ -102,7 +106,7 @@ export const AthleteProvider = ({children} : Props) => {
     
 
     return(
-        <AthleteContext.Provider value ={{athletes, getAthleteQuantity, showAthleteById: getAthleteById, searchAthleteByName : getAthleteByName, registerAthlete, updateAthlete, removeAthlete : deleteAthlete}}>
+        <AthleteContext.Provider value ={{athletes, showAllAthletes : setAthletesFromService , getAthleteQuantity, showAthleteById: getAthleteById, searchAthleteByName : getAthleteByName, registerAthlete, updateAthlete, removeAthlete : deleteAthlete}}>
             {children}
         </AthleteContext.Provider>
     )
