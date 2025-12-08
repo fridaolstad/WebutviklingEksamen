@@ -9,12 +9,19 @@ export interface IAthleteContext {
     athletes: IAthlete[],
     getAthleteQuantity: () => number, // denne MÅ ikke brukes, men kan 
 
+    //side 1: 
     showAllAthletes: () => Promise<IDefaultResponse>, 
-    updateAthlete: (updateAthlete: IAthlete) => Promise<IDefaultResponse>, // chat mener jeg kan ta bort denne
-    removeAthlete: (id: number) => Promise<IDefaultResponse>,
-    searchAthlete: (searchAthlete: string) => IAthlete[],
+    showAthleteById: (id: number) => Promise<IDefaultResponse>,
+    showAthleteByName: (name: string) => Promise<IDefaultResponse>,
 
-    saveAthlete : (newAthlete : IAthlete) => Promise <IDefaultResponse> 
+    updateAthlete: (updateAthlete: IAthlete) => Promise<IDefaultResponse>,
+    removeAthlete: (id: number) => Promise<IDefaultResponse>,
+
+    // til side 2: 
+    searchAthlete: (searchAthlete: string) => IAthlete[],
+    registerAthlete: (newAthlete : IAthlete) => Promise <IDefaultResponse>,
+
+    uploadAthleteImage: (imageFile: File) => Promise<IDefaultResponse>
 
 }
 
