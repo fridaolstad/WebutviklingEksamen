@@ -9,6 +9,7 @@ import { type IDefaultResponse, type IResponseData } from "../interfaces/Respons
 
 export const FinanceContext = createContext<IFinanceContext | null>(null);
 
+
 interface Props { children: ReactNode};
 
 export const FinanceProvider = ({children}: Props) => {
