@@ -11,7 +11,7 @@ export interface IAthleteContext {
     getAthleteQuantity: () => number; // denne MÅ ikke brukes, men kan 
 
     //side 1: 
-   // showAllAthletes: () => Promise<IDefaultResponse>, 
+   showAllAthletes: () => Promise<IAthletesResponse>, 
     showAthleteById: (id: number) => Promise<IDefaultResponse>,
     searchAthleteByName: (name: string) => Promise<IAthletesResponse>,
 
