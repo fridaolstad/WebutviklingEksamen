@@ -10,7 +10,7 @@ const FinanceSum = () => {
 
     return (
         <section className="">
-            <h3 className="" > Personlig finans-oversikt</h3>
+            <h3 className="" >Personlig finans-oversikt</h3>
             <p className="">Tilgjendelig beløp på konto:</p>
             <p className="">Totalt utgifter:</p>
             <p className="">Antall utøvere kjøpt:</p>
