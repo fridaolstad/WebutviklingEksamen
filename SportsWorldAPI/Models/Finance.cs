@@ -8,4 +8,7 @@ public class Finance : IFinance
     public double MoneyLeft { get; set; }
     public int NumberOfPurchases { get; set; }
     public double MoneySpent { get; set; }
+
+    public double Amount { get; set; }
+    public double Price { get; set; }
 }
