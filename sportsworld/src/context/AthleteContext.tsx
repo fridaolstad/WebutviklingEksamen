@@ -94,16 +94,11 @@ export const AthleteProvider = ({children} : Props) => {
     }
 
 
-
-
-
     // denne kan slettes hvis vi ikke skal bruke den:
     const getAthleteQuantity = () : number => {
         return athletes.length;
     }
 
-
-    
 
     return(
         <AthleteContext.Provider value ={{athletes, showAllAthletes : setAthletesFromService , getAthleteQuantity, showAthleteById: getAthleteById, searchAthleteByName : getAthleteByName, registerAthlete, updateAthlete, removeAthlete : deleteAthlete}}>
