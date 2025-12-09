@@ -5,7 +5,9 @@ import type { IDefaultResponse, IAthletesResponse } from "../interfaces/Response
 const endpoint = "http://localhost:5009/api/athlete"; // endre til riktig url
 const endpointImage = ""; // legge til url
 
+
 // denne servicen skal jobbe mot backend
+
 
 const getAllAthletes = async (): Promise<IAthletesResponse> => {
     try{
@@ -141,5 +143,3 @@ const deleteAthlete = async (id: number) : Promise <IDefaultResponse> => {
 
 
 export default {getAllAthletes, getAthleteById, getAthleteByName,updateAthlete, postAthlete, deleteAthlete}
-
-

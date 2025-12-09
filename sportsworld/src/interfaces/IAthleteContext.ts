@@ -1,7 +1,5 @@
 // her skal "malen/oppskriften" for context ligge 
 
-
-
 import { type IAthlete } from "./IAthlete";
 import type { IAthletesResponse, IDefaultResponse } from "./ResponseInterfaces";
 

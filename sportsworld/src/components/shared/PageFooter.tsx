@@ -1,3 +1,4 @@
+
 const PageFooter = () => {
     return(
         <footer> lage en footer her :D</footer>
@@ -5,3 +6,4 @@ const PageFooter = () => {
 }
 
 export default PageFooter;
+

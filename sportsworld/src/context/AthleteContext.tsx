@@ -20,7 +20,9 @@ export const AthleteProvider = ({children} : Props) => {
     },[]);
 
     // skal gjøre bruk av getAllAthletes i AthleteService - skal skape/hente utøver med engang = bruke useEffect for dette
+
     const setAthletesFromService = async () : Promise<IAthletesResponse> => {
+
         const response = await AthleteService.getAllAthletes();
 
         if(response.success === true && response.data != null){
@@ -32,6 +34,7 @@ export const AthleteProvider = ({children} : Props) => {
         // hvis ikke måte vi ha laget en ny funksjon, men den ville innhold mye duplisert kode fra denne funksjonen... derfor valgte 
         // vi å ha en return med og : Promise<IAthletesResponse> 
         return response;
+
     };
 
     const getAthleteById = async (id: number) : Promise<IDefaultResponse> => {
@@ -93,11 +96,11 @@ export const AthleteProvider = ({children} : Props) => {
         return response;
     }
 
-
     // denne kan slettes hvis vi ikke skal bruke den:
     const getAthleteQuantity = () : number => {
         return athletes.length;
     }
+
 
 
     return(
@@ -107,7 +110,11 @@ export const AthleteProvider = ({children} : Props) => {
     )
         
 
+
 }
+
+
+
 
 
 
