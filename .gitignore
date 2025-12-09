@@ -1,0 +1,28 @@
+# Bygge- og midlertidige filer fra .NET/C#
+[Bb]in/
+[Oo]bj/
+*.log
+*.pdb
+*.dll
+*.exe
+*.tmp
+**/*.user
+**/*.suo
+
+# NuGet pakker og cache
+.nuget/
+*.nupkg
+*.snupkg
+project.assets.json # Viktig: Denne genererer konflikter
+
+# Utviklingsfiler fra Node/Frontend (Vite/React)
+node_modules/
+dist/
+.vite/
+
+# Ideer/VS Code
+.vs/
+.vscode/
+
+# Spesifikke macOS filer
+.DS_Store
