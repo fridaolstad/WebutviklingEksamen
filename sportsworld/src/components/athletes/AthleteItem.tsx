@@ -15,22 +15,22 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
     const imageUrl = `${apiBaseUrl}/images/${athlete.image}`;
     return (
 
-        <div className="bg-green-500 rounded-xl shadow-lg">
+        <div className="bg-gray-200 rounded-xl shadow-lg">
 
             <div className="h-48 w-full flex items-center justify-center overflow-hidden">
                 <img 
                 src={imageUrl}
                 alt={`bilde av ${athlete.name}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top rounded-t-xl"
                 />
 
             </div>
 
-            <div className="p-4">
-            <h3 className="text-xl font-extrabold "> {athlete.name}, ({athlete.id})</h3>
+            <div className="p-4 text-center">
+            <h3 className="text-xl font-extrabold "> {athlete.name} ({athlete.id})</h3>
             </div>
 
-            <div className="text-sm">
+            <div className="text-sm text-center">
             <p className="font-medium"> Kjønn: {athlete.gender}</p>
             <p className="font-medium"> Pris: {athlete.price} kr</p>
             <p> Status (kjøpt eller ikke): {athlete.purchaseStatus}</p>
@@ -42,14 +42,14 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
             <div className="mt-4 pt-3 border-t border-gray-100 flex space-x-3 p-4">
                 {onEdit && (
                     <button onClick={() => onEdit(athlete)}
-                    className="flex-1 bg-blue-600 rounded-lg"
-                    > rediger eksisterende utøver </button>
+                    className="flex-1 bg-blue-200 rounded-lg"
+                    > Rediger spiller </button>
                 )}
 
                 {onDelete && (
                     <button onClick={() => onDelete(athlete.id)}
-                    className=" flex-1 bg-red-600 rounded-lg"
-                    > slette utøver</button>
+                    className=" flex-1 bg-red-300 rounded-lg"
+                    > Slette spiller</button>
                 )}
 
             </div>
