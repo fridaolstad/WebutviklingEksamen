@@ -65,12 +65,12 @@ const AthleteForm = () => {
             {/* inputfeltet for søk */}
             <div>
                 <label>Navn</label>
-                <input ref={searchInput} className="border" type="text" />
+                <input ref={searchInput} className="border border-black" type="text" />
             </div>
-            <button onClick={handleSearch} className="border px-2"> Søk </button>
+            <button onClick={handleSearch} className="border border-black px-2"> Søk </button>
            
              {/* vise alle knapper */}
-             <button onClick={handeShowAll} className="border px-2" > vis alle </button>
+             <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
 
               <p> Status: {statusMessage}</p>
         </section>
