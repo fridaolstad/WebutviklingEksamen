@@ -3,7 +3,9 @@ import {type IFinance } from "../interfaces/IFinance";
 import { type IResponseData } from "../interfaces/ResponseInterfaces";
 import PurchaseAthlete from "../components/finance/FinancePurchase";
 
+
 const financeEndpoint = "http://localhost:5236/api/finance" 
+
 
 const FinanceService = {
     // GET /finance
@@ -64,7 +66,7 @@ const FinanceService = {
     }
 };
 
-export default {FinanceService};
+export default FinanceService;
 
 
 

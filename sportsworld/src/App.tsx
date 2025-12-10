@@ -1,13 +1,13 @@
 
 import { AthleteProvider } from './context/AthleteContext'
 import { FinanceProvider } from './context/FinanceContext'
-import AppRoutes from './routing/AppRoutes';
+import AppRouting from './routing/AppRouting'
 
 function App() {
   return (
    <AthleteProvider>
     <FinanceProvider>
-      <AppRoutes></AppRoutes>
+      <AppRouting/>
     </FinanceProvider>
    </AthleteProvider>
   )

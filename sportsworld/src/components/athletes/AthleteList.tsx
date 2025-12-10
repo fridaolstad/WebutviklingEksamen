@@ -5,13 +5,14 @@ import { AthleteContext } from "../../context/AthleteContext";
 import AthleteItem from "../athletes/AthleteItem";
 
 
-// lager interface som matcher props i Item, sånn at finance også kan bruke AthleteList -F
-interface AthleteListProps {
+// lager interface som matcher props i Item, sånn at finance også kan bruke AthleteList -F, thea du treger ikke bruke disse
+// med mindre du trenger slette og endre funksjoner og knapp
+interface AthleteListProperties {
     onEdit?: (athlete: IAthlete) => void;
     onDelete?: (id: number) => void;
 }
 
-const AthleteList = ({onDelete, onEdit} : AthleteListProps) => {
+const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
 
      // koble opp til context - hentet kake tilstanden -F
     const {athletes} = useContext(AthleteContext) as IAthleteContext;
@@ -36,16 +37,18 @@ const AthleteList = ({onDelete, onEdit} : AthleteListProps) => {
         return athleteJSX;
     }
 
-    // tailwind styling er bare samme som rolando, sa dette kan vi odc endre på -F
+    // tailwind styling er bare samme som rolando, sa dette kan vi ofc endre på -F
     return (
-        <section className="p-3 border mb-3">
+        <div className="mt-8">
             <header>
-                <h2 className="text-xl">Athleteliste</h2>
+                <h2 className="text-xl font-bold mb-6">Athleteliste</h2>
             </header>
-            <section>
+
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {getAthleteJSX()}
             </section>
-        </section>
+        
+         </div>
 
     )
 }

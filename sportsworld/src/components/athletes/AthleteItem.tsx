@@ -1,40 +1,61 @@
 import type { IAthlete } from "../../interfaces/IAthlete";
 
+const apiBaseUrl = "http://localhost:5236";
+
 // lager props sånn at både athlete og finance kan bruke denne, setter ? da finance ikke MÅ bruke dem (skal ikke heller)
 // prøve å bruke navnene delete og edit, men kan ikke bruke navnet delete da det allerede er noe i react
-interface AthleteItemProps {
+interface AthleteItemProperties {
     athlete : IAthlete;
     onEdit?: (athlete: IAthlete) => void;
     onDelete?: (id: number) => void;
 }
 
-const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProps ) => {
+const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => {
+
+    const imageUrl = `${apiBaseUrl}/images/${athlete.image}`;
     return (
-        <article>
-            <div>
-            <h3> {athlete.name}, ({athlete.id})</h3>
-            <p> {athlete.gender}</p>
-            <p> Pris: {athlete.price}</p>
+
+        <div className="bg-green-500 rounded-xl shadow-lg">
+
+            <div className="h-48 w-full flex items-center justify-center overflow-hidden">
+                <img 
+                src={imageUrl}
+                alt={`bilde av ${athlete.name}`}
+                className="w-full h-full object-cover"
+                />
+
+            </div>
+
+            <div className="p-4">
+            <h3 className="text-xl font-extrabold "> {athlete.name}, ({athlete.id})</h3>
+            </div>
+
+            <div className="text-sm">
+            <p className="font-medium"> Kjønn: {athlete.gender}</p>
+            <p className="font-medium"> Pris: {athlete.price} kr</p>
             <p> Status (kjøpt eller ikke): {athlete.purchaseStatus}</p>
 
-            <p> {athlete.image}</p>
             </div>
 
             {/* Knappene som vises hvis vi kaller på onEdit og onDelete, detet for at Finance også skal kunne bruke Item komponeneten 
              uten kanppene, da knappene bare trengst i Administrasjonssiden*/ }
-            <div>
+            <div className="mt-4 pt-3 border-t border-gray-100 flex space-x-3 p-4">
                 {onEdit && (
-                    <button onClick={() => onEdit(athlete)}> rediger eksisterende utøver</button>
+                    <button onClick={() => onEdit(athlete)}
+                    className="flex-1 bg-blue-600 rounded-lg"
+                    > rediger eksisterende utøver </button>
                 )}
 
                 {onDelete && (
-                    <button onClick={() => onDelete(athlete.id)}> slette utøver</button>
+                    <button onClick={() => onDelete(athlete.id)}
+                    className=" flex-1 bg-red-600 rounded-lg"
+                    > slette utøver</button>
                 )}
 
             </div>
             
             
-        </article>
+        </div>
     )
 
 }

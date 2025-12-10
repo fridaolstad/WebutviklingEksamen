@@ -3,6 +3,8 @@ import { type IAthleteContext } from "../../interfaces/IAthleteContext";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
 
+// vise alle, og søke etter navn
+
 const AthleteForm = () => {
 
     // koble til contexten
@@ -38,7 +40,6 @@ const AthleteForm = () => {
         }
       }
 
-      // usikker på om denne skal ligge her eller i list.. chat sier her
 
       const handeShowAll = async () => {
         setStatusMessage("henter alle utøvere...")
@@ -64,12 +65,12 @@ const AthleteForm = () => {
             {/* inputfeltet for søk */}
             <div>
                 <label>Navn</label>
-                <input ref={searchInput} className="border" type="text" > </input>
+                <input ref={searchInput} className="border border-black" type="text" />
             </div>
-            <button onClick={handleSearch} className="border px-2"> Søk </button>
+            <button onClick={handleSearch} className="border border-black px-2"> Søk </button>
            
              {/* vise alle knapper */}
-             <button onClick={handeShowAll} className="border px-2" > vis alle </button>
+             <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
 
               <p> Status: {statusMessage}</p>
         </section>
