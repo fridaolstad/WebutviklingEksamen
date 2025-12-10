@@ -10,7 +10,6 @@ namespace SportsWorldAPI.Controllers;
 
 public class FinanceController(SportsWorldContext _financeContext) : ControllerBase
 {
-
     [HttpGet]
     public async Task<ActionResult<Finance>> Get()
     {

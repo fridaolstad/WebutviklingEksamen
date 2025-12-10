@@ -1,6 +1,6 @@
 // Wrapper for Athlete-list. Ledig utøver. Henter fra context/service.
 
-import { use, useContext, useState} from "react";
+import { useContext, useState} from "react";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import { FinanceContext } from "../../context/FinanceContext";

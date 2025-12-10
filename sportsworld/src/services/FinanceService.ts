@@ -3,7 +3,7 @@ import {type IFinance } from "../interfaces/IFinance";
 import { type IResponseData } from "../interfaces/ResponseInterfaces";
 import PurchaseAthlete from "../components/finance/FinancePurchase";
 
-const financeEndpoint = "" // Legg inn endepunktet her når jeg kjører neste gang
+const financeEndpoint = "http://localhost:5236/api/finance" 
 
 const FinanceService = {
     // GET /finance
@@ -28,7 +28,7 @@ const FinanceService = {
     // PUT /finance/addmoney
     addMoney: async (amount: number): Promise<IResponseData<IFinance>> => {
         try {
-            const response = await axios.put('financeEndpoint/addmoney', amount);
+            const response = await axios.put('${financeEndpoint}/addmoney', amount);
 
             return {
                 success: true,

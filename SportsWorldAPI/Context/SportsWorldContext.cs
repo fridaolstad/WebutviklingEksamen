@@ -11,5 +11,4 @@ public class SportsWorldContext(DbContextOptions<SportsWorldContext> options) : 
 
 
     public DbSet<Finance> Finances {get; set; }
-    // hvis tid, legge til venue
 }

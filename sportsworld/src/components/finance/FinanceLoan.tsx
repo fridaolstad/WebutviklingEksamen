@@ -23,7 +23,7 @@ const FinanceLoan = () => {
             updateStatusMessage('Lånet på ${loanAmount}kr er lagt til', true);
             setLoanAmount(0);
         } else {
-            updateStatusMessage(response.message || "Lånet feilet", false);
+            updateStatusMessage(response.message || 'Lånet feilet', false);
         }
     };
 
@@ -49,9 +49,9 @@ const FinanceLoan = () => {
                 <button onClick={handleLoan}>
                     Lån penger
                 </button>
-                {statusMessage &&(
-                    <p className="{isOk?}"></p>
-                )}
+                {
+                    <p className={isOk ? "text-green-600" : "text-red-600"}>{statusMessage}</p> 
+                }
         </section>
     );
 };
