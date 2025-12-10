@@ -2,6 +2,8 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import FinancePage from '../pages/FinancePage';
+import { AthleteAdminPage } from "../pages";
+import AthleteRegisterPage from "../pages/AthleteRegisterPage";
 // trenger også AtheltePage her
 
 const AppRoutes = () => { // Må sjekke om pathen til utøvere er riktig
@@ -9,7 +11,9 @@ const AppRoutes = () => { // Må sjekke om pathen til utøvere er riktig
         <BrowserRouter>
             <Route path="/finance" element={<FinancePage/>}/>
             
-            <Route path="/athletes" element={<AthletePage/>}/> 
+            <Route path="/athletes" element={<AthleteAdminPage/>}/> 
+
+            <Route path="/registerAthlete" element={<AthleteRegisterPage/>}/>
 
             <Route path="*" element={<p>Side ikke funnet</p>}/> 
         </BrowserRouter>

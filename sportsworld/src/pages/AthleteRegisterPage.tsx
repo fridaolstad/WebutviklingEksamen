@@ -1,8 +1,12 @@
+// husk  importer her: 
 import AthleteForm from "../components/athletes/AthleteForm";
 import AthleteItem from "../components/athletes/AthleteItem";
 import AthleteList from "../components/athletes/AthleteList";
+import AthleteEditForm from "../components/athletes/AthleteEditForm";
 
-const AthletePage = () => {
+// legge til AthleteItem nede i return?
+
+const AthleteRegisterPage = () => {
     return(
         <>
         <header>
@@ -10,11 +14,13 @@ const AthletePage = () => {
             <p> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
         </header>
         <AthleteForm></AthleteForm>
-        <AthleteItem></AthleteItem>
+        <AthleteEditForm></AthleteEditForm>
+
         <AthleteList></AthleteList>
+
         
         </>
     )
 }
 
-export default AthletePage;
+export default AthleteRegisterPage;

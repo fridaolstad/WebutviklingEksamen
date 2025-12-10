@@ -5,7 +5,8 @@ import { AthleteContext } from "../../context/AthleteContext";
 import AthleteItem from "../athletes/AthleteItem";
 
 
-// lager interface som matcher props i Item, sånn at finance også kan bruke AthleteList -F
+// lager interface som matcher props i Item, sånn at finance også kan bruke AthleteList -F, thea du treger ikke bruke disse
+// med mindre du trenger slette og endre funksjoner og knapp
 interface AthleteListProps {
     onEdit?: (athlete: IAthlete) => void;
     onDelete?: (id: number) => void;
