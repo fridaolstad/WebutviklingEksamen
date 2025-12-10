@@ -2,13 +2,13 @@ import type { IAthlete } from "../../interfaces/IAthlete";
 
 // lager props sånn at både athlete og finance kan bruke denne, setter ? da finance ikke MÅ bruke dem (skal ikke heller)
 // prøve å bruke navnene delete og edit, men kan ikke bruke navnet delete da det allerede er noe i react
-interface AthleteItemProps {
+interface AthleteItemProperties {
     athlete : IAthlete;
     onEdit?: (athlete: IAthlete) => void;
     onDelete?: (id: number) => void;
 }
 
-const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProps ) => {
+const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => {
     return (
         <article>
             <div>

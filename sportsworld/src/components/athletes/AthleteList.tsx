@@ -7,12 +7,12 @@ import AthleteItem from "../athletes/AthleteItem";
 
 // lager interface som matcher props i Item, sånn at finance også kan bruke AthleteList -F, thea du treger ikke bruke disse
 // med mindre du trenger slette og endre funksjoner og knapp
-interface AthleteListProps {
+interface AthleteListProperties {
     onEdit?: (athlete: IAthlete) => void;
     onDelete?: (id: number) => void;
 }
 
-const AthleteList = ({onDelete, onEdit} : AthleteListProps) => {
+const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
 
      // koble opp til context - hentet kake tilstanden -F
     const {athletes} = useContext(AthleteContext) as IAthleteContext;

@@ -1,6 +1,7 @@
 import AthleteForm from "../components/athletes/AthleteForm";
 import AthleteItem from "../components/athletes/AthleteItem";
 import AthleteList from "../components/athletes/AthleteList";
+import AthleteEditForm from "../components/athletes/AthleteEditForm";
 
 const AthletePage = () => {
     return(
@@ -12,6 +13,7 @@ const AthletePage = () => {
         <AthleteForm></AthleteForm>
         <AthleteItem></AthleteItem>
         <AthleteList></AthleteList>
+        <AthleteEditForm></AthleteEditForm>
         
         </>
     )
