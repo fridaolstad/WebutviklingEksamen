@@ -24,17 +24,10 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
         const {name, value} = e.target;
         let newValue: any = value;
 
-        // selv om purchaseStatus er en boolean i interfacet, returnerer string true eller false i input, derfor kodr vi sånn at
-        // stringer true blir til boolean true  
 
-        // NB! VIKTIG - jeg tenker vi kanskje kan fjerne denne ifen? da jeg er redd for at hvis brukeren kan endre på 
-        // statusen til spillerne i side 1 kan klusse med funksjoner om å vise kjøpt spille på side 3?, hva tenker du Thea?
-        // []ja vi sletter den []nei vi lar den bli (sett kryss for ja eller nei :)) heh
-        //om ja minn meg på at vi må slette det nede i html også, evt skrive at denne ikke kan endres grunnet funksjoner i side 3
+        // evt skrive at denne ikke kan endres grunnet funksjoner i side 3
         // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
-        if(name === "purchaseStatus"){
-            newValue = value === "true";
-        }
+    
 
         // passer på at vi jobber med den siste tilstanden
         setFormData(prev => ({
