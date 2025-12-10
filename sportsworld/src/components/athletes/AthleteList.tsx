@@ -37,7 +37,7 @@ const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
         return athleteJSX;
     }
 
-    // tailwind styling er bare samme som rolando, sa dette kan vi odc endre på -F
+    // tailwind styling er bare samme som rolando, sa dette kan vi ofc endre på -F
     return (
         <section className="p-3 border mb-3">
             <header>

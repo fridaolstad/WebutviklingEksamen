@@ -14,11 +14,7 @@ const AthleteRegisterPage = () => {
             <p> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
         </header>
         <AthleteForm></AthleteForm>
-        <AthleteEditForm></AthleteEditForm>
-
         <AthleteList></AthleteList>
-
-        
         </>
     )
 }
