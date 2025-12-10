@@ -39,7 +39,7 @@ const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
 
     // tailwind styling er bare samme som rolando, sa dette kan vi ofc endre på -F
     return (
-        <div className="mt-8">
+        <div className="mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <header>
                 <h2 className="text-xl font-bold mb-6">Athleteliste</h2>
             </header>
