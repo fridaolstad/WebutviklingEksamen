@@ -59,20 +59,28 @@ const AthleteForm = () => {
       };
 
       return(
-        <section className="p-3 border mb-3">
-            <h3 className="text-xl"> Administrasjon: søke</h3>
+        <section className="bg-gray-200 p-6 rounded-lg shadow-md mb-8">
+
+            <header className="mb-4">
+                <h3 className="text-2xl font-semibold"> Søke etter navn på spiller </h3>
+            </header>
+            
 
             {/* inputfeltet for søk */}
-            <div>
-                <label>Navn</label>
-                <input ref={searchInput} className="border border-black" type="text" />
-            </div>
-            <button onClick={handleSearch} className="border border-black px-2"> Søk </button>
-           
-             {/* vise alle knapper */}
-             <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
+            <div className="flex space-x-3">
+                <label>Navn: </label>
+                <input ref={searchInput} className="border border-black rounded-lg" type="text" />
 
+                <button onClick={handleSearch} className="border border-black px-2 "> Søk </button>
+                 {/* vise alle knapper */}
+                <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
+            </div>
+            
+            <div >
               <p> Status: {statusMessage}</p>
+
+            </div>
+            
         </section>
       )
 }
