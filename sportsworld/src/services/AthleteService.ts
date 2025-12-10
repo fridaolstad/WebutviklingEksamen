@@ -2,7 +2,7 @@ import axios from "axios";
 import { type IAthlete } from "../interfaces/IAthlete";
 import type { IDefaultResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
 
-const endpoint = "http://localhost:5009/api/athlete"; // endre til riktig url
+const endpoint = "http://localhost:5236/api/athlete"; // endre til riktig url
 const endpointImage = ""; // legge til url
 
 

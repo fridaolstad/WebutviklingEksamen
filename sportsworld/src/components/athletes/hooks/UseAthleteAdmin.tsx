@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { type IAthleteContext } from "../../interfaces/IAthleteContext";
-import { AthleteContext } from "../../context/AthleteContext";
-import type { IAthlete } from "../../interfaces/IAthlete";
+import { type IAthleteContext } from "../../../interfaces/IAthleteContext";
+import { AthleteContext } from "../../../context/AthleteContext";
+import type { IAthlete } from "../../../interfaces/IAthlete";
 
 
 export const useAthleteAdmin = () => {
@@ -36,7 +36,7 @@ const cancelEdit = () => {
 
 // ---- Funksjoner for sletting ----
 const startDelete = (id: number) => {
-    const athlete = athletes.find(athlete => athlete.id === id); // kan endre til bare a inni find(a => a.id === id)
+    const athlete = athletes.find(a => a.id === id); // kan endre til bare a inni find(a => a.id === id)
     if(athlete){
         setAthleteToDelete(athlete);
     }
