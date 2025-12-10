@@ -58,9 +58,9 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 type="text"
                 name="name"
                 value={formData.name}
-                onChange={handleChange}>
-                {/*HUSK å legge til tailwind styling her, className: "blablabla"*/}
-                </input>
+                onChange={handleChange}
+                // her kommer styling
+                />
             </div>
 
             {/*Pris*/}
@@ -70,9 +70,9 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 type="number"
                 name="price"
                 value={formData.price}
-                onChange={handleChange}>
-                {/*HUSK å legge til tailwind styling her, className: "blablabla"*/}
-                </input>
+                onChange={handleChange}
+                // her kommer tailwind styling 
+                />
             </div>
 
             {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
@@ -83,8 +83,10 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 // type="text"
                 name="gender"
                 value={formData.gender}
-                onChange={handleChange}>
-                {/*HUSK å legge til tailwind styling her, className: "blablabla"*/}
+                onChange={handleChange}
+                // husk styling her
+                >
+                
 
                 <option value={"Mann"}> Mann </option>
                 <option value={"Kvinne"}> Kvinne </option>
@@ -99,8 +101,10 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 <select
                 name="purchaseStatus"
                 value={formData.purchaseStatus ? "true" : "false"}
-                onChange={handleChange}>
-                {/*HUSK å legge til tailwind styling her, className: "blablabla"*/}
+                onChange={handleChange}
+                // husk styling her
+                >
+               
 
                 <option value={"True"}> Kjøpt</option>
                 <option value={"False"}> Ikke kjøpt </option>
@@ -114,9 +118,9 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 type="text"
                 name="image"
                 value={formData.image}
-                onChange={handleChange}>
-                {/*HUSK å legge til tailwind styling her, className: "blablabla"*/}
-                </input>
+                onChange={handleChange}
+                // husk styling her
+                />
             </div>
 
             {/*knapper*/}

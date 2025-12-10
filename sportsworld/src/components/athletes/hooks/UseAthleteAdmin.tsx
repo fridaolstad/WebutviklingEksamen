@@ -4,14 +4,19 @@ import { AthleteContext } from "../../../context/AthleteContext";
 import type { IAthlete } from "../../../interfaces/IAthlete";
 
 
+
 export const useAthleteAdmin = () => {
 
 // States for hva som skal slettes og endres (side 1)
 const [athlteToEdit, setAthleteToEdit] = useState<IAthlete | null> (null);
 const [athlteToDelete, setAthleteToDelete] = useState<IAthlete | null> (null);
 
+const context = useContext(AthleteContext);
+if(!context){
+    throw new Error("sjekker om dette hjelper")
+}
 // Henter crud funksjoner og data fra Context
-const {updateAthlete, removeAthlete, athletes} = useContext(AthleteContext) as IAthleteContext;
+const {updateAthlete, removeAthlete, athletes} = context as IAthleteContext;
 
 // ---- Funksjoner for edit ----
 const startEdit = (athlete: IAthlete) => {

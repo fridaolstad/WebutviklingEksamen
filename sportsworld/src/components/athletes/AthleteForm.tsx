@@ -65,7 +65,7 @@ const AthleteForm = () => {
             {/* inputfeltet for søk */}
             <div>
                 <label>Navn</label>
-                <input ref={searchInput} className="border" type="text" > </input>
+                <input ref={searchInput} className="border" type="text" />
             </div>
             <button onClick={handleSearch} className="border px-2"> Søk </button>
            

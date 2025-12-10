@@ -12,7 +12,7 @@ const AthleteAdminPage = () => {
 
     return(
         <>
-        <header /* styling med tailwind her? */>
+        <header >
             <h1 className="text-2xl"> Athlete AdminPage </h1>
             <p> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
         </header>
@@ -27,8 +27,8 @@ const AthleteAdminPage = () => {
 
         {/* Endre eksisterende utøver*/}
         {athlteToEdit && (
-            <section /* husk styling med tailwind her */>
-                <div /* husk styling med tailwind her */>
+            <section >
+                <div >
                     <AthleteEditForm 
                     athlete={athlteToEdit}
                     saveEdit={handleUpdate}
@@ -38,13 +38,13 @@ const AthleteAdminPage = () => {
             </section>
         )}
 
-        {/* Slette eksisterende utøver */}
+        {/* Slette eksisterende utøver - husk tailwind styling i section og div tagger */}
         {athlteToDelete && (
 
 
         
-        <section /* husk styling med tailwind her */ >
-            <div /* husk styling med tailwind her */>
+        <section  >
+            <div >
             
             <AthleteDelete 
             athlete={athlteToDelete}
@@ -57,6 +57,8 @@ const AthleteAdminPage = () => {
         </>
     );
 };
-    
+
+
+
 
 export default AthleteAdminPage;

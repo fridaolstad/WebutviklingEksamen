@@ -1,4 +1,3 @@
-// må ikke ha med denne, men om vi får tid kan vi kanskje bare style den litl? evt ta den bort 
 
 const HomePage = () =>{
     return(
