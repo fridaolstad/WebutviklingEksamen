@@ -20,9 +20,11 @@ const AthleteAdminPage = () => {
 
     return(
         <>
+        <div className="p-6 max-w-7x1 mx-auto">
+
         <header >
-            <h1 className="text-2xl"> Athlete AdminPage </h1>
-            <p> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
+            <h1 className="text-3xl font-bold"> Administrasjonsside  </h1>
+            <p className="mb-8"> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
         </header>
 
         {/* Henter Form for å hente/vise søk og vis alle */}
@@ -52,6 +54,7 @@ const AthleteAdminPage = () => {
             onCancel = {cancelDelete}
             ></AthleteDelete>
             </div>
+            
         </section>
          )}
 
@@ -61,6 +64,8 @@ const AthleteAdminPage = () => {
         onDelete={startDelete}>
         </AthleteList>
 
+
+        </div>
         </>
     );
 };

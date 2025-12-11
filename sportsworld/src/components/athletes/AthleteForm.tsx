@@ -72,7 +72,7 @@ const AthleteForm = () => {
       };
 
       return(
-        <section className="bg-gray-200 p-6 rounded-lg shadow-md mb-8">
+        <section className="bg-gray-100 p-6 rounded-lg shadow-md mb-8">
 
             <header className="mb-4">
                 <h3 className="text-2xl font-semibold"> Søke etter navn på spiller </h3>

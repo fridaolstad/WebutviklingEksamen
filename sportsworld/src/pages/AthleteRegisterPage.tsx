@@ -6,14 +6,16 @@ import AthleteRegisterForm from "../components/athletes/AthleteRegisterForm";
 const AthleteRegisterPage = () => {
     return(
         <>
-        <header>
-            <h1 className="text-2xl"> Registering av ny spiller  </h1>
-            <p> Her kan du registrere en ny spiller  </p>
-        </header>
+        <div className="p-6 max-w-7x1 mx-auto">
+            <header>
+               <h1 className="text-3xl font-bold"> Registering av ny spiller  </h1>
+               <p className=""> Her kan du registrere en ny spiller  </p>
+            </header>
         
         <AthleteRegisterForm></AthleteRegisterForm>
         <AthleteList></AthleteList>
-        
+
+        </div>
         </>
     )
 }

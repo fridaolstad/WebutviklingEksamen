@@ -119,7 +119,7 @@ const AthleteRegisterForm = () => {
         };
 
         return(
-            <section className="bg-gray-200 p-6 rounded-lg mb-8">
+            <section className="p-6 bg-gray-100 rounded-lg shadow-md">
                 <header>
                     <h3 className="text-2xl font-semibold mb-4"> Registrer potensiell ny spiller</h3>
                 </header>
@@ -149,8 +149,8 @@ const AthleteRegisterForm = () => {
                 </div>
 
                 {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
-            kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
-            <div className="mb-2 flex space-x-2">
+                 kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
+               <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Kjønn: </label>
                 <select
                 // type="text"
@@ -163,10 +163,10 @@ const AthleteRegisterForm = () => {
                 <option value={"Kvinne"}> Kvinne </option>
                 <option value={"Annet"}> Annet </option>
                 </select>
-            </div>
+                </div>
 
-            {/*bilde*/}
-            <div className="mb-2 flex space-x-2">
+              {/*bilde*/}
+             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Bilde (fil): </label>
                 <input
                 type="file"
@@ -174,7 +174,7 @@ const AthleteRegisterForm = () => {
                 onChange={handleFileChange}
                 className="border border-black rounded-lg" 
                 />
-            </div>
+             </div>
 
              {/* kjøpestatus*/}
              <div className="mb-2 flex space-x-2">
@@ -197,13 +197,13 @@ const AthleteRegisterForm = () => {
                 className="border border-black px-2 bg-green-200 hover:bg-green-700"
                 > Lagre endringer
                 </button>
-            </div>
+             </div>
 
-            <div>
+             <div>
                 <p>Status: {statusMessage}</p>
-            </div>
+             </div>
             </section>
-        )
+     )
 }
 
 export default AthleteRegisterForm;
