@@ -5,6 +5,7 @@ import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext} from "../../interfaces/IFinanceContext"
+import AthleteItem from "../athletes/AthleteItem";
 
 const PurchaseAthlete = () => {
     const athleteContext = useContext(AthleteContext) as IAthleteContext;
@@ -22,7 +23,7 @@ const PurchaseAthlete = () => {
             return;
         }
 
-        const response = await purchaseAthlete(athleteId);
+        const response = await purchaseAthlete(price);
         if(response.success) {
             // oppdatering av utøver sin purchaseStatus hvis true
             const athleteUpdate = athletes.find (a => a.id === athleteId);
@@ -41,7 +42,7 @@ const PurchaseAthlete = () => {
     const updateStatusMessage = (message: string, ok: boolean) => {
         setStatusMessage(message);
         setIsOk(ok);
-        setTimeout(() => {
+        setTimeout(() => { //må ikke ha med, men kan
             setStatusMessage("");
             setIsOk(null);
         }, 4000);
@@ -49,29 +50,29 @@ const PurchaseAthlete = () => {
 
 
     // Viser kun tilgjengelige utøvere
-
     const availableAthletes = athletes.filter(a => !a.purchaseStatus);
 
     return (
-        <section>
-            <h3>Kjøp utøver</h3>
+        <section className="p-6 bg-white rounded-lg shadow-md space-y-4">
+            <h3 className="text-xl font-semibold text-gray-800">Kjøp utøver</h3>
+
             {availableAthletes.length === 0 ?(
-                <p>Ingen utøvere tilgjengelige for å kjøope</p>
+                <p className="text-gray-600">Ingen utøvere tilgjengelige for å kjøope</p>
             ): (
-                <ul>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {availableAthletes.map(a => (
-                        <li>
-                            <span>{a.name} - {a.price}kr</span>
+                        <div key={a.id} className="flex flex-col items-center">
+                            <AthleteItem athlete={a} />
                             <button
                             onClick={() => handlePurchase(a.id, a.price)}
-                            className=""
+                            className="bg-green-600 hover:bg-green-700 text-black px-4 py-1.5 rounded-md w-full"
                             >Kjøp</button>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
             {statusMessage && (
-                <p className="">{isOk === true} Status: {statusMessage}</p>
+                <p className={isOk ? "text-green-600" : "text-red-600"}>Status: {statusMessage}</p>
 
             )}
         </section>

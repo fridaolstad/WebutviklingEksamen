@@ -43,7 +43,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
     };
 
     const handleSubmit = () => {
-        saveEdit(formData);
+        saveEdit(formData); 
     };
 
     return(
