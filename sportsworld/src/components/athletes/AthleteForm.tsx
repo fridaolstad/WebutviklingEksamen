@@ -23,16 +23,16 @@ const AthleteForm = () => {
         if(searchInput.current && searchInput.current.value.trim() != ""){
 
             const searchWord = searchInput.current.value.trim();
-
             setStatusMessage( `søker etter: ${searchWord}...`);
 
             const response = await searchAthleteByName(searchWord);
 
             if(response.success && response.data !== null){
-                setStatusMessage (`her er utøvere med naven ${searchWord}: ${response.data?.length}`); 
+                if(response.data?.length)
+                setStatusMessage (`Her er spilleren med naven ${searchWord}: ${response.data?.length}`); 
 
             }else {
-                setStatusMessage (` feil under søking.. prøv på nytt}`)
+                setStatusMessage (` Feil under søking.. prøv på nytt`)
             }
 
         } else {
@@ -46,8 +46,21 @@ const AthleteForm = () => {
         
         const response = await showAllAthletes();
 
-        if(response.success){
-            setStatusMessage(`viser alle utøvere: ${response.data}`);
+        // kan gjøre denne om til en if, if/else og else?
+        if(response.success && response.data !== null){
+
+
+            // sjekker om det er et array?
+            if(Array.isArray(response.data)){
+                const athletes = response.data;
+
+                // sjekker om det innholder noe
+                if(athletes.length > 0){
+                    setStatusMessage(`viser alle ${athletes.length} spillere`)
+                }else{
+                    setStatusMessage("ingen spillere funnet i databasen");
+                }
+            }
 
             // tømmer søkefeltet (etter søk?)
             if (searchInput.current){

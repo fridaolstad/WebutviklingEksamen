@@ -39,11 +39,18 @@ const cancelEdit = () => {
     setAthleteToEdit(null);
 };
 
+
+
+
+
 // ---- Funksjoner for sletting ----
 const startDelete = (id: number) => {
+
     const athlete = athletes.find(a => a.id === id); // kan endre til bare a inni find(a => a.id === id)
     if(athlete){
         setAthleteToDelete(athlete);
+    }else{
+        console.error("feil ved sletting ");
     }
 };
 

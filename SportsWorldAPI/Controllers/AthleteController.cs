@@ -69,9 +69,9 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
             // kode fra pp til Rolando:
             List<Athlete> athletes = await _sportsWorldContext.Athletes
             .Where(
-                athlete => athlete.Name != null && athlete.Name.Contains(
-                    name,
-                    StringComparison.CurrentCultureIgnoreCase
+                athlete => athlete.Name != null && athlete.Name.ToLower().Contains(
+                    name.ToLower()
+                    //StringComparison.CurrentCultureIgnoreCase
                 )
             )
             .ToListAsync();

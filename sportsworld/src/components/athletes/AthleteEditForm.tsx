@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import type{ IAthlete } from "../../interfaces/IAthlete";
 
+ //evt skrive at denne ikke kan endres grunnet funksjoner i side 3
+ // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
+
 // lager properties som skal motta spiller og funksjonen forlagring og avbryt
 // usikker på om jeg skal velge andre ord som onUpdate og onClosse/onCancel siden rolando har nevt at: 
 // react stantard: onClick, onCancel = bruke handle i navnet. Hva tenker du Thea?
@@ -16,26 +19,40 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
 
     //sate: 
     const [formData, setFormData] = useState(athlete);
+    const [statusMessage, setStatusMessage] = useState("");
 
     // håndterer endringer i input og select feltene
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ // hvis det krasjsr legg til | HTMLSelectElement>
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ 
 
         //name henter navnet i inputfeltet, value henter den nye verdien som brukeren har skrevet inn
         const {name, value} = e.target;
-        let newValue: any = value;
+        let priceValue: any = value;
 
+        // tømmer status ved ny endring
+        setStatusMessage("");
 
-        // evt skrive at denne ikke kan endres grunnet funksjoner i side 3
-        // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
-    
+        if(name === "price"){
+
+            priceValue = Number(value);
+
+            if(isNaN(priceValue) || value.trim() === ""){
+                setStatusMessage("Pris må være et gyldig tall");
+                return; // stopper prossessen
+            }
+        }
 
         // passer på at vi jobber med den siste tilstanden
         setFormData(prev => ({
-            ...prev, [name]: newValue
+            ...prev, [name]: priceValue
         }));
     };
 
     const handleSubmit = () => {
+        // sopper lagring hvis en feilemldig dukker opp
+        if(statusMessage){
+            setStatusMessage("kan ikke lagre, du må skrive inn no inni feltet")
+            return;
+        }
         saveEdit(formData);
     };
 
@@ -80,27 +97,9 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 // husk styling her
                 >
                 
-
                 <option value={"Mann"}> Mann </option>
                 <option value={"Kvinne"}> Kvinne </option>
                 <option value={"Annet"}> Annet </option>
-                </select>
-            </div>
-
-
-            {/*kjøpe status - denne som evt må slettes, forklaring lenger opp :))*/}
-            <div>
-                <label> Kjøpestatus: </label>
-                <select
-                name="purchaseStatus"
-                value={formData.purchaseStatus ? "true" : "false"}
-                onChange={handleChange}
-                // husk styling her
-                >
-               
-
-                <option value={"True"}> Kjøpt</option>
-                <option value={"False"}> Ikke kjøpt </option>
                 </select>
             </div>
 

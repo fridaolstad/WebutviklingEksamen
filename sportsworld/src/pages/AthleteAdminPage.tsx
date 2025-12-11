@@ -27,8 +27,8 @@ const AthleteAdminPage = () => {
 
         {/* Endre eksisterende utøver*/}
         {athlteToEdit && (
-            <section >
-                <div >
+            <section  >
+                <div className="bg-green-200 rounded-lg shadow-2xl" >
                     <AthleteEditForm 
                     athlete={athlteToEdit}
                     saveEdit={handleUpdate}
@@ -44,7 +44,7 @@ const AthleteAdminPage = () => {
 
         
         <section  >
-            <div >
+            <div className="bg-green-200 rounded-lg shadow-2xl" >
             
             <AthleteDelete 
             athlete={athlteToDelete}
