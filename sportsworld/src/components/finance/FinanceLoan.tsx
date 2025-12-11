@@ -1,6 +1,6 @@
 // Input beløp + knapp for lån. Kaller på financeContext.addMoney()
 
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
 
@@ -36,17 +36,18 @@ const FinanceLoan = () => {
         }, 4000);
     };
 
+
     return (
         <section className="p-5 bg-white rounded-lg shadow-md space-y-4">
             <h3 className="text-xl font-semibold text-gray-800">Lånekasse</h3>
                 <div className="">
-                    <label>Beløp:</label>
-                    <input 
-                    type="number"
-                    value={loanAmount}
+                    <label>Beløp: </label>
+                    <input className="border rounded-lg"
+                    type="text"
+                    value={loanAmount === 0? "" : loanAmount}
                     onChange={(e)=> setLoanAmount(Number(e.target.value))}/>
                 </div>
-                <button onClick={handleLoan}>
+                <button onClick={handleLoan} className="border rounded-lg " >
                     Lån penger
                 </button>
                 {

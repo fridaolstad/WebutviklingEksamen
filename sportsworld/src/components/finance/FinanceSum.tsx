@@ -10,7 +10,7 @@ const FinanceSum = () => {
 
     return (
         <section className="p-6 bg-white rounded-lg shadow-md space-y-4">
-            <h3 className="text-xl font-bold text-gray-800" >Finans-oversikt</h3>
+            <h3 className="text-xl font-bold text-gray-800" >Personlig oversikt:</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="p-4 bg-gray-50 rounded-lg text-center border">

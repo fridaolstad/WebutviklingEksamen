@@ -59,13 +59,15 @@ const PurchaseAthlete = () => {
             {availableAthletes.length === 0 ?(
                 <p className="text-gray-600">Ingen utøvere tilgjengelige for å kjøope</p>
             ): (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {availableAthletes.map(a => (
-                        <div key={a.id} className="flex flex-col items-center">
-                            <AthleteItem athlete={a} />
+                        <div key={a.id} className="flex flex-col items-center w-full">
+                            <div className="flex-1 w-full">
+                            <AthleteItem athlete={a}/>
+                            </div>
                             <button
                             onClick={() => handlePurchase(a.id, a.price)}
-                            className="bg-green-600 hover:bg-green-700 text-black px-4 py-1.5 rounded-md w-full"
+                            className="bg-green-600 hover:bg-green-700 text-black px-4 py-1.5 rounded-md w-full mt-2"
                             >Kjøp</button>
                         </div>
                     ))}
