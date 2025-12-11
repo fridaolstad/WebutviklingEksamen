@@ -12,28 +12,33 @@ interface DeleteProperties {
 const AthleteDelete = ({athlete, onConfirm, onCancel}: DeleteProperties) =>{
     // husk å legge til tailwind styling !!
     return(
+        <section className="p-6 rounded-lg">
         <div>
-            <h2>Bekreft sletting</h2>
-
-            <p> Er du sikker på at du vil slette spilleren: {athlete.name} (id: {athlete.id}) ? </p>
+            <header className="mb-4" >
+                <h2 className="text-2xl font-semibold"> Bekreft sletting</h2>
+                <p> Er du sikker på at du vil slette spilleren: {athlete.name} (id: {athlete.id}) ? </p>
             {/* om vi vil ha egen styling på navn og id til spilleren kan det legges inn i egen p tagg */}
+            </header>
 
-            <div> 
+            
+
+            <div className="flex space-x-3"> 
                 <button
                 onClick={onCancel}
-                // /* evt stylling av knapp her
+                className="border border-black px-2 bg-green-200"
                 > 
                 Avbryt 
                 </button>
 
                 <button
                 onClick={onConfirm}
-                // /* evt stylling av knapp her
+                className="border border-black px-2 bg-red-300"
                 >
                 Ja, slett spiller    
                 </button>
             </div>
         </div>
+        </section>
     );
 
 };

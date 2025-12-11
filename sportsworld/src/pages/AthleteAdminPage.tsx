@@ -7,7 +7,15 @@ import { useAthleteAdmin } from "../components/athletes/hooks/UseAthleteAdmin";
 
 const AthleteAdminPage = () => {
 
-    const { athlteToEdit, athlteToDelete, startEdit, startDelete, handleUpdate, handleDelete, cancelEdit, cancelDelete}
+    const { athlteToEdit,
+         athlteToDelete,
+         startEdit,
+         startDelete,
+         handleUpdate,
+         handleDelete,
+         cancelEdit,
+         cancelDelete,
+        statusMessage}
      = useAthleteAdmin();
 
     return(
@@ -19,16 +27,11 @@ const AthleteAdminPage = () => {
 
         {/* Henter Form for å hente/vise søk og vis alle */}
         <AthleteForm></AthleteForm>
-        {/* Henter Listen av spillere og sender funksjoner fra useAthleteAdmin */}
-        <AthleteList 
-        onEdit={startEdit}
-        onDelete={startDelete}>
-        </AthleteList>
 
         {/* Endre eksisterende utøver*/}
         {athlteToEdit && (
             <section  >
-                <div className="bg-green-200 rounded-lg shadow-2xl" >
+                <div className="bg-blue-100 rounded-lg" >
                     <AthleteEditForm 
                     athlete={athlteToEdit}
                     saveEdit={handleUpdate}
@@ -40,11 +43,8 @@ const AthleteAdminPage = () => {
 
         {/* Slette eksisterende utøver - husk tailwind styling i section og div tagger */}
         {athlteToDelete && (
-
-
-        
         <section  >
-            <div className="bg-green-200 rounded-lg shadow-2xl" >
+            <div className="bg-red-200 rounded-lg" >
             
             <AthleteDelete 
             athlete={athlteToDelete}
@@ -54,6 +54,13 @@ const AthleteAdminPage = () => {
             </div>
         </section>
          )}
+
+        {/* Henter Listen av spillere og sender funksjoner fra useAthleteAdmin */}
+        <AthleteList 
+        onEdit={startEdit}
+        onDelete={startDelete}>
+        </AthleteList>
+
         </>
     );
 };

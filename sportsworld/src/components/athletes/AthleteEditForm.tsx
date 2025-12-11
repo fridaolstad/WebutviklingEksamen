@@ -57,44 +57,48 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
     };
 
     return(
-        <section>
-            <h3> Endre en spiller </h3>
-            <div> Id på spilleren som blir endret: {formData.id}</div>
+        <section className="p-6 rounded-lg">
+
+            <header className="mb-4">
+                <h3 className="text-2xl font-semibold"> Endre en spiller </h3>
+                <div> Id på spilleren som blir endret: {formData.id}</div>
+            </header>
+
 
             {/*navne*/}
-            <div>
-                <label> Navn: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Navn: </label>
                 <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                // her kommer styling
+                className="border border-black rounded-lg" 
                 />
             </div>
 
             {/*Pris*/}
-            <div>
-                <label> Pris: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Pris: </label>
                 <input
                 type="number"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                // her kommer tailwind styling 
+                className="border border-black rounded-lg"  
                 />
             </div>
 
             {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
             kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
-            <div>
-                <label> Kjønn: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Kjønn: </label>
                 <select
                 // type="text"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                // husk styling her
+                className="border border-black rounded-lg" 
                 >
                 
                 <option value={"Mann"}> Mann </option>
@@ -104,30 +108,30 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             </div>
 
             {/*bilde url*/}
-            <div>
-                <label> bilde url: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Bilde url: </label>
                 <input
                 type="text"
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
-                // husk styling her
+                className="border border-black rounded-lg" 
                 />
             </div>
 
             {/*knapper*/}
-            <div>
+            <div className="mb-2 flex space-x-2">
                 <button
                 type="button"
                 onClick={closeEdit}
-                // HUSK å legge til tailwind styling her, className: "blablabla"
+                className="border border-black px-2 bg-red-200"
                 > Avbryt
                 </button>
 
                 <button
                 type="button"
                 onClick={handleSubmit}
-                // HUSK å legge til tailwind styling her, className: "blablabla"
+                className="border border-black px-2 bg-green-200"
                 > Lagre endringer
                 </button>
             </div>

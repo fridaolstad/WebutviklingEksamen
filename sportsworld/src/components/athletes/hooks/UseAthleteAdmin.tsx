@@ -10,6 +10,7 @@ export const useAthleteAdmin = () => {
 // States for hva som skal slettes og endres (side 1)
 const [athlteToEdit, setAthleteToEdit] = useState<IAthlete | null> (null);
 const [athlteToDelete, setAthleteToDelete] = useState<IAthlete | null> (null);
+const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
 const context = useContext(AthleteContext);
 if(!context){
@@ -21,16 +22,20 @@ const {updateAthlete, removeAthlete, athletes} = context as IAthleteContext;
 // ---- Funksjoner for edit ----
 const startEdit = (athlete: IAthlete) => {
     setAthleteToEdit(athlete);
+    setStatusMessage(null); // tømmer status melding
 };
 
 const handleUpdate = async (updatedAthlete: IAthlete) => {
+    setStatusMessage(`Oppdaterer ${updatedAthlete.name}..`);
     const response = await updateAthlete(updatedAthlete);
 
     if(response.success){
+        setStatusMessage(`Oppdatering velykket! Spilleren ${updatedAthlete.name} ble oppdatert `)
         console.log(`Spilleren ${updatedAthlete.name} ble oppdatert `)
         setAthleteToEdit(null);
     }else {
-        console.error("Feil ved oppdatering av spiller")
+        setStatusMessage(`Feil ved oppdatering av ${updatedAthlete.name}`);
+        console.error("Feil ved oppdatering av spiller", response)
     }
 };
 
@@ -40,16 +45,15 @@ const cancelEdit = () => {
 };
 
 
-
-
-
 // ---- Funksjoner for sletting ----
 const startDelete = (id: number) => {
 
     const athlete = athletes.find(a => a.id === id); // kan endre til bare a inni find(a => a.id === id)
     if(athlete){
         setAthleteToDelete(athlete);
+        setStatusMessage(null); // nullstiller statusmelding
     }else{
+        setStatusMessage("finner ingen spiller å slette")
         console.error("feil ved sletting ");
     }
 };
@@ -63,9 +67,11 @@ const handleDelete = async () => {
     const response = await removeAthlete(athlteToDelete.id);
 
     if(response.success){
+        setStatusMessage(`Spilleren med id ${athlteToDelete.name} ble slettet`);
         console.log (`Spilleren med id ${athlteToDelete.id} ble slettet`);
     }else {
-        console.log(`Feil ved sletting av spiller`)
+        setStatusMessage(`Feil ved sletting av ${athlteToDelete.name} `)
+        console.log("Feil ved sletting av spiller", response)
     }
     // Lukker sletting
     setAthleteToDelete(null); 
@@ -76,7 +82,7 @@ const cancelDelete = () => {
     setAthleteToDelete(null);
 };
 
-return { athlteToEdit, athlteToDelete, startEdit, startDelete, handleUpdate, cancelEdit, handleDelete ,cancelDelete
+return { athlteToEdit, athlteToDelete, startEdit, startDelete, handleUpdate, cancelEdit, handleDelete ,cancelDelete, statusMessage
 };
 
 };

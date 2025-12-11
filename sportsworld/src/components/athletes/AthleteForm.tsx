@@ -84,7 +84,7 @@ const AthleteForm = () => {
                 <label>Navn: </label>
                 <input ref={searchInput} className="border border-black rounded-lg" type="text" />
 
-                <button onClick={handleSearch} className="border border-black px-2 "> Søk </button>
+                <button onClick={handleSearch} className="border border-black px-2"> Søk </button>
                  {/* vise alle knapper */}
                 <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
             </div>
