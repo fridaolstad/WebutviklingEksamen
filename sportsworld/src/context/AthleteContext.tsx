@@ -12,10 +12,6 @@ export const AthleteProvider = ({children} : Props) => {
 
     
     const [athletes, setAthletes] = useState<IAthlete[]>([])
-        /*
-        {id: 99, name: "test athlete", gender: "male", price: 1000, image: "haaland.jpg", purchaseStatus: true }
-    ])
-        */
 
     // Denne et veldig VIKTIG og spesielt ,[] !!!
     useEffect(() => {

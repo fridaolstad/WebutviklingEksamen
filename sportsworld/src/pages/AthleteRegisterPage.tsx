@@ -1,8 +1,5 @@
-// husk  importer her: 
-import AthleteForm from "../components/athletes/AthleteForm";
-import AthleteItem from "../components/athletes/AthleteItem";
 import AthleteList from "../components/athletes/AthleteList";
-import AthleteEditForm from "../components/athletes/AthleteEditForm";
+import AthleteRegisterForm from "../components/athletes/AthleteRegisterForm";
 
 // legge til AthleteItem nede i return?
 
@@ -10,11 +7,13 @@ const AthleteRegisterPage = () => {
     return(
         <>
         <header>
-            <h1 className="text-2xl"> Athlete AdminPage </h1>
-            <p> Her kan du se alle forballspillere, søke etter dem på navn, endre eksisterende spillere og slette dem </p>
+            <h1 className="text-2xl"> Registering av ny spiller  </h1>
+            <p> Her kan du registrere en ny spiller  </p>
         </header>
-        <AthleteForm></AthleteForm>
+        
+        <AthleteRegisterForm></AthleteRegisterForm>
         <AthleteList></AthleteList>
+        
         </>
     )
 }

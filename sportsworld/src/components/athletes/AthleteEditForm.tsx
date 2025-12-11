@@ -65,7 +65,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             </header>
 
 
-            {/*navne*/}
+            {/*navn*/}
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Navn: </label>
                 <input
@@ -132,7 +132,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 type="button"
                 onClick={handleSubmit}
                 className="border border-black px-2 bg-green-200"
-                > Lagre endringer
+                > Lagre registrering
                 </button>
             </div>
         </section>

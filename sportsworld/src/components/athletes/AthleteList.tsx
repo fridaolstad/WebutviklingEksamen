@@ -18,12 +18,14 @@ const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
     const {athletes} = useContext(AthleteContext) as IAthleteContext;
 
     const getAthleteJSX = () => {
+        // sjekker for å vise spilleren med gyldig nav og id - LURERE PÅ OM DETTE KAN SLETTES!!
+        const validAthletes = athletes.filter(athlete => athlete.id > 0 && athlete.name && athlete.name.trim() != "");
         // sjekker om listen er tom eller ikke -F
-        if(athletes.length === 0){
+        if(validAthletes.length === 0){
             return <p> Ingen spillere funnet, prøve å søke eller vise alle</p>
         }
 
-        const athleteJSX = athletes.map( (athlete) => {
+        const athleteJSX = validAthletes.map( (athlete) => {
             return (
                 <AthleteItem 
                 key={"athlete" + athlete.id}

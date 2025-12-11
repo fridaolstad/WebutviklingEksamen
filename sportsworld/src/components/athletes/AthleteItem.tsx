@@ -33,13 +33,13 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
             <div className="text-sm text-center">
             <p className="font-medium"> Kjønn: {athlete.gender}</p>
             <p className="font-medium"> Pris: {athlete.price} kr</p>
-            <p> Status (kjøpt eller ikke): {athlete.purchaseStatus}</p>
+            <p className=" font-extrabold  border border-blue-500 "> {`Kjøpt: ${athlete.purchaseStatus}`}</p>
 
             </div>
 
             {/* Knappene som vises hvis vi kaller på onEdit og onDelete, detet for at Finance også skal kunne bruke Item komponeneten 
              uten kanppene, da knappene bare trengst i Administrasjonssiden*/ }
-            <div className="mt-4 pt-3 border-t border-gray-100 flex space-x-3 p-4">
+            <div className="mt-4 pt-3 flex space-x-3 p-4">
                 {onEdit && (
                     <button onClick={() => onEdit(athlete)}
                     className="flex-1 bg-blue-200 rounded-lg"
