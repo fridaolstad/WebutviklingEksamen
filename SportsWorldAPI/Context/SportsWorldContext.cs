@@ -9,8 +9,6 @@ public class SportsWorldContext(DbContextOptions<SportsWorldContext> options) : 
     public DbSet<Athlete> Athletes {get; set; }
     public DbSet<Finance> Finances {get; set; }
 
-    // hvis tid, legge til venue
-
     // kilde til teknikkene brukt under er : https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding#model-seed-data 
     // dette er konfigurasjonmetode for modellen, som gir oss tilgang til ModelBuilder, vi har valgt å bruke denne metoden 
     // framfor DatabaseSeeder, da det på Microsoft siden advarer fra å bruke denne teknikken da denne kan føre til problemer 
@@ -35,6 +33,7 @@ public class SportsWorldContext(DbContextOptions<SportsWorldContext> options) : 
             new Finance {Id= 1, MoneyLeft= 640000000, NumberOfPurchases= 4, MoneySpent = 360000000, Amount = 0, Price= 0}
         );
     }
+
 }
 
 

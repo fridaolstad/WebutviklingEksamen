@@ -2,13 +2,17 @@
 
 import FinanceSum from "../components/finance/FinanceSum";
 import FinanceLoan from "../components/finance/FinanceLoan";
+import PurchaseAthlete from "../components/finance/FinancePurchase";
 
 const FinancePage = () => {
     return(
-        <div>
-            <h1>Finans oversikt</h1>
+        <div className="p-6 max-w-7x1 mx-auto">
+            <h1 className="text-3xl font-bold text-gray-800 mb-8">Finansoversikt</h1>
+            <div className="grid grid-cols-1 gap-10">
             <FinanceSum />
             <FinanceLoan />
+            <PurchaseAthlete/>
+            </div>
         </div>
     );
 };

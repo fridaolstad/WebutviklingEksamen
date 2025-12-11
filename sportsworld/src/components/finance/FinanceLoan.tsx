@@ -1,6 +1,6 @@
 // Input beløp + knapp for lån. Kaller på financeContext.addMoney()
 
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
 
@@ -14,16 +14,16 @@ const FinanceLoan = () => {
 
     const handleLoan = async () => {
         if(loanAmount <=0) {
-            updateStatusMessage("Beløpet må være større enn 0kr", false);
+            updateStatusMessage(`Beløpet må være større enn 0kr`, false);
             return;
         }
 
         const response = await addMoney(loanAmount);
         if(response.success) {
-            updateStatusMessage('Lånet på ${loanAmount}kr er lagt til', true);
+            updateStatusMessage(`Lånet på ${loanAmount}kr er lagt til`, true);
             setLoanAmount(0);
         } else {
-            updateStatusMessage(response.message || "Lånet feilet", false);
+            updateStatusMessage(response.message || `Lånet feilet`, false);
         }
     };
 
@@ -36,22 +36,23 @@ const FinanceLoan = () => {
         }, 4000);
     };
 
+
     return (
-        <section>
-            <h3>Lånekasse</h3>
-                <div>
-                    <label>Beløp:</label>
-                    <input 
-                    type="number"
-                    value={loanAmount}
+        <section className="p-5 bg-white rounded-lg shadow-md space-y-4">
+            <h3 className="text-xl font-semibold text-gray-800">Lånekasse</h3>
+                <div className="">
+                    <label>Beløp: </label>
+                    <input className="border rounded-lg"
+                    type="text"
+                    value={loanAmount === 0? "" : loanAmount}
                     onChange={(e)=> setLoanAmount(Number(e.target.value))}/>
                 </div>
-                <button onClick={handleLoan}>
+                <button onClick={handleLoan} className="border rounded-lg " >
                     Lån penger
                 </button>
-                {statusMessage &&(
-                    <p className="{isOk?}"></p>
-                )}
+                {
+                    <p className={isOk ? "text-green-600" : "text-red-600"}>{statusMessage}</p> 
+                }
         </section>
     );
 };

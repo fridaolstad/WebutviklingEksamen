@@ -10,7 +10,6 @@ namespace SportsWorldAPI.Controllers;
 
 public class FinanceController(SportsWorldContext _financeContext) : ControllerBase
 {
-
     [HttpGet]
     public async Task<ActionResult<Finance>> Get()
     {
@@ -51,7 +50,7 @@ public class FinanceController(SportsWorldContext _financeContext) : ControllerB
 
 
     [HttpPost("purchase")]
-    public async Task<ActionResult> Purchase(Finance financeFromFrontend)
+    public async Task<ActionResult> Purchase([FromBody]Finance financeFromFrontend)
     {
         try
         {

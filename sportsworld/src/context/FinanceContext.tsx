@@ -24,7 +24,7 @@ export const FinanceProvider = ({children}: Props) => {
 
     // Henter økonomidata før alt annet kjører.
     useEffect(() => {
-        loanFinanceFromService();
+        loadFinance();
     },[]);
 
 
@@ -52,7 +52,7 @@ export const FinanceProvider = ({children}: Props) => {
                 setFinance(response.data);
                 return {
                     success: true,
-                    message: "Du har fått inn ${amount} på konto"
+                    message: `Du har fått inn ${amount} på konto`
                 };
             }
             return {
@@ -94,12 +94,25 @@ export const FinanceProvider = ({children}: Props) => {
         }
     };
 
+    const loadFinance = async () => {
+        try{
+            const response: IResponseData<IFinance> = await FinanceService.getFinance();
+            if (response.success && response.data){
+                setFinance(response.data);
+            } else {
+                console.error("FinanceService.getFinance ble falsk");
+            }
+            } catch (error){
+                console.error("Det er error i loadFinance", error);
+            }
+    };
+
     return (
         <FinanceContext.Provider value={{
-            finance,
-            loanFinanceFromService, 
+            finance, 
             addMoney, 
-            purchaseAthlete
+            purchaseAthlete,
+            loadFinance
         }}>
             {children}
         </FinanceContext.Provider>
