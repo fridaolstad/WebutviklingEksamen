@@ -10,9 +10,12 @@ interface Props { children: ReactNode}
 
 export const AthleteProvider = ({children} : Props) => {
 
-    const [athletes, setAthletes] = useState<IAthlete[]>([
+    
+    const [athletes, setAthletes] = useState<IAthlete[]>([])
+        /*
         {id: 99, name: "test athlete", gender: "male", price: 1000, image: "haaland.jpg", purchaseStatus: true }
     ])
+        */
 
     // Denne et veldig VIKTIG og spesielt ,[] !!!
     useEffect(() => {
@@ -45,6 +48,9 @@ export const AthleteProvider = ({children} : Props) => {
 
     const getAthleteByName = async (name: string) : Promise<IAthletesResponse> => {
         const response = await AthleteService.getAthleteByName(name);
+        if(response.success && response.data != null){
+            setAthletes(response.data);
+        }
         return response;
     }
 
@@ -109,8 +115,6 @@ export const AthleteProvider = ({children} : Props) => {
         </AthleteContext.Provider>
     )
         
-
-
 }
 
 

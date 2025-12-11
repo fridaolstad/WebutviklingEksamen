@@ -69,13 +69,13 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
             // kode fra pp til Rolando:
             List<Athlete> athletes = await _sportsWorldContext.Athletes
             .Where(
-                athlete => athlete.Name.Contains(
-                    name,
-                    StringComparison.CurrentCultureIgnoreCase
+                athlete => athlete.Name != null && athlete.Name.ToLower().Contains(
+                    name.ToLower()
+                    //StringComparison.CurrentCultureIgnoreCase
                 )
             )
             .ToListAsync();
-            return athletes;
+            return Ok(athletes);
 
             /* må ikke ha med denne ifen: 
             if(athletes == null || athletes.Count == 0)
@@ -85,8 +85,10 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
             return Ok(athletes);
             */
         }
-        catch
+        catch(Exception e)
         {
+        Console.WriteLine($"Serverfeil ved GetByName: {e.Message}");
+        Console.WriteLine($"Detaljer: {e.StackTrace}"); // Kan gi mer detaljer
             return StatusCode(500, "feil fra serveren");
         }
     }

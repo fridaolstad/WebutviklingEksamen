@@ -19,26 +19,18 @@ public class SportsWorldContext(DbContextOptions<SportsWorldContext> options) : 
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Athlete>().HasData(
-            new Athlete {Id = 1, Name = "Lionel Messi", Gender = "Male", Image = "messi.jpg", Price = 80000000, PurchaseStatus = false},
-            new Athlete {Id = 2, Name = "Caroline Graham Hansen", Gender = "Female", Image = "graham_hansen.jpg", Price = 50000000, PurchaseStatus = false},
+            new Athlete {Id = 1, Name = "Lionel Messi", Gender = "Male", Image = "messi.jpg", Price = 80000000, PurchaseStatus = true},
+            new Athlete {Id = 2, Name = "Caroline Graham Hansen", Gender = "Female", Image = "graham_hansen.jpg", Price = 50000000, PurchaseStatus = true},
             new Athlete {Id = 3, Name = "Martin Ødegaard", Gender = "Male", Image = "odegaard.jpg", Price = 90000000, PurchaseStatus = false},
             new Athlete {Id = 4, Name = "Alexia Putellas", Gender = "Female", Image = "putellas.jpg", Price = 60000000, PurchaseStatus = false},
-            new Athlete {Id = 5, Name = "Erling Braut Haaland", Gender = "Male", Image = "haaland.jpg", Price = 150000000, PurchaseStatus = false},
+            new Athlete {Id = 5, Name = "Erling Braut Haaland", Gender = "Male", Image = "haaland.jpg", Price = 150000000, PurchaseStatus = true},
             new Athlete {Id = 6, Name = "Aitana Bonmati", Gender = "Female", Image = "aitana.jpg", Price = 40000000, PurchaseStatus = false},
             new Athlete {Id = 7, Name = "Luka Modric", Gender = "Male", Image = "modric.jpg", Price = 70000000, PurchaseStatus = false},
-            new Athlete {Id = 8, Name = "Robert Lewandowski", Gender = "Male", Image = "lewandowski.jpg", Price = 80000000, PurchaseStatus = false}
+            new Athlete {Id = 8, Name = "Robert Lewandowski", Gender = "Male", Image = "lewandowski.jpg", Price = 80000000, PurchaseStatus = true}
         );
 
         modelBuilder.Entity<Finance>().HasData(
-            new Finance {Id= 1, MoneyLeft= 1000000000, NumberOfPurchases= 0, MoneySpent = 0, Amount = 0, Price= 0},
-            new Finance {Id= 2, MoneyLeft= 0, NumberOfPurchases= 1, MoneySpent = 50000000, Amount = 0, Price= 0},
-            new Finance {Id= 3, MoneyLeft= 0, NumberOfPurchases= 3, MoneySpent = 150000000, Amount = 0, Price= 0},
-            new Finance {Id= 4, MoneyLeft= 0, NumberOfPurchases= 0, MoneySpent = 0, Amount = 0, Price= 0},
-            new Finance {Id= 5, MoneyLeft= 0, NumberOfPurchases= 2, MoneySpent = 90000000, Amount = 0, Price= 0},
-            new Finance {Id= 6, MoneyLeft= 0, NumberOfPurchases= 4, MoneySpent = 220000000, Amount = 0, Price= 0},
-            new Finance {Id= 7, MoneyLeft= 0, NumberOfPurchases= 1, MoneySpent = 70000000, Amount = 0, Price= 0},
-            new Finance {Id= 8, MoneyLeft= 0, NumberOfPurchases= 5, MoneySpent = 300000000, Amount = 0, Price= 0}
-            
+            new Finance {Id= 1, MoneyLeft= 640000000, NumberOfPurchases= 4, MoneySpent = 360000000, Amount = 0, Price= 0}
         );
     }
 

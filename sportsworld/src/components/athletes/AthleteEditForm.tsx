@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import type{ IAthlete } from "../../interfaces/IAthlete";
 
+ //evt skrive at denne ikke kan endres grunnet funksjoner i side 3
+ // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
+
 // lager properties som skal motta spiller og funksjonen forlagring og avbryt
 // usikker på om jeg skal velge andre ord som onUpdate og onClosse/onCancel siden rolando har nevt at: 
 // react stantard: onClick, onCancel = bruke handle i navnet. Hva tenker du Thea?
@@ -16,126 +19,119 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
 
     //sate: 
     const [formData, setFormData] = useState(athlete);
+    const [statusMessage, setStatusMessage] = useState("");
 
     // håndterer endringer i input og select feltene
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ // hvis det krasjsr legg til | HTMLSelectElement>
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ 
 
         //name henter navnet i inputfeltet, value henter den nye verdien som brukeren har skrevet inn
         const {name, value} = e.target;
-        let newValue: any = value;
+        let priceValue: any = value;
 
-        // selv om purchaseStatus er en boolean i interfacet, returnerer string true eller false i input, derfor kodr vi sånn at
-        // stringer true blir til boolean true  
+        // tømmer status ved ny endring
+        setStatusMessage("");
 
-        // NB! VIKTIG - jeg tenker vi kanskje kan fjerne denne ifen? da jeg er redd for at hvis brukeren kan endre på 
-        // statusen til spillerne i side 1 kan klusse med funksjoner om å vise kjøpt spille på side 3?, hva tenker du Thea?
-        // []ja vi sletter den []nei vi lar den bli (sett kryss for ja eller nei :)) heh
-        //om ja minn meg på at vi må slette det nede i html også, evt skrive at denne ikke kan endres grunnet funksjoner i side 3
-        // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
-        if(name === "purchaseStatus"){
-            newValue = value === "true";
+        if(name === "price"){
+
+            priceValue = Number(value);
+
+            if(isNaN(priceValue) || value.trim() === ""){
+                setStatusMessage("Pris må være et gyldig tall");
+                return; // stopper prossessen
+            }
         }
 
         // passer på at vi jobber med den siste tilstanden
         setFormData(prev => ({
-            ...prev, [name]: newValue
+            ...prev, [name]: priceValue
         }));
     };
 
     const handleSubmit = () => {
+        // sopper lagring hvis en feilemldig dukker opp
+        if(statusMessage){
+            setStatusMessage("kan ikke lagre, du må skrive inn no inni feltet")
+            return;
+        }
         saveEdit(formData);
     };
 
     return(
-        <section>
-            <h3> Endre en spiller </h3>
-            <div> Id på spilleren som blir endret: {formData.id}</div>
+        <section className="p-6 rounded-lg">
+
+            <header className="mb-4">
+                <h3 className="text-2xl font-semibold"> Endre en spiller </h3>
+                <div> Id på spilleren som blir endret: {formData.id}</div>
+            </header>
+
 
             {/*navne*/}
-            <div>
-                <label> Navn: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Navn: </label>
                 <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                // her kommer styling
+                className="border border-black rounded-lg" 
                 />
             </div>
 
             {/*Pris*/}
-            <div>
-                <label> Pris: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Pris: </label>
                 <input
                 type="number"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                // her kommer tailwind styling 
+                className="border border-black rounded-lg"  
                 />
             </div>
 
             {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
             kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
-            <div>
-                <label> Kjønn: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Kjønn: </label>
                 <select
                 // type="text"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                // husk styling her
+                className="border border-black rounded-lg" 
                 >
                 
-
                 <option value={"Mann"}> Mann </option>
                 <option value={"Kvinne"}> Kvinne </option>
                 <option value={"Annet"}> Annet </option>
                 </select>
             </div>
 
-
-            {/*kjøpe status - denne som evt må slettes, forklaring lenger opp :))*/}
-            <div>
-                <label> Kjøpestatus: </label>
-                <select
-                name="purchaseStatus"
-                value={formData.purchaseStatus ? "true" : "false"}
-                onChange={handleChange}
-                // husk styling her
-                >
-               
-
-                <option value={"True"}> Kjøpt</option>
-                <option value={"False"}> Ikke kjøpt </option>
-                </select>
-            </div>
-
             {/*bilde url*/}
-            <div>
-                <label> bilde url: </label>
+            <div className="mb-2 flex space-x-2">
+                <label className="font-semibold"> Bilde url: </label>
                 <input
                 type="text"
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
-                // husk styling her
+                className="border border-black rounded-lg" 
                 />
             </div>
 
             {/*knapper*/}
-            <div>
+            <div className="mb-2 flex space-x-2">
                 <button
                 type="button"
                 onClick={closeEdit}
-                // HUSK å legge til tailwind styling her, className: "blablabla"
+                className="border border-black px-2 bg-red-200"
                 > Avbryt
                 </button>
 
                 <button
                 type="button"
                 onClick={handleSubmit}
-                // HUSK å legge til tailwind styling her, className: "blablabla"
+                className="border border-black px-2 bg-green-200"
                 > Lagre endringer
                 </button>
             </div>
