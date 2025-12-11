@@ -50,7 +50,7 @@ public class FinanceController(SportsWorldContext _financeContext) : ControllerB
 
 
     [HttpPost("purchase")]
-    public async Task<ActionResult> Purchase(Finance financeFromFrontend)
+    public async Task<ActionResult> Purchase([FromBody]Finance financeFromFrontend)
     {
         try
         {

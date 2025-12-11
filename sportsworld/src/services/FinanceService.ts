@@ -27,10 +27,10 @@ const FinanceService = {
         }
     },
 
-    // PUT /finance/addmoney
+    // POST /finance/addmoney
     addMoney: async (amount: number): Promise<IResponseData<IFinance>> => {
         try {
-            const response = await axios.put('${financeEndpoint}/addmoney', amount);
+            const response = await axios.post(`${financeEndpoint}/addmoney`, {amount});
 
             return {
                 success: true,
@@ -47,9 +47,9 @@ const FinanceService = {
     },
 
     //PUt /finance/purchase
-    purchaseAthlete: async (athleteID: number): Promise<IResponseData<IFinance>> => {
+    purchaseAthlete: async (price: number): Promise<IResponseData<IFinance>> => {
         try {
-            const response = await axios.put ('financeEndpoint/purchase/${athleteID}');
+            const response = await axios.post(`${financeEndpoint}/purchase/`,{price});
 
             return {
                 success: true,

@@ -48,6 +48,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
     };
 
     const handleSubmit = () => {
+
         // sopper lagring hvis en feilemldig dukker opp
         if(statusMessage){
             setStatusMessage("kan ikke lagre, du må skrive inn no inni feltet")
