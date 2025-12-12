@@ -33,7 +33,7 @@ const FinanceLoan = () => {
         setTimeout(() =>{
             setStatusMessage("");
             setIsOk(null);
-        }, 4000);
+        }, 8000);
     };
 
 
@@ -47,7 +47,7 @@ const FinanceLoan = () => {
                     value={loanAmount === 0? "" : loanAmount}
                     onChange={(e)=> setLoanAmount(Number(e.target.value))}/>
                 </div>
-                <button onClick={handleLoan} className="border rounded-lg " >
+                <button onClick={handleLoan} className="border px-2" >
                     Lån penger
                 </button>
                 {

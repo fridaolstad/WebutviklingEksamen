@@ -3,6 +3,7 @@
 import FinanceSum from "../components/finance/FinanceSum";
 import FinanceLoan from "../components/finance/FinanceLoan";
 import PurchaseAthlete from "../components/finance/FinancePurchase";
+import FinanceBoughtAthletes from "../components/finance/FinanceBoughtAthletes";
 
 const FinancePage = () => {
     return(
@@ -12,6 +13,7 @@ const FinancePage = () => {
             <FinanceSum />
             <FinanceLoan />
             <PurchaseAthlete/>
+            <FinanceBoughtAthletes />
             </div>
         </div>
     );
