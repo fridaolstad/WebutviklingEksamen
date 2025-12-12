@@ -62,7 +62,7 @@ const PurchaseAthlete = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {availableAthletes.map(a => (
                         <div key={a.id} className="flex flex-col items-center w-full">
-                            <div className="flex-1 w-full">
+                            <div className="w-full">
                             <AthleteItem athlete={a}/>
                             </div>
                             <button
