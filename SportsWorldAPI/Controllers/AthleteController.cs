@@ -77,18 +77,9 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
             .ToListAsync();
             return Ok(athletes);
 
-            /* må ikke ha med denne ifen: 
-            if(athletes == null || athletes.Count == 0)
-            {
-                return NotFound("Ingen utøver funnet med dette navnet");
-            }
-            return Ok(athletes);
-            */
         }
-        catch(Exception e)
+        catch(Exception)
         {
-        Console.WriteLine($"Serverfeil ved GetByName: {e.Message}");
-        Console.WriteLine($"Detaljer: {e.StackTrace}"); // Kan gi mer detaljer
             return StatusCode(500, "feil fra serveren");
         }
     }

@@ -140,9 +140,9 @@ const AthleteRegisterForm = () => {
                 <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Pris: </label>
                 <input
-                type="number"
+                type="text" // settter denne til test fordi......
                 name="price"
-                value={userData.price}
+                value={userData.price} // sette sen som thea sin 
                 onChange={handleRegister}
                 className="border border-black rounded-lg"
                 />
