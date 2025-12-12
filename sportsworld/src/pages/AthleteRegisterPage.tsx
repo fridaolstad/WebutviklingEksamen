@@ -8,8 +8,7 @@ const AthleteRegisterPage = () => {
         <>
         <div className="p-6 max-w-7x1 mx-auto">
             <header>
-               <h1 className="text-3xl font-bold"> Registering av ny spiller  </h1>
-               <p className=""> Her kan du registrere en ny spiller  </p>
+               <h1 className="text-3xl font-bold mb-8"> Registering av ny spiller  </h1>
             </header>
         
         <AthleteRegisterForm></AthleteRegisterForm>

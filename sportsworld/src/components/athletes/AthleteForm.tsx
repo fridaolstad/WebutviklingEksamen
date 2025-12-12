@@ -13,7 +13,7 @@ const AthleteForm = () => {
     const searchInput = useRef<HTMLInputElement | null> (null);
 
     // state for å vise status og tilbakemeldinger
-    const [statusMessage, setStatusMessage] = useState(""); 
+    const [statusMessage, setStatusMessage] = useState<string>("...venter på handling"); 
 
 
 
@@ -23,26 +23,26 @@ const AthleteForm = () => {
         if(searchInput.current && searchInput.current.value.trim() != ""){
 
             const searchWord = searchInput.current.value.trim();
-            setStatusMessage( `søker etter: ${searchWord}...`);
+            setStatusMessage( `Finner ikke : ${searchWord}...`);
 
             const response = await searchAthleteByName(searchWord);
 
             if(response.success && response.data !== null){
                 if(response.data?.length)
-                setStatusMessage (`Her er spilleren med naven ${searchWord}: ${response.data?.length}`); 
+                setStatusMessage (`Her er spilleren med navn ${searchWord}`); 
 
             }else {
                 setStatusMessage (` Feil under søking.. prøv på nytt`)
             }
 
         } else {
-            setStatusMessage ("skriv inn navnet du vil søke")
+            setStatusMessage ("Skriv inn navnet du vil søke på")
         }
       }
 
 
       const handeShowAll = async () => {
-        setStatusMessage("henter alle utøvere...")
+        setStatusMessage("Henter alle utøvere...")
         
         const response = await showAllAthletes();
 
@@ -56,9 +56,9 @@ const AthleteForm = () => {
 
                 // sjekker om det innholder noe
                 if(athletes.length > 0){
-                    setStatusMessage(`viser alle ${athletes.length} spillere`)
+                    setStatusMessage(`Viser alle ${athletes.length} spillere`)
                 }else{
-                    setStatusMessage("ingen spillere funnet i databasen");
+                    setStatusMessage("Ingen spillere funnet i databasen");
                 }
             }
 
@@ -67,7 +67,7 @@ const AthleteForm = () => {
                 searchInput.current.value = "";
             }
         } else {
-            setStatusMessage ("klarte ikke hente alle utøvere");
+            setStatusMessage ("Klarte ikke hente alle utøvere");
         }
       };
 
@@ -84,9 +84,10 @@ const AthleteForm = () => {
                 <label>Navn: </label>
                 <input ref={searchInput} className="border border-black rounded-lg" type="text" />
 
-                <button onClick={handleSearch} className="border border-black px-2"> Søk </button>
+                <button onClick={handleSearch} className="border border-black px-2 hover:bg-gray-400 " >
+                     Søk </button>
                  {/* vise alle knapper */}
-                <button onClick={handeShowAll} className="border border-black px-2" > vis alle </button>
+                <button onClick={handeShowAll} className="border border-black px-2 hover:bg-gray-400" > vis alle </button>
             </div>
             
             <div >

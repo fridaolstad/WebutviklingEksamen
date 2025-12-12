@@ -19,6 +19,7 @@ const AthleteRegisterForm = () => {
     const {registerAthlete} = useContext(AthleteContext) as IAthleteContext;
     const [userData, setUserData] = useState(emptyAthlete);
     const [statusMessage, setStatusMessage] = useState<string>("...venter på handling");
+    const [isOk, setIsOk] = useState<boolean | null>(null);
     const [imageFile, setImageFile] = useState <File | null>(null);
 
     const clearStatusMessage = (message: string) =>{
@@ -26,7 +27,7 @@ const AthleteRegisterForm = () => {
             setTimeout(() => {
                 setStatusMessage("");
             }, 
-            8000) // Etter 8000 millisekunder (3 sekunder) skal meldingen nullstilles
+            9000) // Etter 9000 millisekunder (9 sekunder) skal meldingen nullstilles
         };
 
     // prøvd å buke e som vist i forelesningen, men må bruke e:any
@@ -153,7 +154,6 @@ const AthleteRegisterForm = () => {
                <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Kjønn: </label>
                 <select
-                // type="text"
                 name="gender"
                 value={userData.gender}
                 onChange={handleRegister}
@@ -167,7 +167,7 @@ const AthleteRegisterForm = () => {
 
               {/*bilde*/}
              <div className="mb-2 flex space-x-2">
-                <label className="font-semibold"> Bilde (fil): </label>
+                <label className="font-semibold"> Bilde(fil): </label>
                 <input
                 type="file"
                 name="image"
@@ -178,7 +178,7 @@ const AthleteRegisterForm = () => {
 
              {/* kjøpestatus*/}
              <div className="mb-2 flex space-x-2">
-                <p className="font-semibold"> Kjøpestatus: ikke kjøpt (denne kan IKKE endres på)</p>
+                <p className="font-semibold"> Kjøpestatus: Ikke kjøpt</p>
              </div>
 
              {/* Knapper */}
@@ -186,7 +186,7 @@ const AthleteRegisterForm = () => {
              <div className="mb-2 flex space-x-2">
                 <button
                 type="button"
-                className="border border-black px-2 bg-red-200 hover:bg-red-700"
+                className="border border-black px-2 bg-red-500 hover:bg-red-700"
                 onClick={handleCancel}
                 > Avbryt
                 </button>
@@ -194,7 +194,7 @@ const AthleteRegisterForm = () => {
                 <button
                 type="button"
                 onClick={handleSubmit}
-                className="border border-black px-2 bg-green-200 hover:bg-green-700"
+                className="border border-black px-2 bg-green-500 hover:bg-green-700"
                 > Lagre endringer
                 </button>
              </div>

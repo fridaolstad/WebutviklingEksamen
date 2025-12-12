@@ -51,7 +51,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
 
         // sopper lagring hvis en feilemldig dukker opp
         if(statusMessage){
-            setStatusMessage("kan ikke lagre, du må skrive inn no inni feltet")
+            setStatusMessage("Kan ikke lagre, du må skrive inn no inni feltet")
             return;
         }
         saveEdit(formData);
@@ -82,7 +82,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Pris: </label>
                 <input
-                type="number"
+                type="text" // skrive hvorfor vo har satt den til text
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
@@ -95,7 +95,6 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Kjønn: </label>
                 <select
-                // type="text"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
@@ -125,14 +124,14 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 <button
                 type="button"
                 onClick={closeEdit}
-                className="border border-black px-2 bg-red-200"
+                className="border border-black px-2 bg-red-600 hover:bg-red-700"
                 > Avbryt
                 </button>
 
                 <button
                 type="button"
                 onClick={handleSubmit}
-                className="border border-black px-2 bg-green-200"
+                className="border border-black px-2 bg-green-600 hover:bg-green-700"
                 > Lagre registrering
                 </button>
             </div>

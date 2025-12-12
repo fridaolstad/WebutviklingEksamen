@@ -25,14 +25,14 @@ const AthleteDelete = ({athlete, onConfirm, onCancel}: DeleteProperties) =>{
             <div className="flex space-x-3"> 
                 <button
                 onClick={onCancel}
-                className="border border-black px-2 bg-green-200"
+                className="border border-black px-2 bg-green-600 hover:bg-green-700"
                 > 
                 Avbryt 
                 </button>
 
                 <button
                 onClick={onConfirm}
-                className="border border-black px-2 bg-red-300"
+                className="border border-black px-2 bg-red-600 hover:bg-red-700"
                 >
                 Ja, slett spiller    
                 </button>

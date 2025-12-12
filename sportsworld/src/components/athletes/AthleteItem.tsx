@@ -42,13 +42,13 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
             <div className="mt-4 pt-3 flex space-x-3 p-4">
                 {onEdit && (
                     <button onClick={() => onEdit(athlete)}
-                    className="flex-1 bg-blue-200 rounded-lg"
+                    className="flex-1 bg-blue-300 hover:bg-blue-400 rounded-lg"
                     > Rediger spiller </button>
                 )}
 
                 {onDelete && (
                     <button onClick={() => onDelete(athlete.id)}
-                    className=" flex-1 bg-red-300 rounded-lg"
+                    className=" flex-1 bg-red-300 hover:bg-red-400 rounded-lg"
                     > Slette spiller</button>
                 )}
 
