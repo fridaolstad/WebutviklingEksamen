@@ -33,7 +33,7 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
             <div className="text-sm text-center">
             <p className="font-medium"> Kjønn: {athlete.gender}</p>
             <p className="font-medium"> Pris: {athlete.price} kr</p>
-            <p className=" font-extrabold  border border-blue-500 "> {`Kjøpt: ${athlete.purchaseStatus}`}</p>
+            <p className=" font-extrabold"> {athlete.purchaseStatus ? "Kjøpt" : "Ikke kjøpt"}</p>
 
             </div>
 
