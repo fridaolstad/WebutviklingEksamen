@@ -3,6 +3,7 @@ import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
 
+
 // mal for formen, den starter tom og kan kalles på for å tømme formen
 const emptyAthlete : IAthlete = {
     id : 0,
@@ -22,15 +23,17 @@ const AthleteRegisterForm = () => {
     const [isOk, setIsOk] = useState<boolean | null>(null);
     const [imageFile, setImageFile] = useState <File | null>(null);
 
-    const clearStatusMessage = (message: string) =>{
+    const clearStatusMessage = (message: string, ok: boolean) =>{
             setStatusMessage(message);
+            setIsOk(ok); // setter farge på statusmelding
             setTimeout(() => {
-                setStatusMessage("");
+                setStatusMessage(""); // tømmer stausmelding
+                setIsOk(null); 
             }, 
             9000) // Etter 9000 millisekunder (9 sekunder) skal meldingen nullstilles
         };
 
-    // prøvd å buke e som vist i forelesningen, men må bruke e:any
+    // prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
     const handleRegister = (e: any) => {
         const {name, value} = e.target;
 
@@ -77,7 +80,7 @@ const AthleteRegisterForm = () => {
         const handleCancel = () => {
             setUserData(emptyAthlete);
             setImageFile(null);
-            clearStatusMessage("Registering ble avsluttet, tømmer input")
+            clearStatusMessage("Registering ble avsluttet, tømmer input", false)
         }
 
 
@@ -86,11 +89,11 @@ const AthleteRegisterForm = () => {
 
             // sjekker at navn, bilde og gender blir fylt inn inn
             if(userData.name.trim()=== "" || userData.price <= 0 || !imageFile){
-                clearStatusMessage("Du må fylle ut en navn, en pris større en 0, og velge et bilde")
+                clearStatusMessage("Du må fylle ut en navn, en pris større en 0, og velge et bilde", false)
                 return;
             }
 
-            clearStatusMessage("Lager ny spiller og lastet opp bilde");
+            clearStatusMessage("Lager ny spiller og lastet opp bilde", true);
 
             const AthleteToSave: IAthlete ={
                 id: 0,
@@ -105,15 +108,15 @@ const AthleteRegisterForm = () => {
                 const response = await registerAthlete(AthleteToSave, imageFile);
 
                 if(response.success){
-                    clearStatusMessage(`${userData.name} ble registeret som en potensiell spiller! `)
+                    clearStatusMessage(`${userData.name} ble registeret som en potensiell spiller!`, true)
                     setUserData(emptyAthlete); // tømmer tekstfeltene
                     setImageFile(null); // tømmer bilde staten
                 }else{
-                    clearStatusMessage("Noe gikk galt ved lagring av spiller")
+                    clearStatusMessage("Noe gikk galt ved lagring av spiller", false)
                 }
 
             }catch(error){
-                clearStatusMessage("Feil ved tilkobling til server");
+                clearStatusMessage("Feil ved tilkobling til server", false);
                 console.error(error);
 
             }
@@ -200,7 +203,10 @@ const AthleteRegisterForm = () => {
              </div>
 
              <div>
-                <p>Status: {statusMessage}</p>
+                <p className={
+                    isOk ? "text-green-600" : "text-red-600" // isok === true da blir teksten grønn, om isOk === false tekst blir rød
+                }>
+                    Status: {statusMessage}</p>
              </div>
             </section>
      )
