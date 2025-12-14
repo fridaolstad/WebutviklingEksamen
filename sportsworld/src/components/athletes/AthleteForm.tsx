@@ -14,7 +14,17 @@ const AthleteForm = () => {
 
     // state for å vise status og tilbakemeldinger
     const [statusMessage, setStatusMessage] = useState<string>("...venter på handling"); 
+    const [isOk, setIsOk] = useState<boolean | null>(null); // state for fargesetting av tilbakemelding fra bruker
 
+    // hjelpe funksjon for å oppdatere statusmld og farge
+    const updateStatusMessage = (message: string, ok: boolean | null) => {
+        setStatusMessage(message);
+        setIsOk(ok);
+        setTimeout(() =>{
+            setStatusMessage("");
+            setIsOk(null);
+        }, 8000);
+    };
 
 
       // react stantard: onClick, onCance = bruke handle i navnet
@@ -23,26 +33,26 @@ const AthleteForm = () => {
         if(searchInput.current && searchInput.current.value.trim() != ""){
 
             const searchWord = searchInput.current.value.trim();
-            setStatusMessage( `Finner ikke : ${searchWord}...`);
+            updateStatusMessage( `Finner ikke : ${searchWord}...`, false);
 
             const response = await searchAthleteByName(searchWord);
 
             if(response.success && response.data !== null){
                 if(response.data?.length)
-                setStatusMessage (`Her er spilleren med navn ${searchWord}`); 
+                updateStatusMessage (`Her er spilleren med navn ${searchWord}`, true); 
 
             }else {
-                setStatusMessage (` Feil under søking.. prøv på nytt`)
+                updateStatusMessage (` Feil under søking.. prøv på nytt`, false)
             }
 
         } else {
-            setStatusMessage ("Skriv inn navnet du vil søke på")
+            updateStatusMessage ("Skriv inn navnet du vil søke på", null)
         }
       }
 
 
       const handeShowAll = async () => {
-        setStatusMessage("Henter alle utøvere...")
+        updateStatusMessage("Henter alle utøvere...", null)
         
         const response = await showAllAthletes();
 
@@ -56,9 +66,9 @@ const AthleteForm = () => {
 
                 // sjekker om det innholder noe
                 if(athletes.length > 0){
-                    setStatusMessage(`Viser alle ${athletes.length} spillere`)
+                    updateStatusMessage(`Viser alle ${athletes.length} spillere`, null)
                 }else{
-                    setStatusMessage("Ingen spillere funnet i databasen");
+                    updateStatusMessage("Ingen spillere funnet i databasen", false);
                 }
             }
 
@@ -67,7 +77,7 @@ const AthleteForm = () => {
                 searchInput.current.value = "";
             }
         } else {
-            setStatusMessage ("Klarte ikke hente alle utøvere");
+            updateStatusMessage ("Klarte ikke hente alle utøvere", false);
         }
       };
 
@@ -91,7 +101,9 @@ const AthleteForm = () => {
             </div>
             
             <div >
-              <p> Status: {statusMessage}</p>
+                <p>Status:</p>
+              <p className={isOk === true ? "text-green-600" : isOk === false ? "text-red-600" : ""} // grønn om true, rød om false og "vanlig" om null
+              >{statusMessage}</p>
 
             </div>
             

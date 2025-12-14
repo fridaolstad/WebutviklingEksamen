@@ -13,9 +13,7 @@ const [athlteToDelete, setAthleteToDelete] = useState<IAthlete | null> (null);
 const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
 const context = useContext(AthleteContext);
-if(!context){
-    throw new Error("sjekker om dette hjelper")
-}
+
 // Henter crud funksjoner og data fra Context
 const {updateAthlete, removeAthlete, athletes} = context as IAthleteContext;
 
@@ -48,7 +46,7 @@ const cancelEdit = () => {
 // ---- Funksjoner for sletting ----
 const startDelete = (id: number) => {
 
-    const athlete = athletes.find(a => a.id === id); // kan endre til bare a inni find(a => a.id === id)
+    const athlete = athletes.find(a => a.id === id); 
     if(athlete){
         setAthleteToDelete(athlete);
         setStatusMessage(null); // nullstiller statusmelding

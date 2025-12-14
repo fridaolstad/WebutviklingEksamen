@@ -19,18 +19,18 @@ const AthleteRegisterForm = () => {
     // states: 
     const {registerAthlete} = useContext(AthleteContext) as IAthleteContext;
     const [userData, setUserData] = useState(emptyAthlete);
-    const [statusMessage, setStatusMessage] = useState<string>("...venter på handling");
+    const [statusMessage, setStatusMessage] = useState<string>("...venter på handling"); 
     const [isOk, setIsOk] = useState<boolean | null>(null);
     const [imageFile, setImageFile] = useState <File | null>(null);
 
-    const clearStatusMessage = (message: string, ok: boolean) =>{
+    const clearStatusMessage = (message: string, ok: boolean | null) =>{
             setStatusMessage(message);
             setIsOk(ok); // setter farge på statusmelding
             setTimeout(() => {
                 setStatusMessage(""); // tømmer stausmelding
                 setIsOk(null); 
             }, 
-            9000) // Etter 9000 millisekunder (9 sekunder) skal meldingen nullstilles
+            8000) // Etter 8000 millisekunder (9 sekunder) skal meldingen nullstilles
         };
 
     // prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
@@ -43,12 +43,11 @@ const AthleteRegisterForm = () => {
             noeValue = Number(value);
 
             if(isNaN(noeValue)){
-                setStatusMessage("Pris må være et gyldig tall")
+                clearStatusMessage("Pris må være et gyldig tall", false)
                 return;
             }
         }
         
-
         setUserData(prev =>({
             ...prev,
             [name]: noeValue
@@ -144,7 +143,7 @@ const AthleteRegisterForm = () => {
                 <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Pris: </label>
                 <input
-                type="text" // settter denne til test fordi......
+                type="text" 
                 name="price"
                 value={userData.price} // sette sen som thea sin 
                 onChange={handleRegister}
@@ -203,10 +202,11 @@ const AthleteRegisterForm = () => {
              </div>
 
              <div>
+                <p>Status: </p>
                 <p className={
-                    isOk ? "text-green-600" : "text-red-600" // isok === true da blir teksten grønn, om isOk === false tekst blir rød
+                    isOk === true ? "text-green-600" : isOk === false ? "text-red-600" : "" // grønn om true, rød om false og "vanlig" om null
                 }>
-                    Status: {statusMessage}</p>
+                    {statusMessage}</p>
              </div>
             </section>
      )
