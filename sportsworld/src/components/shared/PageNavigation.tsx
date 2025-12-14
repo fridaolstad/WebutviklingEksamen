@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const PageNavigation = () => {
     return(
-        <header className="bg-blue-900 mb-4 flex justify-between items-center text-white">
+        <header className="bg-blue-900 flex justify-between items-center text-white">
             <Link className="p-2 font-bold" to={"/"}> SportsWorld</Link>
         <nav >
             <ul className="flex gap-5 pr-2">

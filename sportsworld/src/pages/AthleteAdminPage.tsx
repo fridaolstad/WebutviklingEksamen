@@ -20,7 +20,7 @@ const AthleteAdminPage = () => {
 
     return(
         <>
-        <div className="p-6 max-w-7x1 mx-auto">
+        <div className="p-6 max-w-7x1 mx-auto bg-blue-300">
 
         <header >
             <h1 className="text-3xl font-bold"> Administrasjonsside  </h1>

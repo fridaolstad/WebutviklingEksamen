@@ -27,8 +27,6 @@ const AppRoutes = () => { // Må sjekke om pathen til utøvere er riktig
 
         </Routes>
 
-        <PageFooter></PageFooter>
-
             
         </BrowserRouter>
     )
