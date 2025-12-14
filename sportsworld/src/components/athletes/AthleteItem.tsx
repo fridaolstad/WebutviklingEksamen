@@ -2,8 +2,8 @@ import type { IAthlete } from "../../interfaces/IAthlete";
 
 const apiBaseUrl = "http://localhost:5236";
 
-// lager props sånn at både athlete og finance kan bruke denne, setter ? da finance ikke MÅ bruke dem (skal ikke heller)
-// prøve å bruke navnene delete og edit, men kan ikke bruke navnet delete da det allerede er noe i react
+// Lager props sånn at både athlete og finance kan bruke denne, setter ? da finance ikke MÅ bruke dem (skal ikke heller)
+
 interface AthleteItemProperties {
     athlete : IAthlete;
     onEdit?: (athlete: IAthlete) => void;
@@ -37,7 +37,7 @@ const AthleteItem = ({ athlete, onEdit, onDelete } : AthleteItemProperties ) => 
 
             </div>
 
-            {/* Knappene som vises hvis vi kaller på onEdit og onDelete, detet for at Finance også skal kunne bruke Item komponeneten 
+            {/* Knappene som vises hvis vi kaller på onEdit og onDelete, dette for at Finance også skal kunne bruke Item komponeneten 
              uten kanppene, da knappene bare trengst i Administrasjonssiden*/ }
             <div className="mt-4 pt-3 flex space-x-3 p-4">
                 {onEdit && (

@@ -4,7 +4,7 @@ import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
 
 
-// mal for formen, den starter tom og kan kalles på for å tømme formen
+// Mal for formen, den starter tom og kan kalles på for å tømme formen
 const emptyAthlete : IAthlete = {
     id : 0,
     name: "",
@@ -30,46 +30,51 @@ const AthleteRegisterForm = () => {
                 setStatusMessage(""); // tømmer stausmelding
                 setIsOk(null); 
             }, 
-            8000) // Etter 8000 millisekunder (9 sekunder) skal meldingen nullstilles
+            8000) // Etter 8000 millisekunder (8 sekunder) skal meldingen nullstilles
         };
 
-    // prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
-    const handleRegister = (e: any) => {
+    // Håndterer all input unntatt fil
+    const handleRegister = (e: any) => { // prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
         const {name, value} = e.target;
 
-        let noeValue = value;
+        let newValue = value;
 
+        // validering av pris 
         if(name === "price"){
-            noeValue = Number(value);
+            newValue = Number(value);
 
-            if(isNaN(noeValue)){
+            if(isNaN(newValue)){
                 clearStatusMessage("Pris må være et gyldig tall", false)
                 return;
             }
         }
         
+        // bruker (...prev) for å beholde alle de forrige feltene (id, gender osv.), hvis brukeren feks bare oppdaterer navnet
+        // oppdateres kun navn-feltet [name] med den nye verdien newValue
         setUserData(prev =>({
             ...prev,
-            [name]: noeValue
+            [name]: newValue
         }));
 
         setStatusMessage("");
-        }
+        };
 
+        // Håndtere filendring
         const handleFileChange = (e: any) => {
             const files = e.target.files;
 
              // Sjekker at files (hvor bildet skal ligge) inni input type file ikke er tomt
             if(files != null){
-                setImageFile(files[0]); //får tak i første
+                setImageFile(files[0]); // lagrer bildet i en separat state
                 console.log(files[0]);
 
-                // kan du chat forklare koden ned til else alstå hele setuserdata og det inni elsen for foreleser hatr ikke det med
+                // Oppdaterer userData med filnavnet
                 setUserData(prev => ({
                     ...prev,
                     image: files[0].name
                 }));
             } else{
+                // hvis brukeren avbryter eller sletter filen
                 setImageFile(null);
                 setUserData(prev => ({...prev, image: ""}))
             }
@@ -86,7 +91,7 @@ const AthleteRegisterForm = () => {
         const handleSubmit = async (e: any) =>{
             e.preventDefault(); // for å ikke laste inn siden på nytt
 
-            // sjekker at navn, bilde og gender blir fylt inn inn
+            // sjekker at alle felt er fylt inn
             if(userData.name.trim()=== "" || userData.price <= 0 || !imageFile){
                 clearStatusMessage("Du må fylle ut en navn, en pris større en 0, og velge et bilde", false)
                 return;
@@ -94,6 +99,7 @@ const AthleteRegisterForm = () => {
 
             clearStatusMessage("Lager ny spiller og lastet opp bilde", true);
 
+            /*
             const AthleteToSave: IAthlete ={
                 id: 0,
                 name: userData.name,
@@ -102,12 +108,14 @@ const AthleteRegisterForm = () => {
                 image: userData.image,
                 purchaseStatus: false
             }; 
+            */
 
             try{
-                const response = await registerAthlete(AthleteToSave, imageFile);
+                const response = await registerAthlete(userData, imageFile);
 
                 if(response.success){
-                    clearStatusMessage(`${userData.name} ble registeret som en potensiell spiller!`, true)
+                    //clearStatusMessage(`${userData.name} ble registeret som en potensiell spiller!`, true)
+                    setStatusMessage(`${userData.name} ble registeret, bla ned for å se den potensielle nye spilleren`)
                     setUserData(emptyAthlete); // tømmer tekstfeltene
                     setImageFile(null); // tømmer bilde staten
                 }else{
@@ -151,8 +159,7 @@ const AthleteRegisterForm = () => {
                 />
                 </div>
 
-                {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
-                 kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
+                {/*Kjønn - Vi bruker select sånn at brukeren kun kan velge mellom opions vi lager*/}
                <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Kjønn: </label>
                 <select

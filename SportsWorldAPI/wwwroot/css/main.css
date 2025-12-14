@@ -48,6 +48,16 @@ html,
     right: 0;
 }
 
+#footer {
+    width: 100%; 
+    background-color:  rgb(86, 106, 168);
+    color: white;
+    text-align: center;
+    padding: 24px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 
 /* -------- GRID & MEDIA QUERIES----- */
 /* vi må gjøre denne om, men bare en kladd for nå*/

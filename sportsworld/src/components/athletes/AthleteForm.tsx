@@ -23,23 +23,24 @@ const AthleteForm = () => {
         setTimeout(() =>{
             setStatusMessage("");
             setIsOk(null);
-        }, 8000);
+        }, 9000);
     };
 
 
-      // react stantard: onClick, onCance = bruke handle i navnet
+      // Endre denne sånn at det ikke blir så mye ifer!!!!
       const handleSearch = async () => {
 
         if(searchInput.current && searchInput.current.value.trim() != ""){
 
             const searchWord = searchInput.current.value.trim();
+
             updateStatusMessage( `Finner ikke : ${searchWord}...`, false);
 
             const response = await searchAthleteByName(searchWord);
 
             if(response.success && response.data !== null){
                 if(response.data?.length)
-                updateStatusMessage (`Her er spilleren med navn ${searchWord}`, true); 
+                updateStatusMessage (`Her er spilleren som inneholder ${searchWord}`, true); 
 
             }else {
                 updateStatusMessage (` Feil under søking.. prøv på nytt`, false)
@@ -56,30 +57,26 @@ const AthleteForm = () => {
         
         const response = await showAllAthletes();
 
-        // kan gjøre denne om til en if, if/else og else?
-        if(response.success && response.data !== null){
-
-
-            // sjekker om det er et array?
-            if(Array.isArray(response.data)){
-                const athletes = response.data;
-
-                // sjekker om det innholder noe
-                if(athletes.length > 0){
-                    updateStatusMessage(`Viser alle ${athletes.length} spillere`, null)
-                }else{
-                    updateStatusMessage("Ingen spillere funnet i databasen", false);
-                }
-            }
-
-            // tømmer søkefeltet (etter søk?)
-            if (searchInput.current){
-                searchInput.current.value = "";
-            }
-        } else {
-            updateStatusMessage ("Klarte ikke hente alle utøvere", false);
+        if(!response.success || response.data === null || !Array.isArray(response.data)){
+            updateStatusMessage("Klarte ikke hente alle utøvere", false);
+            return; // funkjosnen stopper her ved feil
         }
-      };
+
+        const athletes = response.data;
+
+        if(athletes.length > 0){
+            // success og data funnet
+            updateStatusMessage(`Viser alle ${athletes.length} spillere`, null);
+        }else{
+            // success, men listen er tom
+            updateStatusMessage("Ingen spillere funnet i databasen", false);
+        }
+        // Tømmer søkefeltet
+        if(searchInput.current){
+            searchInput.current.value = "";
+        }
+
+    };
 
       return(
         <section className="bg-gray-100 p-6 rounded-lg shadow-md mb-8">
@@ -112,3 +109,4 @@ const AthleteForm = () => {
 }
 
 export default AthleteForm;
+

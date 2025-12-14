@@ -1,4 +1,4 @@
-// her skal "malen/oppskriften" for context ligge 
+// Her er "malen/oppskriften" for Athlete Context 
 
 import { type IAthlete } from "./IAthlete";
 import type { IAthletesResponse, IDefaultResponse } from "./ResponseInterfaces";

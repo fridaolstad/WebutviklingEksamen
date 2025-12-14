@@ -13,10 +13,10 @@ export const AthleteProvider = ({children} : Props) => {
     
     const [athletes, setAthletes] = useState<IAthlete[]>([])
 
-    // Denne et veldig VIKTIG og spesielt ,[] !!!
+    // Bruker React hooken useEffect for å hente data fra serveren
     useEffect(() => {
         setAthletesFromService();
-    },[]);
+    },[]); // [] sørger for at funkjsonen bare kjøres en gang - og hindrer en potensiel evig løkke/loop
 
     // skal gjøre bruk av getAllAthletes i AthleteService - skal skape/hente utøver med engang = bruke useEffect for dette
 
@@ -91,9 +91,13 @@ export const AthleteProvider = ({children} : Props) => {
         const response = await AthleteService.postAthlete(newAthlete, image);
 
         if(response.success) {
+            // Henter hele den oppdaterte listen fra serveren
+            await setAthletesFromService();
+            /*
             setAthletes(
-                prev => [response.data!, ...prev] // lager et nytt array og setter den nye athleten først, også resten av athletene (spreed operation)
+                prev => [response.data!, ...prev] 
             );
+            */
         }
         return response;
     }
