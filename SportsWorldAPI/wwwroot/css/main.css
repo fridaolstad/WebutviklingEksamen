@@ -1,0 +1,83 @@
+/* Denne koden er hentet fra arbeidskrav (frida)*/
+html, 
+ body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color:rgb(255, 255, 255);
+ }
+
+.nav-bar{
+    background-color:  rgb(86, 106, 168);
+    padding: 16px; 
+    margin: 0;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+ }
+
+ .navbar-list{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+ }
+
+ a{
+    padding: 14px 16px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+ }
+
+ #index-li{
+    position: absolute;
+    left: 0;
+    color: white;
+}
+
+#side2-li {
+    position: absolute;
+}
+
+/* Stopp kode hentet fra arbeiskrav*/
+
+#side3-li {
+    position: absolute;
+    right: 0;
+}
+
+
+/* -------- GRID & MEDIA QUERIES----- */
+/* vi må gjøre denne om, men bare en kladd for nå*/
+.grid-12-column{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+
+
+.xs-12{
+    grid-column: auto / span 12;
+}
+
+.xs-6{
+    grid-column: auto / span 6;
+}
+
+
+@media (width >= 768px){
+   
+    .sm-4{
+        grid-column: auto / span 4;
+    }
+}
+
+
+@media (width >= 992px){
+
+    .md-3{
+        grid-column: auto / span 3;
+    }
+}
