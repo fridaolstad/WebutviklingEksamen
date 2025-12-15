@@ -9,4 +9,5 @@ export interface IFinanceContext {
     loadFinance: () => Promise<void>;
     addMoney: (amount: number) => Promise<IDefaultResponse>;
     purchaseAthlete: (athleteId: number) => Promise<IDefaultResponse>;
+    decrementPurchases: () => void;
 }

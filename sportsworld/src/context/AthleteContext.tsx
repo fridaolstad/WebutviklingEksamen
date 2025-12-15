@@ -18,8 +18,7 @@ export const AthleteProvider = ({children} : Props) => {
         setAthletesFromService();
     },[]); // [] sørger for at funkjsonen bare kjøres en gang - og hindrer en potensiel evig løkke/loop
 
-    // skal gjøre bruk av getAllAthletes i AthleteService - skal skape/hente utøver med engang = bruke useEffect for dette
-
+    // skal gjøre bruk av getAllAthletes i AthleteService 
     const setAthletesFromService = async () : Promise<IAthletesResponse> => {
 
         const response = await AthleteService.getAllAthletes();
@@ -77,14 +76,10 @@ export const AthleteProvider = ({children} : Props) => {
         const response = await AthleteService.deleteAthlete(id);
 
         if(response.success){
-            setAthletes ( prevAthletes =>
-                prevAthletes.filter(athlete => athlete.id !== id)
-            );
+            await setAthletesFromService();
         }
         return response;
     }
-
-
 
         // side 2 
     const registerAthlete = async (newAthlete: IAthlete, image: File) : Promise<IDefaultResponse> => {

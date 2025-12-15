@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
+import { useClearStatusMessage } from "../athletes/hooks/UseClearStatusMessage";
 
 const FinanceLoan = () => {
     const financeContext = useContext(FinanceContext) as IFinanceContext;
     const {addMoney} = financeContext;
 
     const [loanAmount, setLoanAmount] = useState<number>(0); // Ønsket lånebeløp
-    const [statusMessage, setStatusMessage] = useState<string>(""); // Tilbakemelding til bruker
-    const [isOk, setIsOk] = useState<boolean | null>(null); // Endrer farge på meldingen
-
+    const {statusMessage, isOk, updateStatusMessage} = useClearStatusMessage("Venter på handling...");
+  
 
     // Låne penger
     const handleLoan = async () => {
@@ -27,16 +27,6 @@ const FinanceLoan = () => {
             // Hvis det gikk dårlig, gi beskjed om at lånet feilet
             updateStatusMessage(response.message || `Lånet feilet`, false);
         }
-    };
-
-    // Oppdatering av stausmelding som forsvinner etter 8 sek
-    const updateStatusMessage = (message: string, ok: boolean) => {
-        setStatusMessage(message);
-        setIsOk(ok);
-        setTimeout(() =>{
-            setStatusMessage("");
-            setIsOk(null);
-        }, 8000);
     };
 
 

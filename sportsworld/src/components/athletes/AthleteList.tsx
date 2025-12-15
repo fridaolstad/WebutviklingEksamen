@@ -13,11 +13,10 @@ interface AthleteListProperties {
 
 const AthleteList = ({onDelete, onEdit} : AthleteListProperties) => {
 
-     // Koble opp til context - hentet kake tilstanden -F
+     // Koble opp til context - hentet athlete tilstanden 
     const {athletes} = useContext(AthleteContext) as IAthleteContext;
 
     const getAthleteJSX = () => {
-        /* const validAthletes = athletes.filter(athlete => athlete.id > 0 && athlete.name && athlete.name.trim() != ""); */
 
         // Sjekker om listen er tom eller ikke 
         if(athletes.length === 0){

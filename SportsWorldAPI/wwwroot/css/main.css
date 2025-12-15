@@ -4,11 +4,15 @@ html,
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color:rgb(255, 255, 255);
+    background-color:#93C5FD;
+ }
+
+ main{
+    flex: 1;
  }
 
 .nav-bar{
-    background-color:  rgb(86, 106, 168);
+    background-color: #1E3A8A;
     padding: 16px; 
     margin: 0;
     box-sizing: border-box;
@@ -16,6 +20,7 @@ html,
     z-index: 1000;
     width: 100%;
  }
+
 
  .navbar-list{
     display: flex;
@@ -50,7 +55,7 @@ html,
 
 #footer {
     width: 100%; 
-    background-color:  rgb(86, 106, 168);
+    background-color:  rgb(0, 0, 0);
     color: white;
     text-align: center;
     padding: 24px;

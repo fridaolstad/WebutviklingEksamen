@@ -52,8 +52,7 @@ public class FinanceController(SportsWorldContext _financeContext) : ControllerB
         }
     }
 
-
-    
+ 
     [HttpPost("purchase")]
     public async Task<ActionResult> Purchase(Finance financeFromFrontend)
     {
@@ -78,6 +77,7 @@ public class FinanceController(SportsWorldContext _financeContext) : ControllerB
             return StatusCode(500);
         }
     }
+    
 
 }
 

@@ -3,19 +3,24 @@ import { type IAthleteContext } from "../../../interfaces/IAthleteContext";
 import { AthleteContext } from "../../../context/AthleteContext";
 import type { IAthlete } from "../../../interfaces/IAthlete";
 
+import { FinanceContext } from "../../../context/FinanceContext";
+import { type IFinance } from "../../../interfaces/IFinance";
+import type { IFinanceContext } from "../../../interfaces/IFinanceContext";
 
 
 export const useAthleteAdmin = () => {
 
+const context = useContext(AthleteContext);
+const financeContext = useContext(FinanceContext);
+
 // States for hva som skal slettes og endres (side 1)
 const [athlteToEdit, setAthleteToEdit] = useState<IAthlete | null> (null);
-const [athlteToDelete, setAthleteToDelete] = useState<IAthlete | null> (null);
+const [athleteToDelete, setAthleteToDelete] = useState<IAthlete | null> (null);
 const [statusMessage, setStatusMessage] = useState<string | null>(null);
-
-const context = useContext(AthleteContext);
 
 // Henter crud funksjoner og data fra Context
 const {updateAthlete, removeAthlete, athletes} = context as IAthleteContext;
+const {decrementPurchases} = financeContext as IFinanceContext;
 
 // ---- Funksjoner for edit ----
 const startEdit = (athlete: IAthlete) => {
@@ -58,29 +63,38 @@ const startDelete = (id: number) => {
 
 const handleDelete = async () => {
     // Sjekker om athlete er null, hvis ja så avluttes funksjonen, om nei fortsetter den
-    if(!athlteToDelete) // Bruker ! istedenfor =! null eller === null fordi ! sekker både null og undefined 
+    if(!athleteToDelete) // Bruker ! istedenfor =! null eller === null fordi ! sekker både null og undefined 
         return;
 
+    
+    const isBought = athleteToDelete.purchaseStatus;
     // Kaller context funksjonen for sletting 
-    const response = await removeAthlete(athlteToDelete.id);
+    const response = await removeAthlete(athleteToDelete.id);
+    
 
     if(response.success){
-        setStatusMessage(`Spilleren med id ${athlteToDelete.name} ble slettet`);
-        console.log (`Spilleren med id ${athlteToDelete.id} ble slettet`);
+        setStatusMessage(`Spilleren med id ${athleteToDelete.name} ble slettet`);
+        console.log (`Spilleren med id ${athleteToDelete.id} ble slettet`);
+
+        if(isBought){
+            // hvis spilleren er kjøpt, reduseres telleren 
+            decrementPurchases();
+        }
+
     }else {
-        setStatusMessage(`Feil ved sletting av ${athlteToDelete.name} `)
+        setStatusMessage(`Feil ved sletting av ${athleteToDelete.name} `)
         console.log("Feil ved sletting av spiller", response)
     }
     // Lukker sletting
     setAthleteToDelete(null); 
-}
+};
 
 // Lukker bekreftelsen for sletting
 const cancelDelete = () => {
     setAthleteToDelete(null);
 };
 
-return { athlteToEdit, athlteToDelete, startEdit, startDelete, handleUpdate, cancelEdit, handleDelete ,cancelDelete, statusMessage
+return { athlteToEdit, athlteToDelete: athleteToDelete, startEdit, startDelete, handleUpdate, cancelEdit, handleDelete ,cancelDelete, statusMessage
 };
 
 };

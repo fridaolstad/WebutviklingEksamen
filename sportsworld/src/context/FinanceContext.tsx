@@ -107,12 +107,33 @@ export const FinanceProvider = ({children}: Props) => {
             }
     };
 
+    // Reduserer telleren 
+    const decrementPurchases = () => {
+        setFinance(prevFinance => {
+
+            let newNumberOfPurchases = prevFinance.numberOfPurchases;
+
+            // sånn at telleren ikke går i minus
+            if(newNumberOfPurchases > 0){
+                newNumberOfPurchases = newNumberOfPurchases -1;
+            }else {
+                newNumberOfPurchases = 0;
+            }
+
+            return {
+                ...prevFinance,
+                numberOfPurchases: newNumberOfPurchases
+            }; 
+        });
+    };
+
     return (
         <FinanceContext.Provider value={{
             finance, 
             addMoney, 
             purchaseAthlete,
-            loadFinance
+            loadFinance,
+            decrementPurchases
         }}>
             {children}
         </FinanceContext.Provider>

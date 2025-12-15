@@ -2,6 +2,7 @@ import { useRef, useContext, useState } from "react";
 import { type IAthleteContext } from "../../interfaces/IAthleteContext";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
+import { useClearStatusMessage } from "./hooks/UseClearStatusMessage";
 
 // vise alle, og søke etter navn
 
@@ -13,21 +14,8 @@ const AthleteForm = () => {
     const searchInput = useRef<HTMLInputElement | null> (null);
 
     // state for å vise status og tilbakemeldinger
-    const [statusMessage, setStatusMessage] = useState<string>("...venter på handling"); 
-    const [isOk, setIsOk] = useState<boolean | null>(null); // state for fargesetting av tilbakemelding fra bruker
-
-    // hjelpe funksjon for å oppdatere statusmld og farge
-    const updateStatusMessage = (message: string, ok: boolean | null) => {
-        setStatusMessage(message);
-        setIsOk(ok);
-        setTimeout(() =>{
-            setStatusMessage("");
-            setIsOk(null);
-        }, 9000);
-    };
-
-
-    
+    const {statusMessage, isOk, updateStatusMessage} = useClearStatusMessage("Venter på handling...");
+ 
       const handleSearch = async () => {
 
         // Definerer søkeordet og gri det standardverdien ""

@@ -123,20 +123,28 @@ public async Task<IActionResult> Delete (int id)
         {
             // søker i databsen om den finner en utøver med matcher den gitte iden, resutatet kan være null (?), ? fordi det er ikke sikkert det er en Athlete vi får tak i 
             Athlete? athlete = await _sportsWorldContext.Athletes.FindAsync(id);
-            // sjekker om athleten ble funnet i databasen
-            if (athlete != null)
-            {
-                // forteller at dette objektet skal fjernes fra databsen
-                _sportsWorldContext.Athletes.Remove(athlete);
-                // selve slettingen, sender slette forespørsel til databasen
-                await _sportsWorldContext.SaveChangesAsync();
-
-                return NoContent();
-            }
-            else
+            
+            if (athlete == null)
             {
                 return NotFound();
             }
+
+            // sjekker om spilleren er kjøpt 
+            if (athlete.PurchaseStatus)
+            {
+                Finance finance = await _sportsWorldContext.Finances.FirstAsync();
+
+                // reduserer antall kjøp i financeobjektet
+                finance.NumberOfPurchases --;
+            }
+
+                // forteller context at athlete skal fjernes
+                _sportsWorldContext.Athletes.Remove(athlete);
+
+                // lagrer alle endringene 
+                await _sportsWorldContext.SaveChangesAsync();
+
+                return NoContent(); // finne kilde på denne
 
         }
         catch
@@ -177,61 +185,4 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
         
     }
 
-    // til Finance - kjøpe utøver
-    [HttpPost("purchase")]
-    public async Task<ActionResult> PurchaseAthlete(int athleteId)
-    {
-
-        try
-        {
-            // finne utøver
-            Athlete? athlete = await _sportsWorldContext.Athletes.FindAsync(athleteId);
-            if(athlete == null)
-                return NotFound("Finner ikke utøver");
-            
-            //Hvis utøveren er kjøpt fra før
-            if(athlete.PurchaseStatus)
-                return BadRequest("Utøver er allerede kjøpt");
-            
-            // finne finance
-            Finance? finance = await _sportsWorldContext.Finances.FirstOrDefaultAsync();
-            if (finance == null)
-                return NotFound("Ikke funnet");
-
-            if (finance.MoneyLeft < athlete.Price)
-                return BadRequest("Ikke nok penger til å kjøpe denne utøveren");
-
-            athlete.PurchaseStatus = true;
-            finance.MoneyLeft -= athlete.Price;
-            finance.MoneySpent += athlete.Price;
-            finance.NumberOfPurchases++;
-
-            await _sportsWorldContext.SaveChangesAsync();
-
-            return Ok(new {athlete, finance});
-            
-        }
-        catch
-        {
-            return StatusCode(500);
-        }
-        
-
-    }
-
-
 }
-
-
-
-
-
-// BARE OM TID: legge til find eller filter by gender, og purchased? 
-
-
-// CREATE er POST
-// UPDATE er PUT
-
-// 200 koder er bra 
-// 400 koder er at det er noe galt i frontenden (noe brukeren har gjort)
-// 500 koder er server feil 
