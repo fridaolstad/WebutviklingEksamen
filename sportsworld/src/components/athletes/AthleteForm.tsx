@@ -27,27 +27,35 @@ const AthleteForm = () => {
     };
 
 
-      // Endre denne sånn at det ikke blir så mye ifer!!!!
+    
       const handleSearch = async () => {
 
-        if(searchInput.current && searchInput.current.value.trim() != ""){
+        // Definerer søkeordet og gri det standardverdien ""
+        const searchWord = searchInput.current?.value.trim() || "";
 
-            const searchWord = searchInput.current.value.trim();
+        // Validerer input
+        if(searchWord === ""){
+            updateStatusMessage("Skriv inn navnet du vil søke på", null);
+            return; // Stopper ved ugyldig input
+        }
 
-            updateStatusMessage( `Finner ikke : ${searchWord}...`, false);
+        updateStatusMessage(`Søker etter ${searchWord}...`, null);
 
-            const response = await searchAthleteByName(searchWord);
+        const response = await searchAthleteByName(searchWord); 
 
-            if(response.success && response.data !== null){
-                if(response.data?.length)
-                updateStatusMessage (`Her er spilleren som inneholder ${searchWord}`, true); 
+        // Hånderer api-feil eller nulldata
+        if(!response.success || response.data === null){
+            updateStatusMessage("Feil under søking.. prøv på nytt", false);
+            return; // stopper ved ai feil
+        }
 
-            }else {
-                updateStatusMessage (` Feil under søking.. prøv på nytt`, false)
-            }
+        const athletesFound = response.data as IAthlete[];
 
-        } else {
-            updateStatusMessage ("Skriv inn navnet du vil søke på", null)
+        // Håndterer suksess
+        if(athletesFound.length > 0){
+            updateStatusMessage(`Fant ${athletesFound.length} utøver(e) som inneholder ${searchWord}`, true);
+        }else{
+            updateStatusMessage(`Fant ingen spillere som inneholder ${searchWord}`, false);
         }
       }
 
@@ -110,3 +118,27 @@ const AthleteForm = () => {
 
 export default AthleteForm;
 
+/*
+
+        if(searchInput.current && searchInput.current.value.trim() != ""){
+
+            const searchWord = searchInput.current.value.trim() ;
+
+            updateStatusMessage( `Finner ikke : ${searchWord}...`, false);
+
+            const response = await searchAthleteByName(searchWord);
+
+            if(response.success && response.data !== null){
+                if(response.data?.length)
+                updateStatusMessage (`Her er spilleren som inneholder ${searchWord}`, true); 
+
+            }else {
+                updateStatusMessage (` Feil under søking.. prøv på nytt`, false)
+            }
+
+        } else {
+            updateStatusMessage ("Skriv inn navnet du vil søke på", null)
+        }
+      }
+
+ */

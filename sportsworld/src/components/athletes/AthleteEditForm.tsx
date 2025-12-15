@@ -20,7 +20,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
     //sate: 
     const [formData, setFormData] = useState(athlete);
     const [statusMessage, setStatusMessage] = useState("");
-    const [isOk, setIsOk] = useState<boolean | null>(null); // for å sette farge på statusmelding 
+  
 
     // håndterer endringer i input og select feltene
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ 
