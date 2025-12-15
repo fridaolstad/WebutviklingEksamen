@@ -1,34 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dokumentasjon</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <script type="module" src="scripts/side2.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <nav class="nav-bar">
-            <ul class="navbar-list">
-                <li id="index-li"><a href="index.html">SPORTSWORLD</a></li>
-                <li id="side2-li"> <a href="side-2.html">Dokumentasjon</a></li>
-                <li id="side3-li"> <a href="side-3.html">Om oss</a></li>
-            </ul>
-        </nav>
-         <h1> Dokumentasjon </h1>
+      <nav class="nav-bar">
+        <ul class="navbar-list">
+          <li id="index-li"><a href="index.html">SPORTSWORLD</a></li>
+          <li id="side2-li"><a href="side-2.html">Dokumentasjon</a></li>
+          <li id="side3-li"><a href="side-3.html">Om oss</a></li>
+        </ul>
+      </nav>
+      <h1>Dokumentasjon</h1>
     </header>
 
     <main class="page-body">
-        <section > Her kan du finne endepunkter med informasjon</section> <!-- husk å legge til grid her -->
-        <article class="article-box">
+      <section class="grid-12-column">
+        <div class="xs-12">
+          <h2>Finance</h2>
+          <p>GET/api/finance - Henter økonomioversikt</p>
+          <p>PUT/api/finance/{id} - Oppdaterer økonomi</p>
 
-        </article>
+          <h3>Eksempel på JSON-resons:</h3>
+          <pre>
+{
+    "id": 1,
+    "moneyLeft": 10000,
+    "umberOfPurchases": 3,
+    "moneySpent": 50000
+}
+                </pre
+          >
+        </div>
+      </section>
+      <!-- Athlete Endpoints-->
+      <section class="grid-12-column">
+        <div class="xs-12">
+          <h2>Athletes</h2>
+          <p>GET/api/athlete - Henter alle utøvere</p>
+          <p>GET/api/athlete/{id} - Henter en spesifikk utøver</p>
+          <p>POST/api/athlete - Legger til ny utøver</p>
+          <p>PUT/api/athlete/{id} - Oppdaterer utøver</p>
+          <p>DELETE/athelte/{id} - Sletter utøver</p>
+
+          <h3>Eksempel på JSON-resons:</h3>
+          <pre>
+{
+    "id": 1,
+    "name": "Lionel Messi",
+    "gender": "Male",
+    "price": 500000,
+    "image": "messi.jpg",
+    "purchaseStatus": true
+}
+                </pre
+          >
+        </div>
+      </section>
+
+      <section class="grid-12-column">
+        <div class="xs-12">
+          <h3>Spillere</h3>
+          <p>Det er 8 spillere i API-et</p>
+        </div>
+      </section>
+
+      <section class="grid-12-column">
+        <div class="xs-12">
+          <h3>Datatype-oversikt for spillere</h3>
+          <p></p>
+          <p></p>
+        </div>
+      </section>
     </main>
 
-    <footer id= "footer">
-        footer 
-    </footer>
-    
-</body>
+    <footer id="footer">footer</footer>
+  </body>
 </html>
