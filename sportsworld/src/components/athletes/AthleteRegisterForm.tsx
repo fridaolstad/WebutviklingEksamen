@@ -99,22 +99,10 @@ const AthleteRegisterForm = () => {
 
             clearStatusMessage("Lager ny spiller og lastet opp bilde", true);
 
-            /*
-            const AthleteToSave: IAthlete ={
-                id: 0,
-                name: userData.name,
-                gender: userData.gender,
-                price: userData.price,
-                image: userData.image,
-                purchaseStatus: false
-            }; 
-            */
-
             try{
                 const response = await registerAthlete(userData, imageFile);
 
                 if(response.success){
-                    //clearStatusMessage(`${userData.name} ble registeret som en potensiell spiller!`, true)
                     setStatusMessage(`${userData.name} ble registeret, bla ned for å se den potensielle nye spilleren`)
                     setUserData(emptyAthlete); // tømmer tekstfeltene
                     setImageFile(null); // tømmer bilde staten

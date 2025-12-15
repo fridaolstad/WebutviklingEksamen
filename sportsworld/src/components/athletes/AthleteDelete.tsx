@@ -10,7 +10,6 @@ interface DeleteProperties {
 }
 
 const AthleteDelete = ({athlete, onConfirm, onCancel}: DeleteProperties) =>{
-    // husk å legge til tailwind styling !!
     return(
         <section className="p-6 rounded-lg">
         <div>
@@ -19,8 +18,6 @@ const AthleteDelete = ({athlete, onConfirm, onCancel}: DeleteProperties) =>{
                 <p> Er du sikker på at du vil slette spilleren: {athlete.name} (id: {athlete.id}) ? </p>
             {/* om vi vil ha egen styling på navn og id til spilleren kan det legges inn i egen p tagg */}
             </header>
-
-            
 
             <div className="flex space-x-3"> 
                 <button
