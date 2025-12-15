@@ -1,5 +1,4 @@
-// Wrapper for Athlete-list. Ledig utøver. Henter fra context/service.
-
+// Wrapper for Athlete-list. Ledig utøver. Henter fra context og service.
 import { useContext, useState} from "react";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
@@ -17,6 +16,7 @@ const PurchaseAthlete = () => {
     const [statusMessage, setStatusMessage] = useState<string>("");
     const [isOk, setIsOk] = useState <boolean | null >(null);
 
+    // Kjøp av utøver
     const handlePurchase = async (athleteId: number, price: number) => {
         if (price > finance.moneyLeft) {
             updateStatusMessage ("Dessverre ikke nok penger på konto..", false);

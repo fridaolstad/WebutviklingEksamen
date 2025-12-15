@@ -3,6 +3,7 @@ import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import AthleteItem from "../athletes/AthleteItem";
 
+// Viser alle kjøpte utøvere
 const FinanceBoughtAthletes = () => {
     const athleteContext = useContext(AthleteContext) as IAthleteContext;
     const {athletes} = athleteContext;
@@ -11,7 +12,7 @@ const FinanceBoughtAthletes = () => {
 
     return(
         <section className="p-6 bg-white rounded-lg shadow-md space-y-4">
-            <h3 className="text-xl font-semibold text-grey-800">Dine utøvere</h3>
+            <h3 className="text-xl font-semibold text-gray-800">Dine utøvere</h3>
             {boughtAthletes.length === 0?(
                 <p className="text-gray-600">Ingen utøvere kjøpt enda..</p>
             ):(

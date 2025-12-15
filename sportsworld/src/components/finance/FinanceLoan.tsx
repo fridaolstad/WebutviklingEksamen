@@ -1,5 +1,3 @@
-// Input beløp + knapp for lån. Kaller på financeContext.addMoney()
-
 import React, { useState, useContext } from "react";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
@@ -8,10 +6,12 @@ const FinanceLoan = () => {
     const financeContext = useContext(FinanceContext) as IFinanceContext;
     const {addMoney} = financeContext;
 
-    const [loanAmount, setLoanAmount] = useState<number>(0);
-    const [statusMessage, setStatusMessage] = useState<string>("");
-    const [isOk, setIsOk] = useState<boolean | null>(null);
+    const [loanAmount, setLoanAmount] = useState<number>(0); // Ønsket lånebeløp
+    const [statusMessage, setStatusMessage] = useState<string>(""); // Tilbakemelding til bruker
+    const [isOk, setIsOk] = useState<boolean | null>(null); // Endrer farge på meldingen
 
+
+    // Låne penger
     const handleLoan = async () => {
         if(loanAmount <=0) {
             updateStatusMessage(`Beløpet må være større enn 0kr`, false);
@@ -19,14 +19,17 @@ const FinanceLoan = () => {
         }
 
         const response = await addMoney(loanAmount);
+        // Hvis lånet gikk bra, legger det til 
         if(response.success) {
             updateStatusMessage(`Lånet på ${loanAmount}kr er lagt til`, true);
-            setLoanAmount(0);
+            setLoanAmount(0); // nullstilling av input fra brukeren
         } else {
+            // Hvis det gikk dårlig, gi beskjed om at lånet feilet
             updateStatusMessage(response.message || `Lånet feilet`, false);
         }
     };
 
+    // Oppdatering av stausmelding som forsvinner etter 8 sek
     const updateStatusMessage = (message: string, ok: boolean) => {
         setStatusMessage(message);
         setIsOk(ok);
