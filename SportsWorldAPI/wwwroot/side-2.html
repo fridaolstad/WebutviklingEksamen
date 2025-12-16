@@ -5,80 +5,254 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dokumentasjon</title>
     <link rel="stylesheet" href="css/main.css" />
-    <script type="module" src="scripts/side2.js"></script>
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"  />
   </head>
   <body>
     <header>
       <nav class="nav-bar">
         <ul class="navbar-list">
-          <li id="index-li"><a href="index.html">SPORTSWORLD</a></li>
+          <li id="index-li"><a href="index.html"><i class="fa-regular fa-futbol"></i> SPORTSWORLD</a></li>
           <li id="side2-li"><a href="side-2.html">Dokumentasjon</a></li>
           <li id="side3-li"><a href="side-3.html">Om oss</a></li>
         </ul>
       </nav>
-      <h1>Dokumentasjon</h1>
     </header>
 
-    <main class="page-body">
-      <section class="grid-12-column">
-        <div class="xs-12">
-          <h2>Finance</h2>
-          <p>GET/api/finance - Henter økonomioversikt</p>
-          <p>PUT/api/finance/{id} - Oppdaterer økonomi</p>
+    <main class="doc-body">
+    <h1>API Dokumentasjon</h1>
+    <p class="intro-text">Her får du en oversikt over alle endepunkter og datamodeller i SportsWorld API </p>
 
-          <h3>Eksempel på JSON-resons:</h3>
+      <section class="grid-12-column endpoint-box" >
+          <h2>Finance</h2>
+          <section class="grid-12-column">
+            <div class="xs-12">
+                <p>Det er 1 oversikt over økonomien, da det er til den ene bedriften</p>
+                <h3>Datatype-oversikt for økonomi</h3>
+                <table>
+                    <tr>
+                    <th>Key</th>
+                    <th>Type</th>
+                    <th>Beskrivelse</th>
+                    </tr>
+
+                    <tr>
+                        <td>id</td>
+                        <td>int</td>
+                        <td>Id for en bedrift</td>
+                    </tr>
+                    <tr>
+                        <td>moneyLeft</td>
+                        <td>double</td>
+                        <td>Beløpet som er igjen (etter feks kjøp av spiller)</td>
+                    </tr>
+                    <tr>
+                        <td>NumberOfPurchases</td>
+                        <td>int</td>
+                        <td>Antall kjøp (av spillere)</td>
+                    </tr>
+                    <tr>
+                        <td>moneySpent</td>
+                        <td>double</td>
+                        <td>Beløpet som er brukt (ved kjøp av spiller)</td>
+                    </tr>
+                </table>
+            </div>
+          </section>
+        
+        <div class="xs-12">
+          <h3>GET /api/finance</h3>
+          <p>Henter en fullstendig oversikt over økonomi</p>
+          
+          <h3>JSON-resons:</h3>
           <pre>
-{
-    "id": 1,
-    "moneyLeft": 10000,
-    "umberOfPurchases": 3,
-    "moneySpent": 50000
-}
-                </pre
-          >
+            {
+                "id": 1,
+                "moneyLeft": 10000,
+                "NumberOfPurchases": 3,
+                "moneySpent": 50000"
+            }
+            </pre>
         </div>
+        
+
+        <div class="xs-12 endpoint-box-put">
+            <h3>PUT /api/finance/{id}</h3>
+            <p>Oppdaterer et finansobjekt (feks ved justering av penger etter kjøp)</p>
+            <h3>JSON-resons:</h3>
+            <pre>
+            {
+                "id": 1,
+                "moneyLeft": 10000,
+                "NumberOfPurchases": 3,
+                "moneySpent": 50000"
+            }
+
+            </pre>
+        </div>
+
       </section>
+
       <!-- Athlete Endpoints-->
       <section class="grid-12-column">
-        <div class="xs-12">
+        <div class="xs-12"> 
           <h2>Athletes</h2>
-          <p>GET/api/athlete - Henter alle utøvere</p>
-          <p>GET/api/athlete/{id} - Henter en spesifikk utøver</p>
-          <p>POST/api/athlete - Legger til ny utøver</p>
-          <p>PUT/api/athlete/{id} - Oppdaterer utøver</p>
-          <p>DELETE/athelte/{id} - Sletter utøver</p>
 
-          <h3>Eksempel på JSON-resons:</h3>
+          <section class="grid-12-column">
+            <div class="xs-12">
+                <p>Det er 8 spillere i API-et</p>
+
+                <h3>Datatype-oversikt for spillere</h3>
+                <table>
+                    <tr>
+                    <th>Key</th>
+                    <th>Type</th>
+                    <th>Beskrivelse</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>int</td>
+                        <td>Iden til spilleren</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>string</td>
+                        <td>Navnet på spilleren</td>
+                    </tr>
+                    <tr>
+                        <td>gender</td>
+                        <td>string</td>
+                        <td>Kjønn på spilleren</td>
+                    </tr>
+                    <tr>
+                        <td>price</td>
+                        <td>double</td>
+                        <td>Pris på spilleren</td>
+                    </tr>
+                    <tr>
+                        <td>image</td>
+                        <td>string</td>
+                        <td>Bilde til spilleren</td>
+                    </tr>
+                    <tr>
+                        <td>purchaseStatus</td>
+                        <td>bool</td>
+                        <td>Om spilleren er kjøpt eller ikke (default: false, altså ikke kjøpt)</td>
+                    </tr>
+                </table>
+            </div>
+           </section>
+
+        <div class="xs-12">
+          <h3>GET alle utøvere - GET/api/athlete </h3>
+          <p>Du kan hente en liste over alle utøvere ved å bruke /api/athlete endepunktet</p>
+          <p>GET http://localhost:5236/api/athlete </p>
+          <h3>JSON-resons:</h3>
           <pre>
-{
-    "id": 1,
-    "name": "Lionel Messi",
-    "gender": "Male",
-    "price": 500000,
-    "image": "messi.jpg",
-    "purchaseStatus": true
-}
-                </pre
-          >
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+
+          </pre>
         </div>
+
+        <div class="xs-12">
+          <h3>Get en enkel utøver - GET/api/athlete/{id} </h3>
+          <p>Du kan hente en enkelt spiller ved å legge til id som et parameter: /api/athlete/1</p>
+          <p>GET http://localhost:5236/api/athlete/1 </p>
+          <h3>JSON-resons:</h3>
+          <pre>
+            {
+                "id": 1,
+                "name": "Lionel Messi",
+                "gender": "Male",
+                "price": 500000,
+                "image": "messi.jpg",
+                "purchaseStatus": true
+            }
+          </pre>
+        </div>
+
+        <div class="xs-12">
+          <h3>Andre CRUD operasjoner</h3>
+          <p>Post legge til en ny spiller - POST /api/athlete </p>
+          <!-- Kan legge til kode her om vi vil, men må ikke? feks samme som den over, men med "redidert navn" feks-->
+          <p>Put oppdarere en spiller etter id - PUT /api/athlete/{id} </p>
+          <!-- sammme her om vi vil ^^-->
+          <p>Delete slette en spiller etter id - DELETE /athelte/{id} </p>
+        </div>
+
       </section>
 
-      <section class="grid-12-column">
-        <div class="xs-12">
-          <h3>Spillere</h3>
-          <p>Det er 8 spillere i API-et</p>
-        </div>
-      </section>
-
-      <section class="grid-12-column">
-        <div class="xs-12">
-          <h3>Datatype-oversikt for spillere</h3>
-          <p></p>
-          <p></p>
-        </div>
-      </section>
     </main>
 
-    <footer id="footer">footer</footer>
+    <footer id="footer">
+        <p>Spillere: 8</p>
+        <p> <i class="fa-solid fa-code"></i> Laget av gruppe 13 2025</p>
+    </footer>
   </body>
 </html>

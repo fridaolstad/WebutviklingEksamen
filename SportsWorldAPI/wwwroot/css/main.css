@@ -7,8 +7,7 @@ html,
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color:#93C5FD;
-
+    background-color:whitesmoke;
  }
 
  main{
@@ -67,41 +66,39 @@ html,
     box-sizing: border-box;
 }
 
-
-/* -------- GRID & MEDIA QUERIES----- */
-/* vi må gjøre denne om, men bare en kladd for nå*/
-.grid-12-column{
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+/* Side 1 /index */
+.page-body{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-
-.xs-12{
-    grid-column: auto / span 12;
+.main-section{
+    text-align: center;
+    padding: 20px;
 }
 
-.xs-6{
-    grid-column: auto / span 6;
+.main-section h1 {
+    font-size: 4em;
+    color: #1E3A8A ; 
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
 }
 
-
-@media (width >= 768px){
-   
-    .sm-4{
-        grid-column: auto / span 4;
-    }
+.main-section-subtext{
+    margin-top: 15px;
 }
 
-
-@media (width >= 992px){
-
-    .md-3{
-        grid-column: auto / span 3;
-    }
-}
-
+/* Side 2*/
 pre {
  background-color: white;
  padding: 8px;
+}
+
+/* side 3*/
+.side3-main-container{
+    background-color: #93C5FD;
 }
