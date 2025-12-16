@@ -1,8 +1,6 @@
 import AthleteList from "../components/athletes/AthleteList";
 import AthleteRegisterForm from "../components/athletes/AthleteRegisterForm";
 
-// legge til AthleteItem nede i return?
-
 const AthleteRegisterPage = () => {
     return(
         <>

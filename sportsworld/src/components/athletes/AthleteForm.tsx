@@ -1,24 +1,21 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext } from "react";
 import { type IAthleteContext } from "../../interfaces/IAthleteContext";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
 import { useClearStatusMessage } from "../hooks/UseClearStatusMessage";
 
-// vise alle, og søke etter navn
+// Vise alle, og søke etter navn
 
 const AthleteForm = () => {
 
-    // koble til contexten
     const {searchAthleteByName, showAllAthletes} = useContext (AthleteContext) as IAthleteContext;
 
     const searchInput = useRef<HTMLInputElement | null> (null);
-
-    // state for å vise status og tilbakemeldinger
     const {statusMessage, isOk, updateStatusMessage} = useClearStatusMessage("Venter på handling...");
  
       const handleSearch = async () => {
 
-        // Definerer søkeordet og gri det standardverdien ""
+        // Definerer søkeordet og gir det standardverdien ""
         const searchWord = searchInput.current?.value.trim() || "";
 
         // Validerer input
@@ -34,7 +31,7 @@ const AthleteForm = () => {
         // Hånderer api-feil eller nulldata
         if(!response.success || response.data === null){
             updateStatusMessage("Feil under søking.. prøv på nytt", false);
-            return; // stopper ved ai feil
+            return; // Stopper ved api feil
         }
 
         const athletesFound = response.data as IAthlete[];
@@ -55,16 +52,16 @@ const AthleteForm = () => {
 
         if(!response.success || response.data === null || !Array.isArray(response.data)){
             updateStatusMessage("Klarte ikke hente alle utøvere", false);
-            return; // funkjosnen stopper her ved feil
+            return; // Funksjonen stopper her ved feil
         }
 
         const athletes = response.data;
 
         if(athletes.length > 0){
-            // success og data funnet
+            // Success og data funnet
             updateStatusMessage(`Viser alle ${athletes.length} spillere`, null);
         }else{
-            // success, men listen er tom
+            // Success, men listen er tom
             updateStatusMessage("Ingen spillere funnet i databasen", false);
         }
         // Tømmer søkefeltet
@@ -82,14 +79,14 @@ const AthleteForm = () => {
             </header>
             
 
-            {/* inputfeltet for søk */}
+            {/* Inputfeltet for søk */}
             <div className="flex space-x-3">
                 <label>Navn: </label>
                 <input ref={searchInput} className="border border-black rounded-lg" type="text" />
 
                 <button onClick={handleSearch} className="border border-black px-2 hover:bg-gray-400 " >
                      Søk </button>
-                 {/* vise alle knapper */}
+                 {/* Vise alle knapper */}
                 <button onClick={handeShowAll} className="border border-black px-2 hover:bg-gray-400" > vis alle </button>
             </div>
             

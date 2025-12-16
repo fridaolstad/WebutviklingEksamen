@@ -31,7 +31,7 @@ const FinanceLoan = () => {
 
 
     return (
-        <section className="p-6 space-y-4">
+        <section className="p-5 bg-white rounded-lg shadow-md space-y-4">
             <h3 className="text-xl font-semibold text-gray-800">Lånekasse</h3>
                 <div className="">
                     <label>Beløp: </label>

@@ -30,7 +30,7 @@ export const AthleteProvider = ({children} : Props) => {
         }
         // legger med return for å returere riktig ifh til IAthleteResponse, useEffect ignorerer return, så derfor går dette bra,
         // hvis ikke måte vi ha laget en ny funksjon, men den ville innhold mye duplisert kode fra denne funksjonen... derfor valgte 
-        // vi å ha en return med og : Promise<IAthletesResponse> 
+        // vi å ha en return med, og : Promise<IAthletesResponse> 
         return response;
 
     };

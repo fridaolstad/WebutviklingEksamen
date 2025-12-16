@@ -160,6 +160,7 @@ public async Task<IActionResult> Delete (int id)
 [HttpPost]
 public async Task<ActionResult<Athlete>> Post(Athlete athlete)
     {
+        // Sjekker at athlete objektet ikke er null og at name og image feltene er fylt ut 
         if(athlete != null 
         && !string.IsNullOrWhiteSpace(athlete.Name)
         && !string.IsNullOrWhiteSpace(athlete.Image))
@@ -167,11 +168,16 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
 
         try
         {
+            // Setter deafult status til false (ikke kjøpt) for ny spiller 
             athlete.PurchaseStatus = false;
 
+            // Forteller context at athlete skal legges til 
             _sportsWorldContext.Athletes.Add(athlete);
+
+            // Lagrer endringen i databasen
             await _sportsWorldContext.SaveChangesAsync();
-            return Created();
+            
+            return Created(); // Statuskode 201 
 
         }
         catch
@@ -182,7 +188,7 @@ public async Task<ActionResult<Athlete>> Post(Athlete athlete)
         }
         else
         {
-            return BadRequest();
+            return BadRequest(); 
         }
         
     }

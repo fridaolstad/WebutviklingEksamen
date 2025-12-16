@@ -5,9 +5,7 @@ import type { IAthleteResponse, IAthletesResponse } from "../interfaces/Response
 const endpoint = "http://localhost:5236/api/athlete";
 const endpointImage = "http://localhost:5236/api/ImageUpload";
 
-
 // denne servicen skal jobbe mot backend
-
 
 const getAllAthletes = async (): Promise<IAthletesResponse> => {
     try{
@@ -84,7 +82,7 @@ const updateAthlete = async (editedAthlete : IAthlete) : Promise<IAthleteRespons
 
 
 
-// registrere ny athlete, side 2 - husk ta med bildeopplatning her: !
+// registrere ny athlete, side 2 
 const postAthlete = async (newAthlete: IAthlete, image: File) : Promise<IAthleteResponse> => {
     try{
         const response = await axios.post(endpoint, newAthlete); // poster athlete til backend
@@ -128,7 +126,6 @@ const deleteAthlete = async (id: number) : Promise <IAthleteResponse> => {
         console.log(result);
         return{
             success: true,
-            data: result.data // kan ta bort denne delen egt, da det uansett vil returneres null eller undifined siden vi har selttet noe
         }
 
     }catch (error) {

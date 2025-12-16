@@ -2,7 +2,7 @@ import type { IAthlete } from "../../interfaces/IAthlete";
 
 const apiBaseUrl = "http://localhost:5236";
 
-// Lager props sånn at både athlete og finance kan bruke denne, setter ? da finance ikke MÅ bruke dem (skal ikke heller)
+// Lager props sånn at både athlete og finance kan bruke denne, setter "?"" da finance ikke MÅ bruke dem (skal ikke heller)
 
 interface AthleteItemProperties {
     athlete : IAthlete;

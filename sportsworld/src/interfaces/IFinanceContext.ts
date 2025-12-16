@@ -1,5 +1,3 @@
-// finance, getFinance(), addMoney(), purchaseAthlete()
-
 import {type IFinance } from "./IFinance";
 import type { IDefaultResponse } from "./ResponseInterfaces";
 

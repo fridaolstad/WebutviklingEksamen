@@ -27,6 +27,7 @@ export const FinanceProvider = ({children}: Props) => {
         loadFinance();
     },[]);
 
+    /*
 
     const loanFinanceFromService = async () => {
         try {
@@ -41,6 +42,7 @@ export const FinanceProvider = ({children}: Props) => {
         console.error("Det er en error i loadFinanceFromService", error);
         }
     };
+    */
 
     // Låne penger
 

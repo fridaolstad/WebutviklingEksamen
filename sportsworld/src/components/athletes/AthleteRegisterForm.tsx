@@ -25,12 +25,12 @@ const AthleteRegisterForm = () => {
 
 
     // Håndterer all input unntatt fil
-    const handleRegister = (e: any) => { // prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
+    const handleRegister = (e: any) => { // Prøvd å buke e som vist i forelesningen, men vscode sier vi må bruke e:any
         const {name, value} = e.target;
 
         let newValue = value;
 
-        // validering av pris 
+        // Validering av pris 
         if(name === "price"){
             newValue = Number(value);
 
@@ -40,7 +40,7 @@ const AthleteRegisterForm = () => {
             }
         }
         
-        // bruker (...prev) for å beholde alle de forrige feltene (id, gender osv.), hvis brukeren feks bare oppdaterer navnet
+        // Bruker (...prev) for å beholde alle de forrige feltene (id, gender osv.), hvis brukeren feks bare oppdaterer navnet
         // oppdateres kun navn-feltet [name] med den nye verdien newValue
         setUserData(prev =>({
             ...prev,
@@ -80,9 +80,9 @@ const AthleteRegisterForm = () => {
 
 
         const handleSubmit = async (e: any) =>{
-            e.preventDefault(); // for å ikke laste inn siden på nytt
+            e.preventDefault(); // For å ikke laste inn siden på nytt
 
-            // sjekker at alle felt er fylt inn
+            // Sjekker at alle felt er fylt inn
             if(userData.name.trim()=== "" || userData.price <= 0 || !imageFile){
                 updateStatusMessage("Du må fylle ut en navn, en pris større en 0, og velge et bilde", false)
                 return;
@@ -114,7 +114,7 @@ const AthleteRegisterForm = () => {
                     <h3 className="text-2xl font-semibold mb-4"> Registrer potensiell ny spiller</h3>
                 </header>
 
-                {/*navn*/}
+                {/*Navn*/}
                 <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Navn: </label>
                 <input
@@ -132,7 +132,7 @@ const AthleteRegisterForm = () => {
                 <input
                 type="text" 
                 name="price"
-                value={userData.price} // sette sen som thea sin 
+                value={userData.price} 
                 onChange={handleRegister}
                 className="border border-black rounded-lg"
                 />
@@ -153,7 +153,7 @@ const AthleteRegisterForm = () => {
                 </select>
                 </div>
 
-              {/*bilde*/}
+              {/*Bilde*/}
              <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Bilde(fil): </label>
                 <input
@@ -164,7 +164,7 @@ const AthleteRegisterForm = () => {
                 />
              </div>
 
-             {/* kjøpestatus*/}
+             {/* Kjøpestatus*/}
              <div className="mb-2 flex space-x-2">
                 <p className="font-semibold"> Kjøpestatus: Ikke kjøpt</p>
              </div>

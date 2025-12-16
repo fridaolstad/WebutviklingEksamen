@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-// Lar AthleteRegisterForm, AthleteForm og FinanceLoan bruke denne, sånn at vi ikke må skrive det samme i hver av filene
+// Lar AthleteRegisterForm, AthleteForm, FinanceLoan og FinancePurchase bruke denne, sånn at vi ikke må skrive det samme i hver av filene
 
 export const useClearStatusMessage = (message: string = "" ) => {
     const [statusMessage, setStatusMessage] = useState<string>(message);

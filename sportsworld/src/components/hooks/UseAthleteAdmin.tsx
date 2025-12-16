@@ -4,7 +4,6 @@ import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
 
 import { FinanceContext } from "../../context/FinanceContext";
-// import { type IFinance } from "../../interfaces/IFinance";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
 
 

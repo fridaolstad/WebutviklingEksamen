@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import type{ IAthlete } from "../../interfaces/IAthlete";
 
- //evt skrive at denne ikke kan endres grunnet funksjoner i side 3
- // for å vise forståelse/eller begrunne hvorfor vi ikke lar brukeren endre kjøpsstatus
-
-// lager properties som skal motta spiller og funksjonen forlagring og avbryt
-// usikker på om jeg skal velge andre ord som onUpdate og onClosse/onCancel siden rolando har nevt at: 
-// react stantard: onClick, onCancel = bruke handle i navnet. Hva tenker du Thea?
+// Lager properties som skal motta spiller og funksjonen forlagring og avbryt
 interface AthleteEditFormProperties {
     athlete: IAthlete;
     saveEdit: (data: IAthlete) => void;
@@ -15,21 +10,18 @@ interface AthleteEditFormProperties {
 
 const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormProperties ) =>{
 
-    // føler eksempelet fra city eksempelet til rolando i slideserien: react-hooks-event - slide 12
-
-    //sate: 
     const [formData, setFormData] = useState(athlete);
     const [statusMessage, setStatusMessage] = useState("");
   
 
-    // håndterer endringer i input og select feltene
+    // Håndterer endringer i input og select feltene
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>{ 
 
-        //name henter navnet i inputfeltet, value henter den nye verdien som brukeren har skrevet inn
+        //Name henter navnet i inputfeltet, value henter den nye verdien som brukeren har skrevet inn
         const {name, value} = e.target;
         let priceValue: any = value;
 
-        // tømmer status ved ny endring
+        // Tømmer status ved ny endring
         setStatusMessage("");
 
         if(name === "price"){
@@ -38,11 +30,11 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
 
             if(isNaN(priceValue) || value.trim() === ""){
                 setStatusMessage("Pris må være et gyldig tall");
-                return; // stopper prossessen
+                return; // Stopper prossessen
             }
         }
 
-        // passer på at vi jobber med den siste tilstanden
+        // Passer på at vi jobber med den siste tilstanden
         setFormData(prev => ({
             ...prev, [name]: priceValue
         }));
@@ -50,7 +42,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
 
     const handleSubmit = () => {
 
-        // sopper lagring hvis en feilemldig dukker opp
+        // Sopper lagring hvis en feilmelding dukker opp
         if(statusMessage){
             setStatusMessage("Kan ikke lagre, du må skrive inn no inni feltet")
             return;
@@ -67,7 +59,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             </header>
 
 
-            {/*navn*/}
+            {/*Navn*/}
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Navn: </label>
                 <input
@@ -83,7 +75,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Pris: </label>
                 <input
-                type="text" // skrive hvorfor vo har satt den til text
+                type="text" 
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
@@ -91,8 +83,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 />
             </div>
 
-            {/*Kjønn - har kodet så brukeren kun kan veøge mellom opion vi lager, dette kan vi endre på om vi vil at brukeren skal 
-            kunne skrive inn kjønn selv - men er nok enkelst å bruke select for å få lagret riktig data (tror jeg)*/}
+            {/*Kjønn - har kodet så brukeren kun kan velg mellom opion vi lager*/}
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Kjønn: </label>
                 <select
@@ -108,7 +99,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 </select>
             </div>
 
-            {/*bilde url*/}
+            {/*Bilde url*/}
             <div className="mb-2 flex space-x-2">
                 <label className="font-semibold"> Bilde url: </label>
                 <input
@@ -120,7 +111,7 @@ const AthleteEditForm = ({athlete, saveEdit, closeEdit} : AthleteEditFormPropert
                 />
             </div>
 
-            {/*knapper*/}
+            {/*Knapper*/}
             <div className="mb-2 flex space-x-2">
                 <button
                 type="button"

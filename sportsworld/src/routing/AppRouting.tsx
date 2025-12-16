@@ -1,11 +1,8 @@
-// Kobler FinancePage til riktig path, /finance
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FinancePage from '../pages/FinancePage';
 import { AthleteAdminPage, HomePage } from "../pages";
 import AthleteRegisterPage from "../pages/AthleteRegisterPage";
 import PageNavigation from "../components/shared/PageNavigation";
-import PageFooter from "../components/shared/PageFooter";
 
 
 const AppRoutes = () => { 
