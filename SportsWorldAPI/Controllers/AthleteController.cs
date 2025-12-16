@@ -12,14 +12,14 @@ namespace SportsWorldAPI.Controllers;
 public class AthleteController(SportsWorldContext _sportsWorldContext): ControllerBase
 {
     
-// get all - vise alle utøvere - side 1
+// Get all - vise alle utøvere - side 1
 [HttpGet]
 public async Task<ActionResult<List<Athlete>>> Get()
     {
         try
         {
             List<Athlete> athletes = await _sportsWorldContext.Athletes.ToListAsync();
-            return Ok(athletes); // returnerer athletes til fronted
+            return Ok(athletes); // Returnerer athletes til fronted
 
         }
         catch
@@ -29,8 +29,8 @@ public async Task<ActionResult<List<Athlete>>> Get()
     }
   
 
-// get by id - søke etter utøver etter id - side 1
-[HttpGet("{id}")] // endepunktet blir /api/Athlete/id?
+// Get by id - søke etter utøver etter id - side 1
+[HttpGet("{id}")] // endepunktet blir /api/Athlete/id
 public async Task<ActionResult<Athlete>> Get(int id)
     {
         try
@@ -39,11 +39,11 @@ public async Task<ActionResult<Athlete>> Get(int id)
             .FindAsync(id);
             if(athlete != null)
             {
-                return Ok(athlete); // statuskode 200
+                return Ok(athlete); // Statuskode 200
             }
             else
             {
-                return NotFound("Athlete med iden ble ikke funnet"); // statuskode 404
+                return NotFound("Athlete med iden ble ikke funnet"); // Statuskode 404
             }
 
         }
@@ -53,25 +53,28 @@ public async Task<ActionResult<Athlete>> Get(int id)
         }
     }
 
-// get by name - hente etter noe annet enn id - side 1
+// Get by name - hente etter noe annet enn id - side 1
 
 [HttpGet]
-[Route("[action]/{name}")] // endepunktet blir da /api/Athlete/byname/NAVNETFEKSMESSI
+[Route("[action]/{name}")] 
 public async Task<ActionResult<List<Athlete>>> GetByName(string name)
     {
         try
         {
-            // sjekker at søkefeltet ikke kan være tomt:
+            // Sjekker at søkefeltet ikke kan være tomt:
             if(string.IsNullOrWhiteSpace(name))
             {
                 return BadRequest("Tekstfeltet er null eller har invalid characters");
             }
-            // kode fra pp til Rolando:
             List<Athlete> athletes = await _sportsWorldContext.Athletes
             .Where(
                 athlete => athlete.Name != null && athlete.Name.ToLower().Contains(
                     name.ToLower()
-                    //StringComparison.CurrentCultureIgnoreCase
+                    // Vi prøvde først med StringComparison.CurrentCultureIgnoreCase, men dette funket dessverre ikke sånn 
+                    // som vi ønsket. Derfor valgte vi å bruke .ToLower().Contains(name.ToLower() som tar navnet til spilleren
+                    // i databasen og konverterer det til små bokstaver og sjekker om navnet inneholder søkeordet
+                    // dokumentasjon for bruk av dette kan finnes på https://learn.microsoft.com/en-us/ef/core/querying/client-eval
+                    // under "Client evaluation in the top-level projection" 
                 )
             )
             .ToListAsync();
@@ -88,17 +91,16 @@ public async Task<ActionResult<List<Athlete>>> GetByName(string name)
 [HttpPut]
 public async Task<IActionResult> Put(Athlete editedAthlete)
     {
-        // sjekker om brukeren sender inn et gyldig objekt
+        // Sjekker om brukeren sender inn et gyldig objekt
         if(editedAthlete != null)
         {
             try
             {
-                // Context gjøres klar for å gjøre endring på redigert athlete; Context greier å finne den igjen basert på id'en til athleten. -Rolando
+                // Context gjøres klar for å gjøre endring på redigert athlete; Context greier å finne den igjen basert på id'en til athleten
                 _sportsWorldContext.Athletes.Entry(editedAthlete).State = EntityState.Modified;
                 // Utfører lagringen
                 await _sportsWorldContext.SaveChangesAsync();
-                // NoContent er en 200-melding som betyr at det gikk bra og at det ikke er nødvendig med noe tilbake. -Rolando
-                return NoContent();
+                return NoContent(); // 200-melding som betyr at det gikk bra og at det ikke er nødvendig med noe tilbake
 
             }
             catch
@@ -115,13 +117,13 @@ public async Task<IActionResult> Put(Athlete editedAthlete)
 
 
 
-// delete -  slette utøver
+// Delete -  slette utøver
 [HttpDelete("{id}")] // sletter etter id på athlete, /api/Athlete/id
 public async Task<IActionResult> Delete (int id)
     {
         try
         {
-            // søker i databsen om den finner en utøver med matcher den gitte iden, resutatet kan være null (?), ? fordi det er ikke sikkert det er en Athlete vi får tak i 
+            // Søker i databsen om den finner en utøver som matcher den gitte iden
             Athlete? athlete = await _sportsWorldContext.Athletes.FindAsync(id);
             
             if (athlete == null)
@@ -129,22 +131,22 @@ public async Task<IActionResult> Delete (int id)
                 return NotFound();
             }
 
-            // sjekker om spilleren er kjøpt 
+            // Sjekker om spilleren er kjøpt 
             if (athlete.PurchaseStatus)
             {
                 Finance finance = await _sportsWorldContext.Finances.FirstAsync();
 
-                // reduserer antall kjøp i financeobjektet
+                // Reduserer antall kjøp i financeobjektet
                 finance.NumberOfPurchases --;
             }
 
-                // forteller context at athlete skal fjernes
+                // Forteller context at athlete skal fjernes
                 _sportsWorldContext.Athletes.Remove(athlete);
 
-                // lagrer alle endringene 
+                // Lagrer alle endringene 
                 await _sportsWorldContext.SaveChangesAsync();
 
-                return NoContent(); // finne kilde på denne
+                return NoContent(); 
 
         }
         catch
@@ -154,7 +156,7 @@ public async Task<IActionResult> Delete (int id)
     }
 
 
-// post - registrere ny athlete  - side 2
+// Post - registrere ny athlete  - side 2
 [HttpPost]
 public async Task<ActionResult<Athlete>> Post(Athlete athlete)
     {

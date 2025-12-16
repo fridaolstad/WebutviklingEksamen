@@ -2,7 +2,7 @@ import { useRef, useContext, useState } from "react";
 import { type IAthleteContext } from "../../interfaces/IAthleteContext";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
-import { useClearStatusMessage } from "./hooks/UseClearStatusMessage";
+import { useClearStatusMessage } from "../hooks/UseClearStatusMessage";
 
 // vise alle, og søke etter navn
 
@@ -105,28 +105,3 @@ const AthleteForm = () => {
 }
 
 export default AthleteForm;
-
-/*
-
-        if(searchInput.current && searchInput.current.value.trim() != ""){
-
-            const searchWord = searchInput.current.value.trim() ;
-
-            updateStatusMessage( `Finner ikke : ${searchWord}...`, false);
-
-            const response = await searchAthleteByName(searchWord);
-
-            if(response.success && response.data !== null){
-                if(response.data?.length)
-                updateStatusMessage (`Her er spilleren som inneholder ${searchWord}`, true); 
-
-            }else {
-                updateStatusMessage (` Feil under søking.. prøv på nytt`, false)
-            }
-
-        } else {
-            updateStatusMessage ("Skriv inn navnet du vil søke på", null)
-        }
-      }
-
- */

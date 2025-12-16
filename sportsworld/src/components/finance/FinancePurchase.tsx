@@ -53,7 +53,7 @@ const PurchaseAthlete = () => {
     const availableAthletes = athletes.filter(a => !a.purchaseStatus);
 
     return (
-        <section className="p-6 bg-white rounded-lg shadow-md space-y-4">
+        <section className="space-y-4">
             <h3 className="text-xl font-semibold text-gray-800">Kjøp utøver</h3>
 
             {availableAthletes.length === 0 ?(

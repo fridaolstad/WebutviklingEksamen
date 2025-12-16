@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AthleteContext } from "../../context/AthleteContext";
 import type { IAthleteContext } from "../../interfaces/IAthleteContext";
 import type { IAthlete } from "../../interfaces/IAthlete";
-import { useClearStatusMessage } from "./hooks/UseClearStatusMessage";
+import { useClearStatusMessage } from "../hooks/UseClearStatusMessage";
 
 
 // Mal for formen, den starter tom og kan kalles på for å tømme formen

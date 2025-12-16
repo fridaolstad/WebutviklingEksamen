@@ -6,9 +6,9 @@ import { AthleteAdminPage, HomePage } from "../pages";
 import AthleteRegisterPage from "../pages/AthleteRegisterPage";
 import PageNavigation from "../components/shared/PageNavigation";
 import PageFooter from "../components/shared/PageFooter";
-// trenger også AtheltePage her
 
-const AppRoutes = () => { // Må sjekke om pathen til utøvere er riktig
+
+const AppRoutes = () => { 
     return(
         <BrowserRouter>
 

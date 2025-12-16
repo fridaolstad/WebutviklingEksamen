@@ -1,5 +1,6 @@
 namespace SportsWorldAPI.Interfaces;
 
+// Definerer egenskaper for Athlete-objekt
 interface IAthlete
 {
     int Id {get; set; }

@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { FinanceContext } from "../../context/FinanceContext";
 import type { IFinanceContext } from "../../interfaces/IFinanceContext";
-import { useClearStatusMessage } from "../athletes/hooks/UseClearStatusMessage";
+import { useClearStatusMessage } from "../hooks/UseClearStatusMessage";
 
 const FinanceLoan = () => {
     const financeContext = useContext(FinanceContext) as IFinanceContext;
@@ -31,7 +31,7 @@ const FinanceLoan = () => {
 
 
     return (
-        <section className="p-5 bg-white rounded-lg shadow-md space-y-4">
+        <section className="p-6 space-y-4">
             <h3 className="text-xl font-semibold text-gray-800">Lånekasse</h3>
                 <div className="">
                     <label>Beløp: </label>

@@ -9,7 +9,7 @@ const financeEndpoint = "http://localhost:5236/api/finance"
 
 const FinanceService = {
     // GET /finance
-    getFinance: async(): Promise<IResponseData<IFinance>> => {
+    getFinance: async(): Promise<IResponseData> => {
         try {
             const response = await axios.get (financeEndpoint);
 
@@ -28,7 +28,7 @@ const FinanceService = {
     },
 
     // POST /finance/addmoney
-    addMoney: async (amount: number): Promise<IResponseData<IFinance>> => {
+    addMoney: async (amount: number): Promise<IResponseData> => {
         try {
             const response = await axios.post(`${financeEndpoint}/addmoney`, {amount});
 
@@ -47,7 +47,7 @@ const FinanceService = {
     },
 
     //PUt /finance/purchase
-    purchaseAthlete: async (price: number): Promise<IResponseData<IFinance>> => {
+    purchaseAthlete: async (price: number): Promise<IResponseData> => {
         try {
             const response = await axios.post(`${financeEndpoint}/purchase/`,{price});
 

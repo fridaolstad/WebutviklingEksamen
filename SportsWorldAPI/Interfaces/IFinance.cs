@@ -1,6 +1,5 @@
 namespace SportsWorldAPI.Interfaces;
 
-
 // Definerer egenskaper for Finance-objekt
 interface IFinance 
 {

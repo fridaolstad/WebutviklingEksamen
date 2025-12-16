@@ -2,7 +2,7 @@ import AthleteForm from "../components/athletes/AthleteForm";
 import AthleteList from "../components/athletes/AthleteList";
 import AthleteEditForm from "../components/athletes/AthleteEditForm";
 import AthleteDelete from "../components/athletes/AthleteDelete";
-import { useAthleteAdmin } from "../components/athletes/hooks/UseAthleteAdmin";
+import { useAthleteAdmin } from "../components/hooks/UseAthleteAdmin";
 
 
 const AthleteAdminPage = () => {
@@ -15,7 +15,7 @@ const AthleteAdminPage = () => {
          handleDelete,
          cancelEdit,
          cancelDelete,
-        statusMessage}
+        }
      = useAthleteAdmin();
 
     return(
