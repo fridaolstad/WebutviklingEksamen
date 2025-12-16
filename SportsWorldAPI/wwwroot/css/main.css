@@ -96,7 +96,46 @@ html,
 pre {
  background-color: white;
  padding: 8px;
+ border: 1px solid #1E3A8A;
+ border-radius: 4px;
 }
+
+.doc-body{
+    margin: 40px;
+    padding: 0 20px;
+}
+
+.api-endpoint{
+    margin-top: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed blue;
+}
+
+.api-endpoint h3{
+    margin-bottom: 5px;
+}
+
+/* styling av tabbelen fro datatyper*/
+table{
+    width: 100%;
+    border: #1E3A8A;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+th, td {
+    border: 1px solid #1E3A8A;
+    padding: 10px;
+    text-align: left;
+}
+
+th{
+    background-color: #1E3A8A;
+    color: white;
+    font-weight: bold;
+}
+
+
 
 /* side 3*/
 .side3-main-container{
