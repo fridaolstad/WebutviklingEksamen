@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, type ReactNode,  } from "react";
 import { type IAthlete } from "../interfaces/IAthlete";
 import { type IAthleteContext } from "../interfaces/IAthleteContext";
 import AthleteService from "../services/AthleteService";
-import type { IDefaultResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
+import type { IAthleteResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
 
 export const AthleteContext = createContext<IAthleteContext | null>(null);
 
@@ -35,7 +35,7 @@ export const AthleteProvider = ({children} : Props) => {
 
     };
 
-    const getAthleteById = async (id: number) : Promise<IDefaultResponse> => {
+    const getAthleteById = async (id: number) : Promise<IAthleteResponse> => {
         const response = await AthleteService.getAthleteById(id);
         return response;
 
@@ -52,7 +52,7 @@ export const AthleteProvider = ({children} : Props) => {
 
 
     // side 1
-    const updateAthlete = async (editedAthlete: IAthlete) : Promise<IDefaultResponse> => {
+    const updateAthlete = async (editedAthlete: IAthlete) : Promise<IAthleteResponse> => {
         const response = await AthleteService.updateAthlete(editedAthlete)
 
         if(response.success){
@@ -72,7 +72,7 @@ export const AthleteProvider = ({children} : Props) => {
         return response;
     }
 
-    const deleteAthlete = async (id: number) : Promise<IDefaultResponse> => {
+    const deleteAthlete = async (id: number) : Promise<IAthleteResponse> => {
         const response = await AthleteService.deleteAthlete(id);
 
         if(response.success){
@@ -82,30 +82,19 @@ export const AthleteProvider = ({children} : Props) => {
     }
 
         // side 2 
-    const registerAthlete = async (newAthlete: IAthlete, image: File) : Promise<IDefaultResponse> => {
+    const registerAthlete = async (newAthlete: IAthlete, image: File) : Promise<IAthleteResponse> => {
         const response = await AthleteService.postAthlete(newAthlete, image);
 
         if(response.success) {
             // Henter hele den oppdaterte listen fra serveren
             await setAthletesFromService();
-            /*
-            setAthletes(
-                prev => [response.data!, ...prev] 
-            );
-            */
         }
         return response;
     }
 
-    // denne kan slettes hvis vi ikke skal bruke den:
-    const getAthleteQuantity = () : number => {
-        return athletes.length;
-    }
-
-
 
     return(
-        <AthleteContext.Provider value ={{athletes, showAllAthletes : setAthletesFromService , getAthleteQuantity, showAthleteById: getAthleteById, searchAthleteByName : getAthleteByName, registerAthlete, updateAthlete, removeAthlete : deleteAthlete}}>
+        <AthleteContext.Provider value ={{athletes, showAllAthletes : setAthletesFromService , showAthleteById: getAthleteById, searchAthleteByName : getAthleteByName, registerAthlete, updateAthlete, removeAthlete : deleteAthlete}}>
             {children}
         </AthleteContext.Provider>
     )

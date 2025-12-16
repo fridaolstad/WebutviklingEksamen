@@ -3,6 +3,4 @@ export interface IFinance {
     moneyLeft: number;
     numberOfPurchases: number;
     moneySpent: number;
-    amount?: number;
-    price?: number;
 }

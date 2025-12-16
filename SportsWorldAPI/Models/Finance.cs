@@ -15,4 +15,5 @@ public class Finance : IFinance
     public double Amount { get; set; }
     [NotMapped]
     public double Price { get; set; }
+    
 }

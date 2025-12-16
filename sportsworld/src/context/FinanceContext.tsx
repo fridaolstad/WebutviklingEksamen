@@ -30,7 +30,7 @@ export const FinanceProvider = ({children}: Props) => {
 
     const loanFinanceFromService = async () => {
         try {
-        const response: IResponseData<IFinance> = await FinanceService.getFinance();
+        const response: IResponseData = await FinanceService.getFinance();
 
         if (response.success && response.data){
             setFinance(response.data);
@@ -46,7 +46,7 @@ export const FinanceProvider = ({children}: Props) => {
 
     const addMoney = async (amount: number): Promise<IDefaultResponse> => {
         try {
-            const response: IResponseData<IFinance> = await FinanceService.addMoney(amount);
+            const response: IResponseData = await FinanceService.addMoney(amount);
 
             if (response.success && response.data){
                 setFinance(response.data);
@@ -72,7 +72,7 @@ export const FinanceProvider = ({children}: Props) => {
 
     const purchaseAthlete = async(athleteID: number): Promise<IDefaultResponse> => {
         try{
-            const response: IResponseData<IFinance> = await FinanceService.purchaseAthlete(athleteID);
+            const response: IResponseData = await FinanceService.purchaseAthlete(athleteID);
 
             if (response.success && response.data) {
                 setFinance(response.data);
@@ -96,7 +96,7 @@ export const FinanceProvider = ({children}: Props) => {
 
     const loadFinance = async () => {
         try{
-            const response: IResponseData<IFinance> = await FinanceService.getFinance();
+            const response: IResponseData = await FinanceService.getFinance();
             if (response.success && response.data){
                 setFinance(response.data);
             } else {
@@ -126,6 +126,7 @@ export const FinanceProvider = ({children}: Props) => {
             }; 
         });
     };
+
 
     return (
         <FinanceContext.Provider value={{

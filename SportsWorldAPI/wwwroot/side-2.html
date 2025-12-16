@@ -29,8 +29,8 @@
     <!-- Finance  -->
       <section class="grid-12-column endpoint-box">
           <h2>Finance</h2>
-          <section class="grid-12-column">
-            <div class="xs-12">
+          <section class="grid-12-column ">
+            <div class="xs-12 ">
                 <p>Det er 1 oversikt over økonomien, da det er til den ene bedriften</p>
                 <h3>Datatype-oversikt for økonomi</h3>
                 <table>
@@ -64,9 +64,10 @@
             </div>
           </section>
         
-        <div class="xs-12">
+        <div class="xs-12 api-endpoint">
           <h3>GET /api/finance</h3>
           <p>Henter en fullstendig oversikt over økonomi</p>
+          <p>GET <code>http://localhost:5236/api/finance</code></p>
           
           <h3>JSON-resons:</h3>
           <pre>
@@ -80,21 +81,22 @@
         </div>
         
 
-        <div class="xs-12 endpoint-box-put">
+        <div class="xs-12 api-endpoint">
             <h3>PUT /api/finance/{id}</h3>
             <p>Oppdaterer et finansobjekt (feks ved justering av penger etter kjøp)</p>
-            <h3>JSON-resons:</h3>
+            <p>PUT <code>http://localhost:5236/api/finance/1</code></p>
+            <h3>Eksempel på JSON-resons etter lån av penger og kjøp av spiller </h3>
             <pre>
             {
                 "id": 1,
-                "moneyLeft": 10000,
-                "NumberOfPurchases": 3,
-                "moneySpent": 50000"
+                "moneyLeft": 555000005,
+                "numberOfPurchases": 5,
+                "moneySpent": 445000000,
+                "amount": 0,
+                "price": 0
             }
-
             </pre>
         </div>
-
       </section>
 
       <!-- Athlete Endpoints-->
@@ -147,12 +149,13 @@
             </div>
            </section>
 
-        <div class="xs-12">
+        <div class="xs-12 api-endpoint">
           <h3>GET alle utøvere - GET/api/athlete </h3>
-          <p>Du kan hente en liste over alle utøvere ved å bruke /api/athlete endepunktet</p>
-          <p>GET http://localhost:5236/api/athlete </p>
+          <p>Du kan hente en liste over alle utøvere ved å bruke <code>/api/athlete endepunktet</code> </p>
+          <p>GET <code> http://localhost:5236/api/athlete </code> </p>
           <h3>JSON-resons:</h3>
           <pre>
+            [
             {
                 "id": 1,
                 "name": "Lionel Messi",
@@ -160,71 +163,72 @@
                 "price": 500000,
                 "image": "messi.jpg",
                 "purchaseStatus": true
-            }
+            },
             {
-                "id": 1,
-                "name": "Lionel Messi",
+                 "id": 2,
+                 "name": "Caroline G. Hansen",
+                 "gender": "Female",
+                 "price": 50000000,
+                 "image": "graham_hansen.jpg",
+                 "purchaseStatus": true
+            },
+            {
+                 "id": 3,
+                 "name": "Martin Ødegaard",
+                 "gender": "Male",
+                 "price": 90000000,
+                 "image": "odegaard.jpg",
+                 "purchaseStatus": false
+            },
+            {
+                "id": 4,
+                "name": "Alexia Putellas",
+                "gender": "Female",
+                "price": 60000000,
+                "image": "putellas.jpg",
+                "purchaseStatus": false
+            },
+            {
+                "id": 5,
+                "name": "Erling Braut Haaland",
                 "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
+                "price": 150000000,
+                "image": "haaland.jpg",
+                "purchaseStatus": true
+            },
+            {
+                "id": 6,
+                "name": "Aitana Bonmati",
+                "gender": "Female",
+                "price": 40000000,
+                "image": "aitana.jpg",
+                "purchaseStatus": false
+            },
+            {
+                "id": 7,
+                "name": "Luka Modric",
+                "gender": "Male",
+                "price": 70000000,
+                "image": "modric.jpg",
+                "purchaseStatus": false
+            },
+            {
+                "id": 8,
+                "name": "Robert Lewandowski",
+                "gender": "Male",
+                "price": 80000000,
+                "image": "lewandowski.jpg",
                 "purchaseStatus": true
             }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
-            {
-                "id": 1,
-                "name": "Lionel Messi",
-                "gender": "Male",
-                "price": 500000,
-                "image": "messi.jpg",
-                "purchaseStatus": true
-            }
+            ]
 
           </pre>
         </div>
 
-        <div class="xs-12">
+        <div class="xs-12 api-endpoint">
           <h3>Get en enkel utøver - GET/api/athlete/{id} </h3>
-          <p>Du kan hente en enkelt spiller ved å legge til id som et parameter: /api/athlete/1</p>
-          <p>GET http://localhost:5236/api/athlete/1 </p>
+          <p>Du kan hente en enkelt spiller ved å legge til id som et parameter: <code>/api/athlete/1</code> </p>
+          <p>GET <code>http://localhost:5236/api/athlete/1</code> </p>
           <h3>JSON-resons:</h3>
           <pre>
             {
@@ -238,13 +242,23 @@
           </pre>
         </div>
 
-        <div class="xs-12">
+        <div class="xs-12 api-endpoint">
           <h3>Andre CRUD operasjoner</h3>
-          <p>Post legge til en ny spiller - POST /api/athlete </p>
-          <!-- Kan legge til kode her om vi vil, men må ikke? feks samme som den over, men med "redidert navn" feks-->
-          <p>Put oppdarere en spiller etter id - PUT /api/athlete/{id} </p>
+          <p>Post legge til en ny spiller - POST <code>/api/athlete </code></p>
+          <h3>Ekesmpel på JSON-resons for en ny spiller: </h3>
+          <pre>
+              {
+                "id": 9,
+                "name": "Pedri",
+                "gender": "Mann",
+                "price": 85000000,
+                "image": "pedri.jpg",
+                "purchaseStatus": false
+            }
+          </pre>
+          <p>Put oppdarere en spiller etter id - PUT <code>/api/athlete/{id}</code> </p>
           <!-- sammme her om vi vil ^^-->
-          <p>Delete slette en spiller etter id - DELETE /athelte/{id} </p>
+          <p>Delete slette en spiller etter id - DELETE <code>/athelte/{id} </code> </p>
         </div>
 
       </section>
@@ -252,8 +266,7 @@
     </main>
 
     <footer id="footer">
-        <p>Spillere: 8</p>
-        <p> <i class="fa-solid fa-code"></i> Laget av gruppe 13 2025</p>
+        <p> <i class="fa-solid fa-code"></i> Laget av gruppe 13 - 2025</p>
     </footer>
   </body>
 </html>

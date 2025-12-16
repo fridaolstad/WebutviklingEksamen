@@ -8,12 +8,12 @@ export interface IDefaultResponse{
     message?: string;
 }
 
-export interface IResponseData<T> {
+export interface IResponseData {
     success: boolean
-    data?: T | null
+    data?: null
 }
 
-export interface IDefaultResponse{
+export interface IAthleteResponse{
     success: boolean
     data?: IAthlete | null
 }

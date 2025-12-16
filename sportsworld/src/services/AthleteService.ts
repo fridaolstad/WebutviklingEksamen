@@ -1,6 +1,6 @@
 import axios from "axios";
 import { type IAthlete } from "../interfaces/IAthlete";
-import type { IDefaultResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
+import type { IAthleteResponse, IAthletesResponse } from "../interfaces/ResponseInterfaces";
 
 const endpoint = "http://localhost:5236/api/athlete";
 const endpointImage = "http://localhost:5236/api/ImageUpload";
@@ -28,7 +28,7 @@ const getAllAthletes = async (): Promise<IAthletesResponse> => {
     }
 }
 
-const getAthleteById = async (id: number): Promise<IDefaultResponse> => {
+const getAthleteById = async (id: number): Promise<IAthleteResponse> => {
     try{
         const result = await axios.get(`${endpoint}/${id}`); // get-kall til backend
         return {
@@ -64,7 +64,7 @@ const getAthleteByName = async (name: string): Promise<IAthletesResponse> => {
 }
 
 //oppdaterer eksisterende athlete (side 1)
-const updateAthlete = async (editedAthlete : IAthlete) : Promise<IDefaultResponse> => {
+const updateAthlete = async (editedAthlete : IAthlete) : Promise<IAthleteResponse> => {
     try{
         const result = await axios.put(endpoint, editedAthlete); // poster endret athlete til backend
         console.log(result);
@@ -85,7 +85,7 @@ const updateAthlete = async (editedAthlete : IAthlete) : Promise<IDefaultRespons
 
 
 // registrere ny athlete, side 2 - husk ta med bildeopplatning her: !
-const postAthlete = async (newAthlete: IAthlete, image: File) : Promise<IDefaultResponse> => {
+const postAthlete = async (newAthlete: IAthlete, image: File) : Promise<IAthleteResponse> => {
     try{
         const response = await axios.post(endpoint, newAthlete); // poster athlete til backend
         console.log("response fra dataopplastning: ", response);
@@ -122,7 +122,7 @@ const postAthlete = async (newAthlete: IAthlete, image: File) : Promise<IDefault
 }
 
 
-const deleteAthlete = async (id: number) : Promise <IDefaultResponse> => {
+const deleteAthlete = async (id: number) : Promise <IAthleteResponse> => {
     try{
         const result = await axios.delete(`${endpoint}/${id}`);
         console.log(result);
